@@ -25,11 +25,10 @@ export default function Header() {
               <Image
                 src="/logo.png"
                 alt="Susan Batik House"
-                width={50}
-                height={40}
+                width={140}
+                height={90}
                 className="object-contain"
               />
-              <span className="hidden sm:block text-xl lg:text-2xl font-bold text-amber-800">Susan Batik House</span>
             </Link>
 
             {/* Desktop Navigation */}
