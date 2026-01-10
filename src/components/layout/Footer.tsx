@@ -1,22 +1,42 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-stone-900 text-stone-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <h3 className="text-lg font-bold text-white mb-3">Susan Batik House</h3>
-            <p className="text-sm leading-relaxed text-stone-400">
-              Traditional batik & kebaya since 1989
+    <footer className="bg-gradient-to-b from-stone-900 to-stone-950 text-stone-300">
+      {/* Top Decorative Line */}
+      <div className="h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-8 lg:gap-12">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-white rounded-lg p-1.5">
+                <Image
+                  src="/logo.png"
+                  alt="Susan Batik House"
+                  width={100}
+                  height={52}
+                  className="h-10 w-auto"
+                />
+              </div>
+            </div>
+            <p className="text-stone-400 leading-relaxed mb-6">
+              For over 35 years, we&apos;ve been dressing generations in the finest
+              handcrafted batik, kebaya, and Peranakan heritage wear.
             </p>
-            <div className="flex gap-3 mt-4">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-px bg-amber-400/40" />
+              <span className="text-amber-400/60 text-xs tracking-widest uppercase">Follow Us</span>
+              <div className="w-8 h-px bg-amber-400/40" />
+            </div>
+            <div className="flex gap-3">
               <a
                 href="https://www.facebook.com/SusanBatikHouse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-white transition-colors"
+                className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center text-stone-400 hover:bg-[#dc0e94] hover:text-white transition-all duration-300 group"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -24,10 +44,10 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/susanbatikhouse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-white transition-colors"
+                className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center text-stone-400 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 hover:text-white transition-all duration-300"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +58,7 @@ export default function Footer() {
                 href="https://wa.me/6565336330"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-stone-400 hover:text-white transition-colors"
+                className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center text-stone-400 hover:bg-green-500 hover:text-white transition-all duration-300"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -48,47 +68,145 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Shop */}
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Shop</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/collections/kebaya" className="text-stone-400 hover:text-white transition-colors">Kebaya</Link></li>
-              <li><Link href="/collections/cheongsam" className="text-stone-400 hover:text-white transition-colors">Cheongsam</Link></li>
-              <li><Link href="/collections/batik-dress" className="text-stone-400 hover:text-white transition-colors">Batik Dress</Link></li>
-              <li><Link href="/collections/sarong" className="text-stone-400 hover:text-white transition-colors">Sarong</Link></li>
+          {/* Shop Column */}
+          <div className="col-span-1 md:col-span-2">
+            <h4 className="text-white font-serif text-lg font-bold mb-5">Shop</h4>
+            <ul className="space-y-3">
+              {[
+                { label: "Kebaya", href: "/collections/kebaya" },
+                { label: "Cheongsam", href: "/collections/cheongsam" },
+                { label: "Batik Dress", href: "/collections/batik-dress" },
+                { label: "Sarong", href: "/collections/sarong" },
+                { label: "All Products", href: "/collections/all" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="text-stone-400 hover:text-amber-400 transition-colors text-sm inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-2 h-px bg-amber-400 transition-all duration-300" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Help */}
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Help</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/faq" className="text-stone-400 hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link href="/size-guide" className="text-stone-400 hover:text-white transition-colors">Size Guide</Link></li>
-              <li><Link href="/care-instructions" className="text-stone-400 hover:text-white transition-colors">Care Instructions</Link></li>
-              <li><Link href="/shipping" className="text-stone-400 hover:text-white transition-colors">Shipping</Link></li>
-              <li><Link href="/returns" className="text-stone-400 hover:text-white transition-colors">Returns</Link></li>
-              <li><Link href="/alteration" className="text-stone-400 hover:text-white transition-colors">Alterations</Link></li>
-              <li><Link href="/contact" className="text-stone-400 hover:text-white transition-colors">Contact</Link></li>
+          {/* Help Column */}
+          <div className="col-span-1 md:col-span-2">
+            <h4 className="text-white font-serif text-lg font-bold mb-5">Help</h4>
+            <ul className="space-y-3">
+              {[
+                { label: "FAQ", href: "/faq" },
+                { label: "Size Guide", href: "/size-guide" },
+                { label: "Care Instructions", href: "/care-instructions" },
+                { label: "Shipping", href: "/shipping" },
+                { label: "Returns", href: "/returns" },
+                { label: "Alterations", href: "/alteration" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="text-stone-400 hover:text-amber-400 transition-colors text-sm inline-flex items-center gap-2 group"
+                  >
+                    <span className="w-0 group-hover:w-2 h-px bg-amber-400 transition-all duration-300" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Visit */}
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Visit Us</h4>
-            <address className="text-sm not-italic text-stone-400">
-              Blk 32 New Market Road<br />
-              #02-1104/1106, S(050032)
-            </address>
-            <p className="text-sm mt-2 text-stone-400">Mon-Sat: 10am-6pm</p>
-            <a href="tel:+6565336330" className="text-sm text-pink-400 hover:text-amber-300 mt-2 inline-block">
-              6533 6330
-            </a>
+          {/* Visit Column */}
+          <div className="col-span-2 md:col-span-4">
+            <h4 className="text-white font-serif text-lg font-bold mb-5">Visit Our Store</h4>
+            <div className="bg-stone-800/50 rounded-xl p-5 border border-stone-700/50">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 bg-amber-400/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <address className="text-sm not-italic text-stone-400 leading-relaxed">
+                  Blk 32 New Market Road<br />
+                  #02-1104/1106<br />
+                  Singapore 050032
+                </address>
+              </div>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-10 h-10 bg-amber-400/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-stone-400">Mon - Sat: 10am - 6pm</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-amber-400/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <a href="tel:+6565336330" className="text-[#dc0e94] hover:text-amber-400 transition-colors font-medium">
+                  6533 6330
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-stone-800 mt-8 pt-6 text-xs text-stone-500 text-center">
-          &copy; {new Date().getFullYear()} Susan Batik House. All rights reserved.
+        {/* Newsletter Section */}
+        <div className="mt-12 pt-12 border-t border-stone-800">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h4 className="text-white font-serif text-lg font-bold mb-2">Stay Connected</h4>
+              <p className="text-stone-400 text-sm">Get updates on new arrivals and exclusive offers</p>
+            </div>
+            <div className="flex gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-5 py-3 bg-stone-800 border border-stone-700 rounded-full text-white placeholder-stone-500 focus:outline-none focus:border-[#dc0e94] transition-colors w-64"
+              />
+              <button className="px-6 py-3 bg-gradient-to-r from-[#dc0e94] to-pink-500 hover:from-pink-500 hover:to-[#dc0e94] text-white font-semibold rounded-full transition-all duration-300">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-stone-800 bg-stone-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-xs text-stone-500">
+              &copy; {new Date().getFullYear()} Susan Batik House. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link href="/privacy" className="text-xs text-stone-500 hover:text-amber-400 transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="text-xs text-stone-500 hover:text-amber-400 transition-colors">
+                Terms of Service
+              </Link>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-stone-600">Secure payments with</span>
+              <div className="flex gap-2">
+                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                  <span className="text-xs text-stone-400 font-bold">Visa</span>
+                </div>
+                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                  <span className="text-xs text-stone-400 font-bold">MC</span>
+                </div>
+                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                  <span className="text-xs text-stone-400 font-bold">PP</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
