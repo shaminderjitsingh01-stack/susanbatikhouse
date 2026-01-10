@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import SearchModal from "@/components/search/SearchModal";
@@ -20,8 +21,15 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <span className="text-xl lg:text-2xl font-bold text-amber-800">Susan Batik House</span>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/logo.jpg"
+                alt="Susan Batik House"
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+              <span className="hidden sm:block text-xl lg:text-2xl font-bold text-amber-800">Susan Batik House</span>
             </Link>
 
             {/* Desktop Navigation */}
