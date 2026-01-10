@@ -133,10 +133,10 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { title: "Kebaya", handle: "kebaya", desc: "Timeless Nyonya elegance", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=600&h=800&fit=crop", badge: "Bestseller", count: 3 },
-              { title: "Cheongsam", handle: "cheongsam", desc: "Classic Chinese beauty", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=800&fit=crop", badge: "Popular", count: 3 },
-              { title: "Batik Dress", handle: "batik-dress", desc: "Wearable art", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop", badge: "New", count: 3 },
-              { title: "Sarong", handle: "sarong", desc: "Versatile & beautiful", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop", badge: "Traditional", count: 3 },
+              { title: "Kebaya", handle: "kebaya", desc: "Timeless Nyonya elegance", image: "/images/products/kebaya/kebaya-1.webp", badge: "Bestseller", count: 3 },
+              { title: "Cheongsam", handle: "cheongsam", desc: "Classic Chinese beauty", image: "/images/products/cheongsam/cheongsam-1.webp", badge: "Popular", count: 3 },
+              { title: "Batik Dress", handle: "batik-dress", desc: "Wearable art", image: "/images/products/batik-dress/batik-1.webp", badge: "New", count: 3 },
+              { title: "Sarong", handle: "sarong", desc: "Versatile & beautiful", image: "/images/products/sarong/sarong-1.webp", badge: "Traditional", count: 3 },
             ].map((category) => (
               <Link
                 key={category.handle}
