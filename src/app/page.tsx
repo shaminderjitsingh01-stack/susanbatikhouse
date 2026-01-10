@@ -28,7 +28,7 @@ export default async function HomePage() {
             poster="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=1080&fit=crop"
           >
             <source
-              src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+              src="/batik.mp4"
               type="video/mp4"
             />
           </video>
