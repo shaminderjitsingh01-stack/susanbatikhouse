@@ -32,9 +32,8 @@ export const dummyProducts: DummyProduct[] = [
     originalPrice: "589.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&h=1067&fit=crop&sat=-100",
-      "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&h=1067&fit=crop&blur=50",
+      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&h=1067&fit=crop&sat=-100",
     ],
     category: "kebaya",
     badge: "Sale",
@@ -56,8 +55,8 @@ export const dummyProducts: DummyProduct[] = [
     price: "568.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1067&fit=crop&sat=-100",
+      "https://images.unsplash.com/photo-1583391733981-8b530c3c8951?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1583391733981-8b530c3c8951?w=800&h=1067&fit=crop&sat=-100",
     ],
     category: "kebaya",
     badge: "Bestseller",
@@ -77,7 +76,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "425.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1590735213408-9d8bf1df0bcc?w=800&h=1067&fit=crop",
     ],
     category: "kebaya",
     badge: "Popular",
@@ -99,8 +98,8 @@ export const dummyProducts: DummyProduct[] = [
     price: "688.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=1067&fit=crop&hue=20",
+      "https://images.unsplash.com/photo-1602575327028-f4389abe0a60?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1602575327028-f4389abe0a60?w=800&h=1067&fit=crop&sat=-100",
     ],
     category: "cheongsam",
     badge: "Bestseller",
@@ -121,7 +120,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "328.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1592301933927-35b597393c0a?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1600093848813-ac2e6d1db688?w=800&h=1067&fit=crop",
     ],
     category: "cheongsam",
     badge: "New",
@@ -141,7 +140,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "458.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1601121141418-c1cc64c107a1?w=800&h=1067&fit=crop",
     ],
     category: "cheongsam",
     variants: [
@@ -162,8 +161,8 @@ export const dummyProducts: DummyProduct[] = [
     price: "358.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=800&h=1067&fit=crop&sat=-50",
+      "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=1067&fit=crop&sat=-50",
     ],
     category: "batik-dress",
     badge: "Popular",
@@ -184,7 +183,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "278.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?w=800&h=1067&fit=crop",
     ],
     category: "batik-dress",
     badge: "New",
@@ -205,7 +204,7 @@ export const dummyProducts: DummyProduct[] = [
     originalPrice: "348.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&h=1067&fit=crop",
     ],
     category: "batik-dress",
     badge: "Sale",
@@ -227,7 +226,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "178.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=800&h=1067&fit=crop",
     ],
     category: "sarong",
     badge: "Bestseller",
@@ -245,7 +244,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "148.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1067&fit=crop",
     ],
     category: "sarong",
     badge: "New",
@@ -263,7 +262,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "228.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1067&fit=crop",
+      "https://images.unsplash.com/photo-1583391733975-4fd8e4b4c9ad?w=800&h=1067&fit=crop",
     ],
     category: "sarong",
     badge: "Popular",

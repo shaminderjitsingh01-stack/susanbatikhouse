@@ -9,11 +9,11 @@ interface CollectionPageProps {
 }
 
 const collectionImages: Record<string, string> = {
-  kebaya: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=1920&h=600&fit=crop",
-  cheongsam: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&h=600&fit=crop",
-  "batik-dress": "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=1920&h=600&fit=crop",
-  sarong: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=600&fit=crop",
-  all: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=600&fit=crop",
+  kebaya: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=1920&h=600&fit=crop",
+  cheongsam: "https://images.unsplash.com/photo-1602575327028-f4389abe0a60?w=1920&h=600&fit=crop",
+  "batik-dress": "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1920&h=600&fit=crop",
+  sarong: "https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=1920&h=600&fit=crop",
+  all: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&h=600&fit=crop",
 };
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
