@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import ProductGrid from "@/components/product/ProductGrid";
 
@@ -13,64 +14,114 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center bg-stone-900">
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/30 to-stone-900/70" />
+      {/* Video Hero Section */}
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Video Background - using a placeholder gradient for now */}
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-amber-950 to-stone-900">
+          <div className="absolute inset-0 opacity-30">
+            <Image
+              src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1920&h=1080&fit=crop"
+              alt="Batik fabric"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-stone-900/20 to-stone-900/80" />
+
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-          <p className="text-amber-400 tracking-[0.3em] uppercase text-sm mb-4">Since 1989</p>
-          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">
-            Susan Batik House
+          <p className="text-amber-400 tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in">
+            Established 1989 • Chinatown, Singapore
+          </p>
+          <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Where Tradition<br />Meets Elegance
           </h1>
-          <p className="text-xl md:text-2xl text-stone-200 mb-8 max-w-2xl mx-auto">
-            Preserving the art of traditional batik, kebaya, and Peranakan heritage in Singapore
+          <p className="text-xl md:text-2xl text-stone-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+            For over 35 years, we&apos;ve been dressing generations in the finest handcrafted
+            batik, kebaya, and Peranakan heritage wear.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/collections/all"
-              className="px-8 py-4 bg-amber-700 hover:bg-amber-800 text-white font-medium rounded transition-colors"
+              className="px-8 py-4 bg-amber-700 hover:bg-amber-600 text-white font-medium rounded transition-all hover:scale-105"
             >
-              Shop Collection
+              Explore Collection
             </Link>
             <Link
               href="/about"
-              className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-stone-900 font-medium rounded transition-colors"
+              className="px-8 py-4 border-2 border-white/80 text-white hover:bg-white hover:text-stone-900 font-medium rounded transition-all"
             >
               Our Story
             </Link>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </section>
 
-      {/* Categories */}
+      {/* Categories with Images */}
       <section className="py-16 lg:py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <p className="text-amber-700 tracking-widest uppercase text-sm mb-3">What We Offer</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Our Collections
+              Shop by Category
             </h2>
             <p className="text-stone-600 max-w-2xl mx-auto">
-              Discover our handcrafted pieces, each telling a story of tradition and artistry
+              Each piece tells a story of heritage, crafted with love and worn with pride
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { title: "Kebaya", handle: "kebaya", desc: "Nyonya & Modern" },
-              { title: "Cheongsam", handle: "cheongsam", desc: "Traditional & Contemporary" },
-              { title: "Batik Dress", handle: "batik-dress", desc: "Elegant Designs" },
-              { title: "Sarong", handle: "sarong", desc: "Classic Wraps" },
+              {
+                title: "Kebaya",
+                handle: "kebaya",
+                desc: "Timeless Nyonya elegance",
+                image: "https://images.unsplash.com/photo-1594486231930-e0b05c678a4e?w=600&h=800&fit=crop"
+              },
+              {
+                title: "Cheongsam",
+                handle: "cheongsam",
+                desc: "Classic Chinese beauty",
+                image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop"
+              },
+              {
+                title: "Batik Dress",
+                handle: "batik-dress",
+                desc: "Wearable art",
+                image: "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=600&h=800&fit=crop"
+              },
+              {
+                title: "Sarong",
+                handle: "sarong",
+                desc: "Versatile & beautiful",
+                image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&h=800&fit=crop"
+              },
             ].map((category) => (
               <Link
                 key={category.handle}
                 href={`/collections/${category.handle}`}
-                className="group relative aspect-[3/4] bg-stone-200 rounded-lg overflow-hidden"
+                className="group relative aspect-[3/4] rounded-lg overflow-hidden"
               >
+                <Image
+                  src={category.image}
+                  alt={category.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
                   <h3 className="font-serif text-xl md:text-2xl font-bold group-hover:text-amber-400 transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-sm text-stone-300">{category.desc}</p>
+                  <p className="text-sm text-stone-300 mt-1">{category.desc}</p>
                 </div>
               </Link>
             ))}
@@ -83,10 +134,10 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-2">
-                Featured Pieces
+              <p className="text-amber-700 tracking-widest uppercase text-sm mb-2">Hand-Picked</p>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900">
+                New Arrivals
               </h2>
-              <p className="text-stone-600">Handpicked selections from our collection</p>
             </div>
             <Link
               href="/collections/all"
@@ -105,13 +156,22 @@ export default async function HomePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="space-y-3">
-                  <div className="aspect-[3/4] bg-stone-100 rounded-lg animate-pulse" />
-                  <div className="h-4 bg-stone-100 rounded animate-pulse" />
-                  <div className="h-4 bg-stone-100 rounded w-1/2 animate-pulse" />
+                  <div className="aspect-[3/4] bg-stone-100 rounded-lg" />
+                  <div className="h-4 bg-stone-100 rounded w-3/4" />
+                  <div className="h-4 bg-stone-100 rounded w-1/2" />
                 </div>
               ))}
             </div>
           )}
+
+          <div className="text-center mt-8 sm:hidden">
+            <Link
+              href="/collections/all"
+              className="inline-flex items-center gap-2 text-amber-800 font-medium"
+            >
+              View All Products →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -119,34 +179,46 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24 bg-amber-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="relative order-2 lg:order-1">
+              <div className="aspect-[4/5] rounded-lg overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&h=1000&fit=crop"
+                  alt="Susan Batik House store"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-amber-700/10 rounded-lg -z-10" />
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-amber-700/10 rounded-lg -z-10" />
+            </div>
+            <div className="order-1 lg:order-2">
               <p className="text-amber-700 tracking-widest uppercase text-sm mb-4">Our Heritage</p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-6">
-                35 Years of Preserving Tradition
+                Three Generations of Passion
               </h2>
-              <p className="text-stone-600 mb-6 leading-relaxed">
-                Since 1989, Susan Batik House has been a cherished destination for those seeking authentic
-                batik and traditional wear. Located in the heart of Singapore&apos;s Chinatown, we take pride
-                in preserving the rich heritage of Peranakan and Southeast Asian textile artistry.
-              </p>
-              <p className="text-stone-600 mb-8 leading-relaxed">
-                Each piece in our collection is carefully curated or crafted, ensuring you receive
-                garments that honor centuries-old traditions while embracing contemporary elegance.
-              </p>
+              <div className="space-y-4 text-stone-600 leading-relaxed">
+                <p>
+                  What started as a small stall in 1989 has blossomed into a beloved destination
+                  for those who appreciate the beauty of traditional craftsmanship.
+                </p>
+                <p>
+                  Every piece in our collection is personally selected. We know the artisans,
+                  we understand the techniques, and we only offer garments we&apos;d proudly wear ourselves.
+                </p>
+                <p>
+                  Whether you&apos;re preparing for a wedding, a festival, or simply want to add
+                  something special to your wardrobe, we&apos;re here to help you find that perfect piece.
+                </p>
+              </div>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium"
+                className="inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium mt-6"
               >
-                Learn More About Us
+                Read Our Full Story
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/5] bg-stone-200 rounded-lg" />
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-amber-700/10 rounded-lg -z-10" />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-700/10 rounded-lg -z-10" />
             </div>
           </div>
         </div>
@@ -156,65 +228,104 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
+            <p className="text-amber-700 tracking-widest uppercase text-sm mb-3">Beyond Shopping</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Our Services
+              We&apos;re Here to Help
             </h2>
-            <p className="text-stone-600 max-w-2xl mx-auto">
-              Beyond our collection, we offer personalized services to meet your needs
-            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Custom Tailoring",
-                desc: "Made-to-measure garments crafted to your exact specifications and preferences.",
+                title: "Expert Alterations",
+                desc: "Our in-house tailors ensure every piece fits you perfectly. Because the right fit makes all the difference.",
+                icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
               },
               {
-                title: "Alterations",
-                desc: "Expert alteration services to ensure the perfect fit for your garments.",
+                title: "Personal Styling",
+                desc: "Not sure what suits you? Our experienced staff will guide you to pieces that complement your style and occasion.",
+                icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
               },
               {
-                title: "Wholesale",
-                desc: "Special pricing for bulk orders and business partnerships.",
+                title: "Custom Orders",
+                desc: "Have something specific in mind? We work with skilled artisans to create bespoke pieces just for you.",
+                icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
               },
             ].map((service) => (
-              <div key={service.title} className="text-center p-8 bg-stone-50 rounded-lg">
+              <div key={service.title} className="text-center p-8 bg-stone-50 rounded-lg hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
+                  </svg>
+                </div>
                 <h3 className="font-serif text-xl font-bold text-stone-900 mb-3">{service.title}</h3>
-                <p className="text-stone-600">{service.desc}</p>
+                <p className="text-stone-600 text-sm">{service.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/alteration"
+              className="inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium"
+            >
+              Learn More About Our Services →
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Visit Us CTA */}
-      <section className="py-16 lg:py-24 bg-stone-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-            Visit Our Store
-          </h2>
-          <p className="text-stone-300 max-w-2xl mx-auto mb-8">
-            Experience our collection in person at our Chinatown location.
-            Our friendly staff is ready to help you find the perfect piece.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <div className="text-center sm:text-left">
-              <p className="font-medium">Blk 32 New Market Road, #02-1104/1106</p>
-              <p className="text-stone-400">Singapore 050032</p>
+      <section className="py-16 lg:py-20 bg-stone-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-amber-400 tracking-widest uppercase text-sm mb-4">Come Say Hello</p>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
+                Visit Our Store
+              </h2>
+              <p className="text-stone-300 mb-6 leading-relaxed">
+                There&apos;s nothing quite like seeing our collection in person.
+                Feel the fabrics, try on the pieces, and let us help you find something special.
+              </p>
+              <div className="space-y-3 text-stone-300">
+                <p className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Blk 32 New Market Road, #02-1104/1106, Singapore
+                </p>
+                <p className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Mon - Sat: 10am - 6pm
+                </p>
+                <p className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <a href="tel:+6565336330" className="hover:text-amber-400 transition-colors">6533 6330</a>
+                </p>
+              </div>
             </div>
-            <div className="hidden sm:block w-px h-12 bg-stone-700" />
-            <div className="text-center sm:text-left">
-              <p className="font-medium">Mon - Sat: 10am - 6pm</p>
-              <p className="text-stone-400">Closed on Sundays</p>
+            <div className="flex gap-4">
+              <a
+                href="tel:+6565336330"
+                className="flex-1 py-4 bg-amber-700 hover:bg-amber-600 text-white text-center font-medium rounded transition-colors"
+              >
+                Call Us
+              </a>
+              <a
+                href="https://wa.me/6565336330"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-4 border border-white text-white hover:bg-white hover:text-stone-900 text-center font-medium rounded transition-colors"
+              >
+                WhatsApp
+              </a>
             </div>
-            <div className="hidden sm:block w-px h-12 bg-stone-700" />
-            <a
-              href="tel:+6565336330"
-              className="px-6 py-3 bg-amber-700 hover:bg-amber-800 rounded font-medium transition-colors"
-            >
-              Call: 6533 6330
-            </a>
           </div>
         </div>
       </section>
