@@ -63,6 +63,9 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-3 text-sm">Help</h4>
             <ul className="space-y-2 text-sm">
+              <li><Link href="/faq" className="text-stone-400 hover:text-white transition-colors">FAQ</Link></li>
+              <li><Link href="/size-guide" className="text-stone-400 hover:text-white transition-colors">Size Guide</Link></li>
+              <li><Link href="/care-instructions" className="text-stone-400 hover:text-white transition-colors">Care Instructions</Link></li>
               <li><Link href="/shipping" className="text-stone-400 hover:text-white transition-colors">Shipping</Link></li>
               <li><Link href="/returns" className="text-stone-400 hover:text-white transition-colors">Returns</Link></li>
               <li><Link href="/alteration" className="text-stone-400 hover:text-white transition-colors">Alterations</Link></li>
@@ -78,7 +81,7 @@ export default function Footer() {
               #02-1104/1106, S(050032)
             </address>
             <p className="text-sm mt-2 text-stone-400">Mon-Sat: 10am-6pm</p>
-            <a href="tel:+6565336330" className="text-sm text-fuchsia-400 hover:text-amber-300 mt-2 inline-block">
+            <a href="tel:+6565336330" className="text-sm text-pink-400 hover:text-amber-300 mt-2 inline-block">
               6533 6330
             </a>
           </div>

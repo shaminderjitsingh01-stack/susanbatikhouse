@@ -17,41 +17,44 @@ export default function Header() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-50 bg-white border-b border-stone-200">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-pink-50/90 via-white to-pink-50/90 backdrop-blur-sm border-b border-pink-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="Susan Batik House"
-                width={140}
-                height={90}
-                className="object-contain"
-              />
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="relative">
+                <Image
+                  src="/logo.png"
+                  alt="Susan Batik House"
+                  width={140}
+                  height={73}
+                  className="object-contain transition-transform duration-300 group-hover:scale-105"
+                  priority
+                />
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav className="hidden lg:flex items-center gap-8">
               <button
                 onMouseEnter={() => setMegaMenuOpen(true)}
-                className="flex items-center gap-1 text-stone-700 hover:text-fuchsia-600 transition-colors font-medium"
+                className="flex items-center gap-1 text-stone-700 hover:text-[#dc0e94] transition-colors font-medium"
               >
                 Shop
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <Link href="/collections/all" className="text-stone-700 hover:text-fuchsia-600 transition-colors">
+              <Link href="/collections/all" className="text-stone-700 hover:text-[#dc0e94] transition-colors font-medium">
                 All Products
               </Link>
-              <Link href="/about" className="text-stone-700 hover:text-fuchsia-600 transition-colors">
+              <Link href="/about" className="text-stone-700 hover:text-[#dc0e94] transition-colors font-medium">
                 About
               </Link>
-              <Link href="/alteration" className="text-stone-700 hover:text-fuchsia-600 transition-colors">
+              <Link href="/alteration" className="text-stone-700 hover:text-[#dc0e94] transition-colors font-medium">
                 Services
               </Link>
-              <Link href="/contact" className="text-stone-700 hover:text-fuchsia-600 transition-colors">
+              <Link href="/contact" className="text-stone-700 hover:text-[#dc0e94] transition-colors font-medium">
                 Contact
               </Link>
             </nav>
@@ -61,7 +64,8 @@ export default function Header() {
               {/* Search */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 text-stone-700 hover:text-fuchsia-600 transition-colors"
+                className="p-2 text-stone-700 hover:text-[#dc0e94] transition-colors"
+                aria-label="Search"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -69,12 +73,12 @@ export default function Header() {
               </button>
 
               {/* Cart */}
-              <button onClick={openCart} className="relative p-2 text-stone-700 hover:text-fuchsia-600 transition-colors">
+              <button onClick={openCart} className="relative p-2 text-stone-700 hover:text-[#dc0e94] transition-colors" aria-label="Cart">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-fuchsia-600 text-white text-xs rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#dc0e94] text-white text-xs rounded-full flex items-center justify-center font-semibold">
                     {itemCount}
                   </span>
                 )}
@@ -83,7 +87,8 @@ export default function Header() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 text-stone-700"
+                className="lg:hidden p-2 text-stone-700 hover:text-[#dc0e94]"
+                aria-label="Menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   {mobileMenuOpen ? (
@@ -98,32 +103,32 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-stone-200 py-4">
+            <div className="lg:hidden border-t border-pink-100 py-4 bg-gradient-to-b from-pink-50/50 to-white">
               <nav className="flex flex-col gap-3">
-                <p className="text-xs uppercase tracking-wider text-stone-500 px-2">Shop</p>
-                <Link href="/collections/kebaya" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <p className="text-xs uppercase tracking-wider text-[#dc0e94] px-2 font-semibold">Shop</p>
+                <Link href="/collections/kebaya" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Kebaya
                 </Link>
-                <Link href="/collections/cheongsam" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <Link href="/collections/cheongsam" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Cheongsam
                 </Link>
-                <Link href="/collections/batik-dress" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <Link href="/collections/batik-dress" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Batik Dress
                 </Link>
-                <Link href="/collections/sarong" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <Link href="/collections/sarong" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Sarong
                 </Link>
-                <Link href="/collections/all" className="px-2 py-1 text-fuchsia-600 font-medium">
+                <Link href="/collections/all" className="px-2 py-1 text-[#dc0e94] font-semibold">
                   Shop All
                 </Link>
-                <div className="border-t border-stone-200 my-2" />
-                <Link href="/about" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <div className="border-t border-pink-100 my-2" />
+                <Link href="/about" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   About
                 </Link>
-                <Link href="/alteration" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <Link href="/alteration" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Services
                 </Link>
-                <Link href="/contact" className="px-2 py-1 text-stone-700 hover:text-fuchsia-600">
+                <Link href="/contact" className="px-2 py-1 text-stone-700 hover:text-[#dc0e94]">
                   Contact
                 </Link>
               </nav>

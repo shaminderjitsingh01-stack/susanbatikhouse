@@ -8,7 +8,7 @@ export default function AnnouncementBar() {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-fuchsia-600 text-white text-sm">
+    <div className="bg-[#dc0e94] text-white text-sm">
       <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-center relative">
         <div className="flex items-center gap-2 text-center">
           <span className="hidden sm:inline">✨</span>
@@ -20,7 +20,7 @@ export default function AnnouncementBar() {
         </div>
         <button
           onClick={() => setIsVisible(false)}
-          className="absolute right-4 p-1 hover:bg-fuchsia-600 rounded transition-colors"
+          className="absolute right-4 p-1 hover:bg-[#dc0e94] rounded transition-colors"
           aria-label="Close announcement"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

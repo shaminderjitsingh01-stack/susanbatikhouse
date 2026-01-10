@@ -89,7 +89,7 @@ export default function ProductPage() {
                   key={index}
                   onClick={() => setSelectedImage(index)}
                   className={`relative w-20 h-24 flex-shrink-0 rounded overflow-hidden border-2 ${
-                    selectedImage === index ? "border-fuchsia-600" : "border-transparent"
+                    selectedImage === index ? "border-[#dc0e94]" : "border-transparent"
                   }`}
                 >
                   <Image
@@ -109,7 +109,7 @@ export default function ProductPage() {
           <h1 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
             {product.title}
           </h1>
-          <p className="text-2xl font-semibold text-fuchsia-600 mb-6">
+          <p className="text-2xl font-semibold text-[#dc0e94] mb-6">
             {currentVariant
               ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
               : formatPrice(product.priceRange.minVariantPrice.amount, product.priceRange.minVariantPrice.currencyCode)}
@@ -140,9 +140,9 @@ export default function ProductPage() {
                           disabled={!isAvailable}
                           className={`px-4 py-2 rounded border ${
                             isSelected
-                              ? "border-fuchsia-600 bg-fuchsia-50 text-fuchsia-600"
+                              ? "border-[#dc0e94] bg-pink-50 text-[#dc0e94]"
                               : isAvailable
-                              ? "border-stone-300 hover:border-fuchsia-600"
+                              ? "border-stone-300 hover:border-[#dc0e94]"
                               : "border-stone-200 text-stone-400 cursor-not-allowed"
                           }`}
                         >
@@ -160,7 +160,7 @@ export default function ProductPage() {
           <button
             onClick={handleAddToCart}
             disabled={isLoading || !currentVariant?.availableForSale}
-            className="w-full py-4 bg-fuchsia-600 text-white font-medium rounded-lg hover:bg-fuchsia-700 disabled:bg-stone-300 disabled:cursor-not-allowed transition-colors mb-6"
+            className="w-full py-4 bg-[#dc0e94] text-white font-medium rounded-lg hover:bg-[#b30c78] disabled:bg-stone-300 disabled:cursor-not-allowed transition-colors mb-6"
           >
             {isLoading
               ? "Adding..."
@@ -182,7 +182,7 @@ export default function ProductPage() {
           {/* Additional Info */}
           <div className="mt-8 pt-8 border-t border-stone-200 space-y-4">
             <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-fuchsia-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#dc0e94] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
@@ -191,7 +191,7 @@ export default function ProductPage() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-fuchsia-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#dc0e94] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <div>
