@@ -1,15 +1,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
+import { getDummyProducts, formatAsShopifyProduct, DummyProduct } from "@/lib/dummy-products";
 import ProductGrid from "@/components/product/ProductGrid";
 
 export default async function HomePage() {
   let products: ShopifyProduct[] = [];
+  let featuredDummyProducts: DummyProduct[] = [];
 
   try {
     products = await getProducts(8);
   } catch {
     // Store not connected yet
+  }
+
+  // If no Shopify products, use dummy products
+  if (products.length === 0) {
+    featuredDummyProducts = getDummyProducts().slice(0, 8);
+    products = featuredDummyProducts.map(formatAsShopifyProduct) as unknown as ShopifyProduct[];
   }
 
   return (
@@ -125,10 +133,10 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
-              { title: "Kebaya", handle: "kebaya", desc: "Timeless Nyonya elegance", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=600&h=800&fit=crop", badge: "Bestseller" },
-              { title: "Cheongsam", handle: "cheongsam", desc: "Classic Chinese beauty", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=800&fit=crop", badge: "Popular" },
-              { title: "Batik Dress", handle: "batik-dress", desc: "Wearable art", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop", badge: "New" },
-              { title: "Sarong", handle: "sarong", desc: "Versatile & beautiful", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop", badge: "Traditional" },
+              { title: "Kebaya", handle: "kebaya", desc: "Timeless Nyonya elegance", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=600&h=800&fit=crop", badge: "Bestseller", count: 3 },
+              { title: "Cheongsam", handle: "cheongsam", desc: "Classic Chinese beauty", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=800&fit=crop", badge: "Popular", count: 3 },
+              { title: "Batik Dress", handle: "batik-dress", desc: "Wearable art", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop", badge: "New", count: 3 },
+              { title: "Sarong", handle: "sarong", desc: "Versatile & beautiful", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop", badge: "Traditional", count: 3 },
             ].map((category) => (
               <Link
                 key={category.handle}
@@ -156,8 +164,9 @@ export default async function HomePage() {
                   <h3 className="font-serif text-2xl md:text-3xl font-bold mb-1 group-hover:text-amber-400 transition-colors">
                     {category.title}
                   </h3>
-                  <p className="text-stone-300 text-sm mb-4">{category.desc}</p>
-                  <div className="flex items-center gap-2 text-amber-400 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <p className="text-stone-300 text-sm mb-2">{category.desc}</p>
+                  <p className="text-amber-400/80 text-xs">{category.count} products</p>
+                  <div className="flex items-center gap-2 text-amber-400 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 mt-3">
                     <span className="text-sm font-medium">Explore</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -170,10 +179,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products with Premium Cards */}
+      {/* Featured Products - New Arrivals */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-16">
             <div>
               <span className="inline-block px-4 py-1 bg-amber-400/10 text-amber-600 text-xs tracking-widest uppercase rounded-full mb-4">
                 Hand-Picked
@@ -184,7 +193,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/collections/all"
-              className="hidden sm:inline-flex items-center gap-2 px-6 py-3 border-2 border-[#dc0e94] text-[#dc0e94] hover:bg-[#dc0e94] hover:text-white font-semibold rounded-full transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#dc0e94] text-[#dc0e94] hover:bg-[#dc0e94] hover:text-white font-semibold rounded-full transition-all duration-300"
             >
               View All
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,67 +202,60 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          {products.length > 0 ? (
-            <ProductGrid products={products} />
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { title: "Embroidered Nyonya Kebaya", price: "S$489", originalPrice: "S$589", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=400&h=533&fit=crop", badge: "Sale" },
-                { title: "Red Silk Cheongsam", price: "S$368", image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=533&fit=crop", badge: "New" },
-                { title: "Traditional Batik Dress", price: "S$258", image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=533&fit=crop", badge: "Popular" },
-                { title: "Hand-drawn Batik Sarong", price: "S$178", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=400&h=533&fit=crop" },
-              ].map((product, index) => (
-                <Link key={product.title} href="/collections/all" className="group">
-                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-4 shadow-md group-hover:shadow-xl transition-all duration-500">
-                    <Image
-                      src={product.image}
-                      alt={product.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+          {/* Product Grid with dummy products */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {(featuredDummyProducts.length > 0 ? featuredDummyProducts : getDummyProducts()).slice(0, 8).map((product) => (
+              <Link key={product.id} href={`/products/${product.handle}`} className="group">
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-4 shadow-md group-hover:shadow-xl transition-all duration-500">
+                  <Image
+                    src={product.images[0]}
+                    alt={product.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
 
-                    {/* Badge */}
-                    {product.badge && (
-                      <div className="absolute top-3 left-3">
-                        <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${
-                          product.badge === 'Sale' ? 'bg-red-500 text-white' :
-                          product.badge === 'New' ? 'bg-amber-400 text-stone-900' :
-                          'bg-[#dc0e94] text-white'
-                        }`}>
-                          {product.badge}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Quick View Button */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="px-6 py-3 bg-white text-stone-900 font-semibold rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        Quick View
+                  {/* Badge */}
+                  {product.badge && (
+                    <div className="absolute top-3 left-3">
+                      <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${
+                        product.badge === 'Sale' ? 'bg-red-500 text-white' :
+                        product.badge === 'New' ? 'bg-amber-400 text-stone-900' :
+                        product.badge === 'Bestseller' ? 'bg-amber-400 text-stone-900' :
+                        'bg-[#dc0e94] text-white'
+                      }`}>
+                        {product.badge}
                       </span>
                     </div>
+                  )}
 
-                    {/* Wishlist Button */}
-                    <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#dc0e94] hover:text-white">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                      </svg>
-                    </button>
+                  {/* Quick View Button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="px-6 py-3 bg-white text-stone-900 font-semibold rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      View Details
+                    </span>
                   </div>
-                  <h3 className="font-medium text-stone-900 group-hover:text-[#dc0e94] transition-colors text-lg">
-                    {product.title}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <p className="text-[#dc0e94] font-bold text-lg">{product.price}</p>
-                    {product.originalPrice && (
-                      <p className="text-stone-400 line-through text-sm">{product.originalPrice}</p>
-                    )}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
+
+                  {/* Wishlist Button */}
+                  <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#dc0e94] hover:text-white shadow-md">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </button>
+                </div>
+                <h3 className="font-medium text-stone-900 group-hover:text-[#dc0e94] transition-colors text-lg leading-snug">
+                  {product.title}
+                </h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <p className="text-[#dc0e94] font-bold text-lg">S${product.price}</p>
+                  {product.originalPrice && (
+                    <p className="text-stone-400 line-through text-sm">S${product.originalPrice}</p>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
 
           <div className="text-center mt-12 sm:hidden">
             <Link
