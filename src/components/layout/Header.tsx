@@ -23,11 +23,11 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <Image
-                src="/logo.jpg"
+                src="/logo.png"
                 alt="Susan Batik House"
                 width={50}
-                height={50}
-                className="rounded-full"
+                height={40}
+                className="object-contain"
               />
               <span className="hidden sm:block text-xl lg:text-2xl font-bold text-amber-800">Susan Batik House</span>
             </Link>

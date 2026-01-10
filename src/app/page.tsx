@@ -16,19 +16,22 @@ export default async function HomePage() {
     <>
       {/* Video Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Video Background - using a placeholder gradient for now */}
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-amber-950 to-stone-900">
-          <div className="absolute inset-0 opacity-30">
-            <Image
-              src="https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1920&h=1080&fit=crop"
-              alt="Batik fabric"
-              fill
-              className="object-cover"
-              priority
+        {/* Video Background */}
+        <div className="absolute inset-0 bg-stone-900">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-50"
+          >
+            <source
+              src="https://videos.pexels.com/video-files/6567091/6567091-uhd_2560_1440_30fps.mp4"
+              type="video/mp4"
             />
-          </div>
+          </video>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-stone-900/20 to-stone-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/40 to-stone-900/90" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
           <p className="text-amber-400 tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in">
@@ -84,25 +87,25 @@ export default async function HomePage() {
                 title: "Kebaya",
                 handle: "kebaya",
                 desc: "Timeless Nyonya elegance",
-                image: "https://images.unsplash.com/photo-1594486231930-e0b05c678a4e?w=600&h=800&fit=crop"
+                image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=600&h=800&fit=crop"
               },
               {
                 title: "Cheongsam",
                 handle: "cheongsam",
                 desc: "Classic Chinese beauty",
-                image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop"
+                image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=800&fit=crop"
               },
               {
                 title: "Batik Dress",
                 handle: "batik-dress",
                 desc: "Wearable art",
-                image: "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=600&h=800&fit=crop"
+                image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop"
               },
               {
                 title: "Sarong",
                 handle: "sarong",
                 desc: "Versatile & beautiful",
-                image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=600&h=800&fit=crop"
+                image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop"
               },
             ].map((category) => (
               <Link
