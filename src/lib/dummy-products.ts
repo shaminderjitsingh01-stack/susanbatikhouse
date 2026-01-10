@@ -32,8 +32,7 @@ export const dummyProducts: DummyProduct[] = [
     originalPrice: "589.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&h=1067&fit=crop&sat=-100",
+      "/images/products/kebaya/kebaya-1.webp",
     ],
     category: "kebaya",
     badge: "Sale",
@@ -55,8 +54,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "568.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1583391733981-8b530c3c8951?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1583391733981-8b530c3c8951?w=800&h=1067&fit=crop&sat=-100",
+      "/images/products/kebaya/kebaya-2.webp",
     ],
     category: "kebaya",
     badge: "Bestseller",
@@ -76,7 +74,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "425.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1590735213408-9d8bf1df0bcc?w=800&h=1067&fit=crop",
+      "/images/products/kebaya/kebaya-3.jpg",
     ],
     category: "kebaya",
     badge: "Popular",
@@ -98,8 +96,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "688.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1602575327028-f4389abe0a60?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1602575327028-f4389abe0a60?w=800&h=1067&fit=crop&sat=-100",
+      "/images/products/cheongsam/cheongsam-1.webp",
     ],
     category: "cheongsam",
     badge: "Bestseller",
@@ -120,7 +117,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "328.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1600093848813-ac2e6d1db688?w=800&h=1067&fit=crop",
+      "/images/products/cheongsam/cheongsam-2.webp",
     ],
     category: "cheongsam",
     badge: "New",
@@ -140,7 +137,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "458.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1601121141418-c1cc64c107a1?w=800&h=1067&fit=crop",
+      "/images/products/cheongsam/cheongsam-3.jpg",
     ],
     category: "cheongsam",
     variants: [
@@ -161,8 +158,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "358.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=1067&fit=crop",
-      "https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=800&h=1067&fit=crop&sat=-50",
+      "/images/products/batik-dress/batik-1.webp",
     ],
     category: "batik-dress",
     badge: "Popular",
@@ -183,7 +179,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "278.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1594938328870-9623159c8c99?w=800&h=1067&fit=crop",
+      "/images/products/batik-dress/batik-2.webp",
     ],
     category: "batik-dress",
     badge: "New",
@@ -204,7 +200,7 @@ export const dummyProducts: DummyProduct[] = [
     originalPrice: "348.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=800&h=1067&fit=crop",
+      "/images/products/batik-dress/batik-3.webp",
     ],
     category: "batik-dress",
     badge: "Sale",
@@ -226,7 +222,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "178.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=800&h=1067&fit=crop",
+      "/images/products/sarong/sarong-1.webp",
     ],
     category: "sarong",
     badge: "Bestseller",
@@ -244,7 +240,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "148.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=1067&fit=crop",
+      "/images/products/sarong/sarong-2.webp",
     ],
     category: "sarong",
     badge: "New",
@@ -262,7 +258,7 @@ export const dummyProducts: DummyProduct[] = [
     price: "228.00",
     currency: "SGD",
     images: [
-      "https://images.unsplash.com/photo-1583391733975-4fd8e4b4c9ad?w=800&h=1067&fit=crop",
+      "/images/products/sarong/sarong-3.jpg",
     ],
     category: "sarong",
     badge: "Popular",
