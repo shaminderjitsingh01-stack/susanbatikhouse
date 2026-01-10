@@ -1,9 +1,19 @@
+import Image from "next/image";
+import Link from "next/link";
 import { getCollection, getProducts, ShopifyProduct } from "@/lib/shopify";
 import ProductGrid from "@/components/product/ProductGrid";
 
 interface CollectionPageProps {
   params: Promise<{ handle: string }>;
 }
+
+const collectionImages: Record<string, string> = {
+  kebaya: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=1920&h=600&fit=crop",
+  cheongsam: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1920&h=600&fit=crop",
+  "batik-dress": "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=1920&h=600&fit=crop",
+  sarong: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=600&fit=crop",
+  all: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=600&fit=crop",
+};
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
   const { handle } = await params;
@@ -24,39 +34,155 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   const title = handle === "all" ? "All Products" : collection?.title || formatTitle(handle);
   const description = collection?.description || getDefaultDescription(handle);
+  const heroImage = collection?.image?.url || collectionImages[handle] || collectionImages.all;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-4">
-          {title}
-        </h1>
-        {description && (
-          <p className="text-stone-600 max-w-2xl mx-auto">{description}</p>
-        )}
+    <>
+      {/* Premium Hero Banner */}
+      <section className="relative h-[300px] md:h-[400px] overflow-hidden">
+        <Image
+          src={heroImage}
+          alt={title}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+
+        {/* Decorative Gold Lines */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60" />
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            {/* Decorative Element */}
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-amber-400" />
+              <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
+              </svg>
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-amber-400" />
+            </div>
+
+            <p className="text-amber-400 tracking-[0.3em] uppercase text-xs font-medium mb-3">
+              Susan Batik House
+            </p>
+            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">
+              {title}
+            </h1>
+            {description && (
+              <p className="text-stone-300 max-w-2xl mx-auto text-lg">
+                {description}
+              </p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Breadcrumb */}
+      <div className="bg-stone-50 border-b border-stone-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <nav className="flex items-center gap-2 text-sm">
+            <Link href="/" className="text-stone-500 hover:text-[#dc0e94] transition-colors">
+              Home
+            </Link>
+            <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            <Link href="/collections/all" className="text-stone-500 hover:text-[#dc0e94] transition-colors">
+              Collections
+            </Link>
+            <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            <span className="text-[#dc0e94] font-medium">{title}</span>
+          </nav>
+        </div>
       </div>
 
-      {/* Products */}
-      {products.length > 0 ? (
-        <ProductGrid products={products} />
-      ) : (
-        <div className="text-center py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div key={i} className="space-y-3">
-                <div className="aspect-[3/4] bg-stone-100 rounded-lg animate-pulse" />
-                <div className="h-4 bg-stone-100 rounded animate-pulse" />
-                <div className="h-4 bg-stone-100 rounded w-1/2 animate-pulse" />
-              </div>
-            ))}
+      {/* Main Content */}
+      <section className="py-12 lg:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Filter Bar */}
+          <div className="flex items-center justify-between mb-10 pb-6 border-b border-stone-200">
+            <p className="text-stone-600">
+              <span className="font-semibold text-stone-900">{products.length}</span> products
+            </p>
+            <div className="flex items-center gap-4">
+              <label className="text-sm text-stone-600">Sort by:</label>
+              <select className="px-4 py-2 border border-stone-300 rounded-full text-sm focus:outline-none focus:border-[#dc0e94] transition-colors bg-white">
+                <option>Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
+            </div>
           </div>
-          <p className="mt-8 text-stone-500">
-            Connect your Shopify store to display products.
-          </p>
+
+          {/* Products */}
+          {products.length > 0 ? (
+            <ProductGrid products={products} />
+          ) : (
+            <div className="text-center py-16">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                  <div key={i} className="space-y-4">
+                    <div className="aspect-[3/4] bg-gradient-to-br from-stone-100 to-stone-200 rounded-2xl animate-pulse" />
+                    <div className="h-4 bg-stone-100 rounded-full animate-pulse" />
+                    <div className="h-4 bg-stone-100 rounded-full w-1/2 animate-pulse" />
+                  </div>
+                ))}
+              </div>
+              <div className="max-w-md mx-auto">
+                <div className="w-16 h-16 bg-amber-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <p className="text-stone-600 mb-2">Products coming soon!</p>
+                <p className="text-stone-400 text-sm">
+                  Connect your Shopify store to display products.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </section>
+
+      {/* Collection CTA */}
+      <section className="py-16 bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-px bg-amber-400/40" />
+            <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
+            </svg>
+            <div className="w-12 h-px bg-amber-400/40" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+            Can&apos;t Find What You&apos;re Looking For?
+          </h2>
+          <p className="text-stone-400 mb-8 text-lg">
+            Visit our store for personalized assistance and access to our full collection.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-8 py-4 bg-gradient-to-r from-[#dc0e94] to-pink-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
+            >
+              Contact Us
+            </Link>
+            <a
+              href="https://wa.me/6565336330"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 border-2 border-amber-400/60 text-amber-400 hover:bg-amber-400 hover:text-stone-900 font-semibold rounded-full transition-all duration-300"
+            >
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -73,7 +199,7 @@ function getDefaultDescription(handle: string): string {
     cheongsam: "Traditional and contemporary cheongsam styles, crafted with attention to detail and quality fabrics.",
     "batik-dress": "Beautiful batik dresses featuring authentic patterns and comfortable modern cuts.",
     sarong: "Classic sarong wraps in traditional and contemporary batik prints.",
-    all: "Explore our complete collection of traditional and modern wear.",
+    all: "Explore our complete collection of traditional and modern heritage wear.",
   };
   return descriptions[handle] || "";
 }
