@@ -78,7 +78,7 @@ export default function Footer() {
               #02-1104/1106, S(050032)
             </address>
             <p className="text-sm mt-2 text-stone-400">Mon-Sat: 10am-6pm</p>
-            <a href="tel:+6565336330" className="text-sm text-amber-400 hover:text-amber-300 mt-2 inline-block">
+            <a href="tel:+6565336330" className="text-sm text-fuchsia-400 hover:text-amber-300 mt-2 inline-block">
               6533 6330
             </a>
           </div>

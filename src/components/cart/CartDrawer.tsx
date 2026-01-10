@@ -59,7 +59,7 @@ export default function CartDrawer() {
                     {line.merchandise.title !== "Default Title" && (
                       <p className="text-xs text-stone-500">{line.merchandise.title}</p>
                     )}
-                    <p className="text-sm font-semibold text-amber-800 mt-1">
+                    <p className="text-sm font-semibold text-fuchsia-600 mt-1">
                       {formatPrice(line.merchandise.price.amount, line.merchandise.price.currencyCode)}
                     </p>
 
@@ -102,13 +102,13 @@ export default function CartDrawer() {
           <div className="border-t p-4 space-y-4">
             <div className="flex items-center justify-between text-lg font-semibold">
               <span>Total</span>
-              <span className="text-amber-800">
+              <span className="text-fuchsia-600">
                 {formatPrice(cart?.cost.totalAmount.amount || "0", cart?.cost.totalAmount.currencyCode)}
               </span>
             </div>
             <a
               href={cart?.checkoutUrl}
-              className="block w-full py-3 bg-amber-800 text-white text-center font-medium rounded-lg hover:bg-amber-900 transition-colors"
+              className="block w-full py-3 bg-fuchsia-600 text-white text-center font-medium rounded-lg hover:bg-fuchsia-700 transition-colors"
             >
               Checkout
             </a>

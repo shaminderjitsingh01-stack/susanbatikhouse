@@ -26,7 +26,7 @@ export default async function HomePage() {
             className="absolute inset-0 w-full h-full object-cover opacity-50"
           >
             <source
-              src="https://videos.pexels.com/video-files/6567091/6567091-uhd_2560_1440_30fps.mp4"
+              src="https://videos.pexels.com/video-files/5705473/5705473-uhd_2560_1440_25fps.mp4"
               type="video/mp4"
             />
           </video>
@@ -34,7 +34,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-stone-900/60 via-stone-900/40 to-stone-900/90" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-          <p className="text-amber-400 tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in">
+          <p className="text-fuchsia-400 tracking-[0.3em] uppercase text-sm mb-4 animate-fade-in">
             Established 1989 • Chinatown, Singapore
           </p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -47,7 +47,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/collections/all"
-              className="px-8 py-4 bg-amber-700 hover:bg-amber-600 text-white font-medium rounded transition-all hover:scale-105"
+              className="px-8 py-4 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-medium rounded transition-all hover:scale-105"
             >
               Explore Collection
             </Link>
@@ -72,7 +72,7 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-amber-700 tracking-widest uppercase text-sm mb-3">What We Offer</p>
+            <p className="text-fuchsia-600 tracking-widest uppercase text-sm mb-3">What We Offer</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
               Shop by Category
             </h2>
@@ -121,7 +121,7 @@ export default async function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                  <h3 className="font-serif text-xl md:text-2xl font-bold group-hover:text-amber-400 transition-colors">
+                  <h3 className="font-serif text-xl md:text-2xl font-bold group-hover:text-fuchsia-400 transition-colors">
                     {category.title}
                   </h3>
                   <p className="text-sm text-stone-300 mt-1">{category.desc}</p>
@@ -137,14 +137,14 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <p className="text-amber-700 tracking-widest uppercase text-sm mb-2">Hand-Picked</p>
+              <p className="text-fuchsia-600 tracking-widest uppercase text-sm mb-2">Hand-Picked</p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900">
                 New Arrivals
               </h2>
             </div>
             <Link
               href="/collections/all"
-              className="hidden sm:inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium"
+              className="hidden sm:inline-flex items-center gap-2 text-fuchsia-600 hover:text-fuchsia-700 font-medium"
             >
               View All
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +170,7 @@ export default async function HomePage() {
           <div className="text-center mt-8 sm:hidden">
             <Link
               href="/collections/all"
-              className="inline-flex items-center gap-2 text-amber-800 font-medium"
+              className="inline-flex items-center gap-2 text-fuchsia-600 font-medium"
             >
               View All Products →
             </Link>
@@ -179,7 +179,7 @@ export default async function HomePage() {
       </section>
 
       {/* Heritage Section */}
-      <section className="py-16 lg:py-24 bg-amber-50">
+      <section className="py-16 lg:py-24 bg-fuchsia-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative order-2 lg:order-1">
@@ -191,11 +191,11 @@ export default async function HomePage() {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-amber-700/10 rounded-lg -z-10" />
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-amber-700/10 rounded-lg -z-10" />
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-fuchsia-600/10 rounded-lg -z-10" />
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-fuchsia-600/10 rounded-lg -z-10" />
             </div>
             <div className="order-1 lg:order-2">
-              <p className="text-amber-700 tracking-widest uppercase text-sm mb-4">Our Heritage</p>
+              <p className="text-fuchsia-600 tracking-widest uppercase text-sm mb-4">Our Heritage</p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-6">
                 Three Generations of Passion
               </h2>
@@ -215,7 +215,7 @@ export default async function HomePage() {
               </div>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium mt-6"
+                className="inline-flex items-center gap-2 text-fuchsia-600 hover:text-fuchsia-700 font-medium mt-6"
               >
                 Read Our Full Story
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,7 +231,7 @@ export default async function HomePage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-amber-700 tracking-widest uppercase text-sm mb-3">Beyond Shopping</p>
+            <p className="text-fuchsia-600 tracking-widest uppercase text-sm mb-3">Beyond Shopping</p>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
               We&apos;re Here to Help
             </h2>
@@ -256,8 +256,8 @@ export default async function HomePage() {
               },
             ].map((service) => (
               <div key={service.title} className="text-center p-8 bg-stone-50 rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 bg-fuchsia-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={service.icon} />
                   </svg>
                 </div>
@@ -270,7 +270,7 @@ export default async function HomePage() {
           <div className="text-center mt-8">
             <Link
               href="/alteration"
-              className="inline-flex items-center gap-2 text-amber-800 hover:text-amber-900 font-medium"
+              className="inline-flex items-center gap-2 text-fuchsia-600 hover:text-fuchsia-700 font-medium"
             >
               Learn More About Our Services →
             </Link>
@@ -283,7 +283,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-amber-400 tracking-widest uppercase text-sm mb-4">Come Say Hello</p>
+              <p className="text-fuchsia-400 tracking-widest uppercase text-sm mb-4">Come Say Hello</p>
               <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
                 Visit Our Store
               </h2>
@@ -293,30 +293,30 @@ export default async function HomePage() {
               </p>
               <div className="space-y-3 text-stone-300">
                 <p className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   Blk 32 New Market Road, #02-1104/1106, Singapore
                 </p>
                 <p className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   Mon - Sat: 10am - 6pm
                 </p>
                 <p className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <a href="tel:+6565336330" className="hover:text-amber-400 transition-colors">6533 6330</a>
+                  <a href="tel:+6565336330" className="hover:text-fuchsia-400 transition-colors">6533 6330</a>
                 </p>
               </div>
             </div>
             <div className="flex gap-4">
               <a
                 href="tel:+6565336330"
-                className="flex-1 py-4 bg-amber-700 hover:bg-amber-600 text-white text-center font-medium rounded transition-colors"
+                className="flex-1 py-4 bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-center font-medium rounded transition-colors"
               >
                 Call Us
               </a>

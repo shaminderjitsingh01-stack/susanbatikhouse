@@ -62,7 +62,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                   onMouseEnter={() => setActiveCategory(category)}
                   className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
                     activeCategory.handle === category.handle
-                      ? "bg-amber-50 text-amber-800"
+                      ? "bg-fuchsia-50 text-fuchsia-600"
                       : "text-stone-700 hover:bg-stone-50"
                   }`}
                 >
@@ -72,7 +72,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
               <Link
                 href="/collections/all"
                 onClick={onClose}
-                className="block w-full text-left px-3 py-2 text-amber-800 font-medium hover:underline mt-4"
+                className="block w-full text-left px-3 py-2 text-fuchsia-600 font-medium hover:underline mt-4"
               >
                 Shop All →
               </Link>
@@ -90,7 +90,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                   key={sub}
                   href={`/collections/${activeCategory.handle}`}
                   onClick={onClose}
-                  className="px-3 py-2 text-stone-600 hover:text-amber-800 hover:bg-stone-50 rounded transition-colors"
+                  className="px-3 py-2 text-stone-600 hover:text-fuchsia-600 hover:bg-stone-50 rounded transition-colors"
                 >
                   {sub}
                 </Link>
@@ -100,7 +100,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
               <Link
                 href={`/collections/${activeCategory.handle}`}
                 onClick={onClose}
-                className="inline-flex items-center gap-2 text-amber-800 font-medium hover:underline"
+                className="inline-flex items-center gap-2 text-fuchsia-600 font-medium hover:underline"
               >
                 View all {activeCategory.title}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

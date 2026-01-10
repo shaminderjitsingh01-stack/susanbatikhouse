@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #1c1917;
+  --brand-pink: #d50f8a;
+  --brand-pink-dark: #b30c73;
+  --brand-pink-light: #f6eaea;
 }
 
 @theme inline {
