@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCollection, getProducts, ShopifyProduct } from "@/lib/shopify";
+import { getDummyProductsByCategory, formatAsShopifyProduct } from "@/lib/dummy-products";
 import ProductGrid from "@/components/product/ProductGrid";
 
 interface CollectionPageProps {
@@ -20,6 +21,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   let collection = null;
   let products: ShopifyProduct[] = [];
+  let usingDummyData = false;
 
   try {
     if (handle === "all") {
@@ -29,7 +31,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       products = collection?.products?.edges.map((e) => e.node) || [];
     }
   } catch {
-    // Store not connected
+    // Store not connected - use dummy data
+  }
+
+  // If no products from Shopify, use dummy products
+  if (products.length === 0) {
+    usingDummyData = true;
+    const dummyProducts = getDummyProductsByCategory(handle);
+    products = dummyProducts.map(formatAsShopifyProduct) as unknown as ShopifyProduct[];
   }
 
   const title = handle === "all" ? "All Products" : collection?.title || formatTitle(handle);
@@ -103,9 +112,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter Bar */}
-          <div className="flex items-center justify-between mb-10 pb-6 border-b border-stone-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-stone-200">
             <p className="text-stone-600">
-              <span className="font-semibold text-stone-900">{products.length}</span> products
+              Showing <span className="font-semibold text-stone-900">{products.length}</span> products
+              {usingDummyData && (
+                <span className="ml-2 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full">
+                  Sample Products
+                </span>
+              )}
             </p>
             <div className="flex items-center gap-4">
               <label className="text-sm text-stone-600">Sort by:</label>
@@ -119,32 +133,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           </div>
 
           {/* Products */}
-          {products.length > 0 ? (
-            <ProductGrid products={products} />
-          ) : (
-            <div className="text-center py-16">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                  <div key={i} className="space-y-4">
-                    <div className="aspect-[3/4] bg-gradient-to-br from-stone-100 to-stone-200 rounded-2xl animate-pulse" />
-                    <div className="h-4 bg-stone-100 rounded-full animate-pulse" />
-                    <div className="h-4 bg-stone-100 rounded-full w-1/2 animate-pulse" />
-                  </div>
-                ))}
-              </div>
-              <div className="max-w-md mx-auto">
-                <div className="w-16 h-16 bg-amber-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <p className="text-stone-600 mb-2">Products coming soon!</p>
-                <p className="text-stone-400 text-sm">
-                  Connect your Shopify store to display products.
-                </p>
-              </div>
-            </div>
-          )}
+          <ProductGrid products={products} />
         </div>
       </section>
 

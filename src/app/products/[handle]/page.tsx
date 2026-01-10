@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getProduct, ShopifyProduct } from "@/lib/shopify";
+import { getDummyProduct, formatAsShopifyProduct, DummyProduct } from "@/lib/dummy-products";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/utils";
 
@@ -12,28 +13,48 @@ export default function ProductPage() {
   const params = useParams();
   const handle = params.handle as string;
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
+  const [dummyProduct, setDummyProduct] = useState<DummyProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [addedToCart, setAddedToCart] = useState(false);
   const { addItem, isLoading } = useCart();
 
   useEffect(() => {
     async function fetchProduct() {
       try {
         const data = await getProduct(handle);
-        setProduct(data);
-        if (data?.variants?.edges[0]) {
-          setSelectedVariant(data.variants.edges[0].node.id);
+        if (data) {
+          setProduct(data);
+          if (data?.variants?.edges[0]) {
+            setSelectedVariant(data.variants.edges[0].node.id);
+          }
+        } else {
+          // Try dummy product
+          const dummy = getDummyProduct(handle);
+          if (dummy) {
+            setDummyProduct(dummy);
+            setSelectedVariant(dummy.variants[0].id);
+          }
         }
-      } catch (error) {
-        console.error("Failed to fetch product:", error);
+      } catch {
+        // Shopify not connected, try dummy product
+        const dummy = getDummyProduct(handle);
+        if (dummy) {
+          setDummyProduct(dummy);
+          setSelectedVariant(dummy.variants[0].id);
+        }
       } finally {
         setLoading(false);
       }
     }
     fetchProduct();
   }, [handle]);
+
+  // Use dummy product if Shopify product not available
+  const displayProduct = product || (dummyProduct ? formatAsShopifyProduct(dummyProduct) as unknown as ShopifyProduct : null);
+  const isDummy = !product && !!dummyProduct;
 
   if (loading) {
     return (
@@ -58,7 +79,7 @@ export default function ProductPage() {
     );
   }
 
-  if (!product) {
+  if (!displayProduct) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-24 text-center">
         <div className="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -81,15 +102,25 @@ export default function ProductPage() {
     );
   }
 
-  const images = product.images.edges;
-  const variants = product.variants?.edges || [];
+  const images = displayProduct.images.edges;
+  const variants = displayProduct.variants?.edges || [];
   const currentVariant = variants.find((v) => v.node.id === selectedVariant)?.node;
+  const options = displayProduct.options || [];
 
   const handleAddToCart = async () => {
+    if (isDummy) {
+      // For dummy products, just show success animation
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
+      return;
+    }
+
     if (selectedVariant) {
       for (let i = 0; i < quantity; i++) {
         await addItem(selectedVariant);
       }
+      setAddedToCart(true);
+      setTimeout(() => setAddedToCart(false), 2000);
     }
   };
 
@@ -111,7 +142,7 @@ export default function ProductPage() {
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#dc0e94] font-medium truncate">{product.title}</span>
+            <span className="text-[#dc0e94] font-medium truncate">{displayProduct.title}</span>
           </nav>
         </div>
       </div>
@@ -120,24 +151,33 @@ export default function ProductPage() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Images */}
           <div className="space-y-4">
+            {/* Badge */}
+            {isDummy && dummyProduct?.badge && (
+              <div className="flex gap-2 mb-2">
+                <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${
+                  dummyProduct.badge === "Sale" ? "bg-red-500 text-white" :
+                  dummyProduct.badge === "New" ? "bg-amber-400 text-stone-900" :
+                  dummyProduct.badge === "Bestseller" ? "bg-amber-400 text-stone-900" :
+                  "bg-[#dc0e94] text-white"
+                }`}>
+                  {dummyProduct.badge}
+                </span>
+              </div>
+            )}
+
             {/* Main Image */}
-            <div className="relative aspect-[3/4] bg-stone-100 rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative aspect-[3/4] bg-stone-100 rounded-2xl overflow-hidden shadow-lg group">
               {images[selectedImage] && (
                 <Image
                   src={images[selectedImage].node.url}
-                  alt={images[selectedImage].node.altText || product.title}
+                  alt={images[selectedImage].node.altText || displayProduct.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   priority
                 />
               )}
-              {/* Zoom Hint */}
-              <div className="absolute bottom-4 right-4 px-3 py-1.5 bg-white/90 rounded-full text-xs text-stone-600 flex items-center gap-1.5 shadow-md">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                </svg>
-                Click to zoom
-              </div>
+              {/* Zoom Overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
 
             {/* Thumbnail Images */}
@@ -155,7 +195,7 @@ export default function ProductPage() {
                   >
                     <Image
                       src={image.node.url}
-                      alt={image.node.altText || `${product.title} ${index + 1}`}
+                      alt={image.node.altText || `${displayProduct.title} ${index + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -170,16 +210,21 @@ export default function ProductPage() {
             {/* Title & Price */}
             <div className="mb-6">
               <h1 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-                {product.title}
+                {displayProduct.title}
               </h1>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-wrap">
                 <p className="text-3xl font-bold text-[#dc0e94]">
                   {currentVariant
                     ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
-                    : formatPrice(product.priceRange.minVariantPrice.amount, product.priceRange.minVariantPrice.currencyCode)}
+                    : formatPrice(displayProduct.priceRange.minVariantPrice.amount, displayProduct.priceRange.minVariantPrice.currencyCode)}
                 </p>
+                {isDummy && dummyProduct?.originalPrice && (
+                  <p className="text-xl text-stone-400 line-through">
+                    S${dummyProduct.originalPrice}
+                  </p>
+                )}
                 {/* Stock Status */}
-                {currentVariant?.availableForSale ? (
+                {currentVariant?.availableForSale !== false ? (
                   <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
                     In Stock
                   </span>
@@ -195,9 +240,9 @@ export default function ProductPage() {
             <div className="w-full h-px bg-gradient-to-r from-stone-200 via-stone-300 to-stone-200 mb-6" />
 
             {/* Variants */}
-            {product.options && product.options.length > 0 && product.options[0].name !== "Title" && (
+            {options.length > 0 && options[0].name !== "Title" && (
               <div className="mb-6">
-                {product.options.map((option) => (
+                {options.map((option) => (
                   <div key={option.name} className="mb-5">
                     <label className="block text-sm font-semibold text-stone-900 mb-3">
                       {option.name}
@@ -205,12 +250,12 @@ export default function ProductPage() {
                     <div className="flex flex-wrap gap-2">
                       {option.values.map((value) => {
                         const variant = variants.find((v) =>
-                          v.node.selectedOptions.some(
+                          v.node.selectedOptions?.some(
                             (opt) => opt.name === option.name && opt.value === value
                           )
                         );
                         const isSelected = variant?.node.id === selectedVariant;
-                        const isAvailable = variant?.node.availableForSale;
+                        const isAvailable = variant?.node.availableForSale !== false;
 
                         return (
                           <button
@@ -265,10 +310,21 @@ export default function ProductPage() {
             <div className="flex gap-4 mb-8">
               <button
                 onClick={handleAddToCart}
-                disabled={isLoading || !currentVariant?.availableForSale}
-                className="flex-1 py-4 bg-gradient-to-r from-[#dc0e94] to-pink-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-pink-500/30 disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={isLoading || currentVariant?.availableForSale === false}
+                className={`flex-1 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
+                  addedToCart
+                    ? "bg-green-500 text-white"
+                    : "bg-gradient-to-r from-[#dc0e94] to-pink-500 text-white hover:shadow-lg hover:shadow-pink-500/30"
+                } disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed`}
               >
-                {isLoading ? (
+                {addedToCart ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Added to Cart!
+                  </>
+                ) : isLoading ? (
                   <>
                     <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -276,12 +332,12 @@ export default function ProductPage() {
                     </svg>
                     Adding...
                   </>
-                ) : currentVariant?.availableForSale ? (
+                ) : currentVariant?.availableForSale !== false ? (
                   <>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
-                    Add to Cart
+                    Add to Cart - {quantity > 1 ? `${quantity} items` : "1 item"}
                   </>
                 ) : (
                   "Sold Out"
@@ -289,23 +345,35 @@ export default function ProductPage() {
               </button>
 
               {/* Wishlist Button */}
-              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#dc0e94] hover:text-[#dc0e94] transition-all duration-300">
+              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#dc0e94] hover:text-[#dc0e94] hover:bg-pink-50 transition-all duration-300">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </button>
             </div>
 
+            {/* Sample Product Notice */}
+            {isDummy && (
+              <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                <p className="text-amber-800 text-sm flex items-center gap-2">
+                  <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  This is a sample product. Contact us to purchase or visit our store.
+                </p>
+              </div>
+            )}
+
             {/* Description */}
             <div className="mb-8">
-              <h3 className="font-semibold text-stone-900 mb-3">Description</h3>
-              {product.descriptionHtml ? (
+              <h3 className="font-semibold text-stone-900 mb-3 text-lg">Description</h3>
+              {displayProduct.descriptionHtml ? (
                 <div
-                  className="prose prose-stone prose-sm max-w-none text-stone-600"
-                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                  className="prose prose-stone max-w-none text-stone-600"
+                  dangerouslySetInnerHTML={{ __html: displayProduct.descriptionHtml }}
                 />
               ) : (
-                <p className="text-stone-600 leading-relaxed">{product.description || "No description available."}</p>
+                <p className="text-stone-600 leading-relaxed">{displayProduct.description || "No description available."}</p>
               )}
             </div>
 
