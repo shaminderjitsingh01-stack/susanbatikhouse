@@ -26,7 +26,7 @@ export default async function HomePage() {
             className="absolute inset-0 w-full h-full object-cover opacity-50"
           >
             <source
-              src="https://videos.pexels.com/video-files/5705473/5705473-uhd_2560_1440_25fps.mp4"
+              src="https://videos.pexels.com/video-files/6192930/6192930-uhd_2560_1440_25fps.mp4"
               type="video/mp4"
             />
           </video>
