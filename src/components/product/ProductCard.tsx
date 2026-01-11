@@ -42,7 +42,7 @@ export default function ProductCard({ product, badge }: ProductCardProps) {
               badge === "Sale" ? "bg-red-500 text-white" :
               badge === "New" ? "bg-amber-400 text-stone-900" :
               badge === "Bestseller" ? "bg-amber-400 text-stone-900" :
-              "bg-[#dc0e94] text-white"
+              "bg-[#E8A0BF] text-white"
             }`}>
               {badge}
             </span>
@@ -62,7 +62,7 @@ export default function ProductCard({ product, badge }: ProductCardProps) {
             e.preventDefault();
             // Wishlist functionality can be added later
           }}
-          className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#dc0e94] hover:text-white shadow-md"
+          className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#E8A0BF] hover:text-white shadow-md"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -70,10 +70,10 @@ export default function ProductCard({ product, badge }: ProductCardProps) {
         </button>
       </div>
 
-      <h3 className="font-medium text-stone-900 group-hover:text-[#dc0e94] transition-colors text-lg leading-snug">
+      <h3 className="font-medium text-stone-900 group-hover:text-[#E8A0BF] transition-colors text-lg leading-snug">
         {product.title}
       </h3>
-      <p className="text-[#dc0e94] font-bold text-lg mt-1">
+      <p className="text-[#E8A0BF] font-bold text-lg mt-1">
         {formatPrice(price.amount, price.currencyCode)}
       </p>
     </Link>

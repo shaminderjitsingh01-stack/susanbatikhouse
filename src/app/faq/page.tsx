@@ -134,7 +134,7 @@ export default function FAQPage() {
                       >
                         <span className="font-medium text-stone-900">{faq.q}</span>
                         <svg
-                          className={`w-5 h-5 text-[#dc0e94] transition-transform ${isOpen ? "rotate-180" : ""}`}
+                          className={`w-5 h-5 text-[#E8A0BF] transition-transform ${isOpen ? "rotate-180" : ""}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -165,7 +165,7 @@ export default function FAQPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-[#dc0e94] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
+                className="px-6 py-3 bg-[#E8A0BF] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
               >
                 Contact Us
               </Link>
@@ -173,7 +173,7 @@ export default function FAQPage() {
                 href="https://wa.me/6565336330"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 border border-[#dc0e94] text-[#dc0e94] font-medium rounded-lg hover:bg-pink-100 transition-colors"
+                className="px-6 py-3 border border-[#E8A0BF] text-[#E8A0BF] font-medium rounded-lg hover:bg-pink-100 transition-colors"
               >
                 WhatsApp Us
               </a>

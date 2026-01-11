@@ -29,7 +29,7 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -45,7 +45,7 @@ export default function ContactPage() {
                       href="https://maps.google.com/?q=32+New+Market+Road+Singapore+050032"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[#dc0e94] hover:text-[#b30c78] text-sm mt-2"
+                      className="inline-flex items-center gap-1 text-[#E8A0BF] hover:text-[#b30c78] text-sm mt-2"
                     >
                       View on Google Maps
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,13 +57,13 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div>
                     <h3 className="font-semibold text-stone-900 mb-1">Phone</h3>
-                    <a href="tel:+6565336330" className="text-stone-600 hover:text-[#dc0e94] transition-colors">
+                    <a href="tel:+6565336330" className="text-stone-600 hover:text-[#E8A0BF] transition-colors">
                       6533 6330
                     </a>
                   </div>
@@ -71,7 +71,7 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -86,7 +86,7 @@ export default function ContactPage() {
 
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                       href="https://wa.me/6565336330"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-stone-600 hover:text-[#dc0e94] transition-colors"
+                      className="text-stone-600 hover:text-[#E8A0BF] transition-colors"
                     >
                       Message us on WhatsApp
                     </a>
@@ -188,14 +188,14 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#dc0e94] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
+                  className="w-full py-4 bg-[#E8A0BF] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
                 >
                   Send Message
                 </button>
 
                 <p className="text-sm text-stone-500 text-center">
                   Or call us directly at{" "}
-                  <a href="tel:+6565336330" className="text-[#dc0e94] hover:underline">
+                  <a href="tel:+6565336330" className="text-[#E8A0BF] hover:underline">
                     6533 6330
                   </a>
                 </p>

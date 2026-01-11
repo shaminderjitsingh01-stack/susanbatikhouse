@@ -37,7 +37,7 @@ export default function AlterationPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                 </svg>
               </div>
@@ -45,12 +45,12 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Shortening or lengthening of dresses, sleeves, and pants for the perfect proportion.
               </p>
-              <p className="text-[#dc0e94] font-semibold">From $15</p>
+              <p className="text-[#E8A0BF] font-semibold">From $15</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                 </svg>
               </div>
@@ -58,12 +58,12 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Adjusting the fit around the bust, waist, and hips for a comfortable, flattering silhouette.
               </p>
-              <p className="text-[#dc0e94] font-semibold">From $20</p>
+              <p className="text-[#E8A0BF] font-semibold">From $20</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
               </div>
@@ -71,12 +71,12 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Specialized fitting for kebaya tops to achieve the traditional snug fit.
               </p>
-              <p className="text-[#dc0e94] font-semibold">From $30</p>
+              <p className="text-[#E8A0BF] font-semibold">From $30</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
@@ -84,12 +84,12 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Expert adjustments for the perfect cheongsam fit, including collar and side slits.
               </p>
-              <p className="text-[#dc0e94] font-semibold">From $35</p>
+              <p className="text-[#E8A0BF] font-semibold">From $35</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
               </div>
@@ -97,12 +97,12 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Adding or removing embellishments, changing necklines, and other custom requests.
               </p>
-              <p className="text-[#dc0e94] font-semibold">Price on consultation</p>
+              <p className="text-[#E8A0BF] font-semibold">Price on consultation</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
               <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -110,7 +110,7 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Complete custom garments tailored to your exact measurements and preferences.
               </p>
-              <p className="text-[#dc0e94] font-semibold">Price on consultation</p>
+              <p className="text-[#E8A0BF] font-semibold">Price on consultation</p>
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function AlterationPage() {
 
           <div className="space-y-8">
             <div className="flex gap-6 items-start">
-              <div className="w-12 h-12 bg-[#dc0e94] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
+              <div className="w-12 h-12 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
                 1
               </div>
               <div>
@@ -143,7 +143,7 @@ export default function AlterationPage() {
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="w-12 h-12 bg-[#dc0e94] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
+              <div className="w-12 h-12 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
                 2
               </div>
               <div>
@@ -156,7 +156,7 @@ export default function AlterationPage() {
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="w-12 h-12 bg-[#dc0e94] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
+              <div className="w-12 h-12 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
                 3
               </div>
               <div>
@@ -169,7 +169,7 @@ export default function AlterationPage() {
             </div>
 
             <div className="flex gap-6 items-start">
-              <div className="w-12 h-12 bg-[#dc0e94] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
+              <div className="w-12 h-12 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xl">
                 4
               </div>
               <div>
@@ -193,12 +193,12 @@ export default function AlterationPage() {
           <div className="bg-stone-50 rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center p-6">
-                <p className="text-3xl font-bold text-[#dc0e94] mb-2">3-5 Days</p>
+                <p className="text-3xl font-bold text-[#E8A0BF] mb-2">3-5 Days</p>
                 <p className="text-stone-600">Standard Alterations</p>
                 <p className="text-stone-500 text-sm mt-2">Minor adjustments and hemming</p>
               </div>
               <div className="text-center p-6">
-                <p className="text-3xl font-bold text-[#dc0e94] mb-2">7-14 Days</p>
+                <p className="text-3xl font-bold text-[#E8A0BF] mb-2">7-14 Days</p>
                 <p className="text-stone-600">Complex Alterations</p>
                 <p className="text-stone-500 text-sm mt-2">Major modifications and custom work</p>
               </div>
@@ -222,7 +222,7 @@ export default function AlterationPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:+6565336330"
-              className="px-8 py-4 bg-[#dc0e94] hover:bg-[#dc0e94] text-white font-medium rounded-lg transition-colors"
+              className="px-8 py-4 bg-[#E8A0BF] hover:bg-[#E8A0BF] text-white font-medium rounded-lg transition-colors"
             >
               Call 6533 6330
             </a>

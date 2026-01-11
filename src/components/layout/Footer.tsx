@@ -36,7 +36,7 @@ export default function Footer() {
                 href="https://www.facebook.com/SusanBatikHouse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center text-stone-400 hover:bg-[#dc0e94] hover:text-white transition-all duration-300 group"
+                className="w-10 h-10 bg-stone-800 rounded-full flex items-center justify-center text-stone-400 hover:bg-[#E8A0BF] hover:text-white transition-all duration-300 group"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -148,7 +148,7 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <a href="tel:+6565336330" className="text-[#dc0e94] hover:text-amber-400 transition-colors font-medium">
+                <a href="tel:+6565336330" className="text-[#E8A0BF] hover:text-amber-400 transition-colors font-medium">
                   6533 6330
                 </a>
               </div>
@@ -167,9 +167,9 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-5 py-3 bg-stone-800 border border-stone-700 rounded-full text-white placeholder-stone-500 focus:outline-none focus:border-[#dc0e94] transition-colors w-64"
+                className="px-5 py-3 bg-stone-800 border border-stone-700 rounded-full text-white placeholder-stone-500 focus:outline-none focus:border-[#E8A0BF] transition-colors w-64"
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#dc0e94] to-pink-500 hover:from-pink-500 hover:to-[#dc0e94] text-white font-semibold rounded-full transition-all duration-300">
+              <button className="px-6 py-3 bg-gradient-to-r from-[#E8A0BF] to-pink-500 hover:from-pink-500 hover:to-[#E8A0BF] text-white font-semibold rounded-full transition-all duration-300">
                 Subscribe
               </button>
             </div>

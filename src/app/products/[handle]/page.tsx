@@ -91,7 +91,7 @@ export default function ProductPage() {
         <p className="text-stone-600 mb-8">The product you&apos;re looking for doesn&apos;t exist or has been removed.</p>
         <Link
           href="/collections/all"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#dc0e94] text-white font-semibold rounded-full hover:bg-pink-600 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#E8A0BF] text-white font-semibold rounded-full hover:bg-pink-600 transition-colors"
         >
           Browse All Products
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,19 +130,19 @@ export default function ProductPage() {
       <div className="bg-stone-50 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-stone-500 hover:text-[#dc0e94] transition-colors">
+            <Link href="/" className="text-stone-500 hover:text-[#E8A0BF] transition-colors">
               Home
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections/all" className="text-stone-500 hover:text-[#dc0e94] transition-colors">
+            <Link href="/collections/all" className="text-stone-500 hover:text-[#E8A0BF] transition-colors">
               Products
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#dc0e94] font-medium truncate">{displayProduct.title}</span>
+            <span className="text-[#E8A0BF] font-medium truncate">{displayProduct.title}</span>
           </nav>
         </div>
       </div>
@@ -158,7 +158,7 @@ export default function ProductPage() {
                   dummyProduct.badge === "Sale" ? "bg-red-500 text-white" :
                   dummyProduct.badge === "New" ? "bg-amber-400 text-stone-900" :
                   dummyProduct.badge === "Bestseller" ? "bg-amber-400 text-stone-900" :
-                  "bg-[#dc0e94] text-white"
+                  "bg-[#E8A0BF] text-white"
                 }`}>
                   {dummyProduct.badge}
                 </span>
@@ -189,7 +189,7 @@ export default function ProductPage() {
                     onClick={() => setSelectedImage(index)}
                     className={`relative w-20 h-24 flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 ${
                       selectedImage === index
-                        ? "ring-2 ring-[#dc0e94] ring-offset-2 shadow-lg"
+                        ? "ring-2 ring-[#E8A0BF] ring-offset-2 shadow-lg"
                         : "opacity-70 hover:opacity-100"
                     }`}
                   >
@@ -213,7 +213,7 @@ export default function ProductPage() {
                 {displayProduct.title}
               </h1>
               <div className="flex items-center gap-4 flex-wrap">
-                <p className="text-3xl font-bold text-[#dc0e94]">
+                <p className="text-3xl font-bold text-[#E8A0BF]">
                   {currentVariant
                     ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
                     : formatPrice(displayProduct.priceRange.minVariantPrice.amount, displayProduct.priceRange.minVariantPrice.currencyCode)}
@@ -264,9 +264,9 @@ export default function ProductPage() {
                             disabled={!isAvailable}
                             className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
                               isSelected
-                                ? "bg-[#dc0e94] text-white shadow-lg shadow-pink-500/30"
+                                ? "bg-[#E8A0BF] text-white shadow-lg shadow-pink-500/30"
                                 : isAvailable
-                                ? "border-2 border-stone-300 text-stone-700 hover:border-[#dc0e94] hover:text-[#dc0e94]"
+                                ? "border-2 border-stone-300 text-stone-700 hover:border-[#E8A0BF] hover:text-[#E8A0BF]"
                                 : "border-2 border-stone-200 text-stone-400 cursor-not-allowed line-through"
                             }`}
                           >
@@ -288,7 +288,7 @@ export default function ProductPage() {
               <div className="inline-flex items-center border-2 border-stone-300 rounded-full">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#dc0e94] transition-colors"
+                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#E8A0BF] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -297,7 +297,7 @@ export default function ProductPage() {
                 <span className="w-12 text-center font-semibold text-stone-900">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#dc0e94] transition-colors"
+                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#E8A0BF] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -314,7 +314,7 @@ export default function ProductPage() {
                 className={`flex-1 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
                   addedToCart
                     ? "bg-green-500 text-white"
-                    : "bg-gradient-to-r from-[#dc0e94] to-pink-500 text-white hover:shadow-lg hover:shadow-pink-500/30"
+                    : "bg-gradient-to-r from-[#E8A0BF] to-pink-500 text-white hover:shadow-lg hover:shadow-pink-500/30"
                 } disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed`}
               >
                 {addedToCart ? (
@@ -345,7 +345,7 @@ export default function ProductPage() {
               </button>
 
               {/* Wishlist Button */}
-              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#dc0e94] hover:text-[#dc0e94] hover:bg-pink-50 transition-all duration-300">
+              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#E8A0BF] hover:text-[#E8A0BF] hover:bg-pink-50 transition-all duration-300">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
@@ -391,8 +391,8 @@ export default function ProductPage() {
                 { icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z", title: "Visit Our Store", desc: "Try before you buy at New Market Road" },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#dc0e94]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-[#dc0e94]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[#E8A0BF]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#E8A0BF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
                   </div>

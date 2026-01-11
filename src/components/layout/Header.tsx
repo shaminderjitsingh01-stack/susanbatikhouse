@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#dc0e94] via-[#e91e9e] to-[#dc0e94] shadow-lg">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#E8A0BF] via-[#e91e9e] to-[#E8A0BF] shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
@@ -78,7 +78,7 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#dc0e94] text-xs rounded-full flex items-center justify-center font-semibold">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#E8A0BF] text-xs rounded-full flex items-center justify-center font-semibold">
                     {itemCount}
                   </span>
                 )}
@@ -103,7 +103,7 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-pink-400/30 py-4 bg-gradient-to-b from-[#dc0e94]/95 to-[#c00d84]">
+            <div className="lg:hidden border-t border-pink-400/30 py-4 bg-gradient-to-b from-[#E8A0BF]/95 to-[#c00d84]">
               <nav className="flex flex-col gap-3">
                 <p className="text-xs uppercase tracking-wider text-pink-200 px-2 font-semibold">Shop</p>
                 <Link href="/collections/kebaya" className="px-2 py-1 text-white hover:text-pink-200">
