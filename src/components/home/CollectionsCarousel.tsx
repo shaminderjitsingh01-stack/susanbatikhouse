@@ -128,11 +128,6 @@ export default function CollectionsCarousel() {
               <h3 className="font-serif text-xl md:text-2xl lg:text-3xl font-bold mb-1 group-hover:text-pink-300 transition-colors">
                 {collection.title}
               </h3>
-              {collection.description && (
-                <p className="text-stone-300 text-xs md:text-sm mb-2 line-clamp-2 hidden sm:block">
-                  {collection.description}
-                </p>
-              )}
               <div className="flex items-center gap-2 text-pink-300 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 mt-2">
                 <span className="text-sm font-medium">Explore</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
