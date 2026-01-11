@@ -192,19 +192,30 @@ export default function Footer() {
                 Terms of Service
               </Link>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-stone-600">Secure payments with</span>
-              <div className="flex gap-2">
-                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
-                  <span className="text-xs text-stone-400 font-bold">Visa</span>
-                </div>
-                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
-                  <span className="text-xs text-stone-400 font-bold">MC</span>
-                </div>
-                <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
-                  <span className="text-xs text-stone-400 font-bold">PP</span>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-stone-600">Secure payments with</span>
+                <div className="flex gap-2">
+                  <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                    <span className="text-xs text-stone-400 font-bold">Visa</span>
+                  </div>
+                  <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                    <span className="text-xs text-stone-400 font-bold">MC</span>
+                  </div>
+                  <div className="w-8 h-5 bg-stone-700 rounded flex items-center justify-center">
+                    <span className="text-xs text-stone-400 font-bold">PP</span>
+                  </div>
                 </div>
               </div>
+              <span className="text-xs text-stone-600">|</span>
+              <a
+                href="https://shaminder.sg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-stone-500 hover:text-[#EC4899] transition-colors"
+              >
+                Made by shaminder.sg
+              </a>
             </div>
           </div>
         </div>
