@@ -25,15 +25,15 @@ export default function ShippingPage() {
           <div className="bg-stone-50 rounded-lg p-6 space-y-4">
             <div className="flex justify-between items-center border-b border-stone-200 pb-3">
               <span className="font-medium">Standard Delivery</span>
-              <span className="text-[#3EB8A4] font-semibold">$5.00</span>
+              <span className="text-[#EC4899] font-semibold">$5.00</span>
             </div>
             <div className="flex justify-between items-center border-b border-stone-200 pb-3">
               <span className="font-medium">Express Delivery (Next Day)</span>
-              <span className="text-[#3EB8A4] font-semibold">$12.00</span>
+              <span className="text-[#EC4899] font-semibold">$12.00</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="font-medium">Free Shipping</span>
-              <span className="text-[#3EB8A4] font-semibold">Orders above $150</span>
+              <span className="text-[#EC4899] font-semibold">Orders above $150</span>
             </div>
           </div>
         </section>
@@ -42,19 +42,19 @@ export default function ShippingPage() {
           <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">Delivery Times</h2>
           <ul className="space-y-3 text-stone-600">
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span><strong>Standard Delivery:</strong> 3-5 working days</span>
             </li>
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span><strong>Express Delivery:</strong> Next working day (for orders placed before 2pm)</span>
             </li>
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span><strong>Self-Collection:</strong> Available at our Chinatown store during opening hours</span>
@@ -102,7 +102,7 @@ export default function ShippingPage() {
           <p className="text-stone-600 mb-4">
             Prefer to pick up your order? Choose self-collection at checkout and collect from our store:
           </p>
-          <div className="bg-teal-50 rounded-lg p-6">
+          <div className="bg-pink-50 rounded-lg p-6">
             <p className="font-medium text-stone-900">Susan Batik House</p>
             <p className="text-stone-600">
               Blk 32 New Market Road, #02-1104/1106<br />
@@ -118,11 +118,11 @@ export default function ShippingPage() {
           <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">Questions?</h2>
           <p className="text-stone-600">
             If you have any questions about shipping, please don&apos;t hesitate to{" "}
-            <Link href="/contact" className="text-[#3EB8A4] hover:underline">
+            <Link href="/contact" className="text-[#EC4899] hover:underline">
               contact us
             </Link>{" "}
             or call us at{" "}
-            <a href="tel:+6565336330" className="text-[#3EB8A4] hover:underline">
+            <a href="tel:+6565336330" className="text-[#EC4899] hover:underline">
               6533 6330
             </a>.
           </p>

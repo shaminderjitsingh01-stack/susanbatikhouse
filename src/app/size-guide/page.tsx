@@ -21,7 +21,7 @@ export default function SizeGuidePage() {
           {/* How to Measure */}
           <div className="mb-12">
             <h2 className="font-serif text-2xl font-bold text-stone-900 mb-6">How to Measure</h2>
-            <div className="bg-teal-50 rounded-lg p-6 mb-8">
+            <div className="bg-pink-50 rounded-lg p-6 mb-8">
               <p className="text-stone-600 mb-4">
                 For the most accurate fit, take your measurements while wearing light, form-fitting clothing.
                 Use a soft measuring tape and keep it snug but not tight.
@@ -71,7 +71,7 @@ export default function SizeGuidePage() {
                     { size: "XXL", bust: "106-110", waist: "90-94", hips: "114-118", length: "62" },
                   ].map((row) => (
                     <tr key={row.size} className="hover:bg-stone-50">
-                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#3EB8A4]">{row.size}</td>
+                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#EC4899]">{row.size}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.bust}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.waist}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.hips}</td>
@@ -107,7 +107,7 @@ export default function SizeGuidePage() {
                     { size: "XXL", bust: "108-112", waist: "92-96", hips: "116-120", length: "110" },
                   ].map((row) => (
                     <tr key={row.size} className="hover:bg-stone-50">
-                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#3EB8A4]">{row.size}</td>
+                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#EC4899]">{row.size}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.bust}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.waist}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.hips}</td>
@@ -139,7 +139,7 @@ export default function SizeGuidePage() {
                     { type: "Wide", width: "115", length: "200", best: "Taller figures" },
                   ].map((row) => (
                     <tr key={row.type} className="hover:bg-stone-50">
-                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#3EB8A4]">{row.type}</td>
+                      <td className="border border-stone-200 px-4 py-3 font-medium text-[#EC4899]">{row.type}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.width}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.length}</td>
                       <td className="border border-stone-200 px-4 py-3">{row.best}</td>
@@ -155,25 +155,25 @@ export default function SizeGuidePage() {
             <h3 className="font-serif text-xl font-bold text-stone-900 mb-4">Sizing Tips</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-stone-600">Traditional kebaya and cheongsam are designed to be form-fitting. If you prefer a looser fit, size up.</span>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-stone-600">If you&apos;re between sizes, we recommend choosing the larger size as alterations can be made.</span>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-stone-600">For the best fit, visit us in-store for a professional fitting consultation.</span>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-stone-600">Custom sizing is available for most garments. Contact us for details.</span>
@@ -186,7 +186,7 @@ export default function SizeGuidePage() {
             <p className="text-stone-600 mb-4">Need help finding your size?</p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-[#3EB8A4] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
+              className="inline-block px-8 py-4 bg-[#EC4899] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
             >
               Contact Us for Assistance
             </Link>

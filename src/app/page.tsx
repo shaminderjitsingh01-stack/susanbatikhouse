@@ -1,23 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
-import { getDummyProducts, formatAsShopifyProduct, DummyProduct } from "@/lib/dummy-products";
-import ProductGrid from "@/components/product/ProductGrid";
+import ProductCard from "@/components/product/ProductCard";
+import CollectionsCarousel from "@/components/home/CollectionsCarousel";
 
 export default async function HomePage() {
   let products: ShopifyProduct[] = [];
-  let featuredDummyProducts: DummyProduct[] = [];
 
   try {
     products = await getProducts(8);
   } catch {
     // Store not connected yet
-  }
-
-  // If no Shopify products, use dummy products
-  if (products.length === 0) {
-    featuredDummyProducts = getDummyProducts().slice(0, 8);
-    products = featuredDummyProducts.map(formatAsShopifyProduct) as unknown as ShopifyProduct[];
   }
 
   return (
@@ -75,7 +68,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/collections/all"
-              className="group px-10 py-4 bg-gradient-to-r from-[#3EB8A4] to-[#2A9D8F] hover:from-[#2A9D8F] hover:to-[#3EB8A4] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(220,14,148,0.5)]"
+              className="group px-10 py-4 bg-gradient-to-r from-[#F472B6] to-[#EC4899] hover:from-[#EC4899] hover:to-[#F472B6] text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(236,72,153,0.5)]"
             >
               <span className="flex items-center justify-center gap-2">
                 Explore Collection
@@ -115,67 +108,23 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* Categories with Premium Styling */}
+      {/* Collections Carousel */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-stone-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1 bg-[#3EB8A4]/10 text-[#3EB8A4] text-xs tracking-widest uppercase rounded-full mb-4">
+            <span className="inline-block px-4 py-1 bg-[#EC4899]/10 text-[#EC4899] text-xs tracking-widest uppercase rounded-full mb-4">
               Curated Collections
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-4">
-              Shop by Category
+              Shop by Collection
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#3EB8A4] to-amber-400 mx-auto mb-6" />
+            <div className="w-24 h-1 bg-gradient-to-r from-[#EC4899] to-[#F472B6] mx-auto mb-6" />
             <p className="text-stone-600 max-w-2xl mx-auto text-lg">
               Each piece tells a story of heritage, crafted with love and worn with pride
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {[
-              { title: "Kebaya", handle: "kebaya", desc: "Timeless Nyonya elegance", image: "/images/products/kebaya/kebaya-1.webp", badge: "Bestseller", count: 3 },
-              { title: "Cheongsam", handle: "cheongsam", desc: "Classic Chinese beauty", image: "/images/products/cheongsam/cheongsam-1.webp", badge: "Popular", count: 3 },
-              { title: "Batik Dress", handle: "batik-dress", desc: "Wearable art", image: "/images/products/batik-dress/batik-1.webp", badge: "New", count: 3 },
-              { title: "Sarong", handle: "sarong", desc: "Versatile & beautiful", image: "/images/products/sarong/sarong-1.webp", badge: "Traditional", count: 3 },
-            ].map((category) => (
-              <Link
-                key={category.handle}
-                href={`/collections/${category.handle}`}
-                className="group relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-              >
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Premium Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
-
-                {/* Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-amber-400 text-stone-900 text-xs font-bold uppercase tracking-wider rounded-full">
-                    {category.badge}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-serif text-2xl md:text-3xl font-bold mb-1 group-hover:text-amber-400 transition-colors">
-                    {category.title}
-                  </h3>
-                  <p className="text-stone-300 text-sm mb-2">{category.desc}</p>
-                  <p className="text-amber-400/80 text-xs">{category.count} products</p>
-                  <div className="flex items-center gap-2 text-amber-400 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 mt-3">
-                    <span className="text-sm font-medium">Explore</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <CollectionsCarousel />
         </div>
       </section>
 
@@ -193,7 +142,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/collections/all"
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#3EB8A4] text-[#3EB8A4] hover:bg-[#3EB8A4] hover:text-white font-semibold rounded-full transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#EC4899] text-[#EC4899] hover:bg-[#EC4899] hover:text-white font-semibold rounded-full transition-all duration-300"
             >
               View All
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,65 +151,23 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          {/* Product Grid with dummy products */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            {(featuredDummyProducts.length > 0 ? featuredDummyProducts : getDummyProducts()).slice(0, 8).map((product) => (
-              <Link key={product.id} href={`/products/${product.handle}`} className="group">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 mb-4 shadow-md group-hover:shadow-xl transition-all duration-500">
-                  <Image
-                    src={product.images[0]}
-                    alt={product.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-                  {/* Badge */}
-                  {product.badge && (
-                    <div className="absolute top-3 left-3">
-                      <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${
-                        product.badge === 'Sale' ? 'bg-red-500 text-white' :
-                        product.badge === 'New' ? 'bg-amber-400 text-stone-900' :
-                        product.badge === 'Bestseller' ? 'bg-amber-400 text-stone-900' :
-                        'bg-[#3EB8A4] text-white'
-                      }`}>
-                        {product.badge}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Quick View Button */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="px-6 py-3 bg-white text-stone-900 font-semibold rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      View Details
-                    </span>
-                  </div>
-
-                  {/* Wishlist Button */}
-                  <button className="absolute top-3 right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#3EB8A4] hover:text-white shadow-md">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </button>
-                </div>
-                <h3 className="font-medium text-stone-900 group-hover:text-[#3EB8A4] transition-colors text-lg leading-snug">
-                  {product.title}
-                </h3>
-                <div className="flex items-center gap-2 mt-1">
-                  <p className="text-[#3EB8A4] font-bold text-lg">S${product.price}</p>
-                  {product.originalPrice && (
-                    <p className="text-stone-400 line-through text-sm">S${product.originalPrice}</p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
+          {/* Product Grid with real Shopify products */}
+          {products.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-stone-500">Loading products...</p>
+            </div>
+          )}
 
           <div className="text-center mt-12 sm:hidden">
             <Link
               href="/collections/all"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#3EB8A4] text-white font-semibold rounded-full"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#EC4899] text-white font-semibold rounded-full"
             >
               View All Products
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,13 +246,13 @@ export default async function HomePage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1 bg-[#3EB8A4]/10 text-[#3EB8A4] text-xs tracking-widest uppercase rounded-full mb-4">
+            <span className="inline-block px-4 py-1 bg-[#EC4899]/10 text-[#EC4899] text-xs tracking-widest uppercase rounded-full mb-4">
               Premium Services
             </span>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-4">
               We&apos;re Here to Help
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#3EB8A4] to-amber-400 mx-auto" />
+            <div className="w-24 h-1 bg-gradient-to-r from-[#EC4899] to-amber-400 mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -354,8 +261,8 @@ export default async function HomePage() {
               { title: "Personal Styling", desc: "Not sure what suits you? Our experienced staff will guide you to pieces that complement your style and occasion.", icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" },
               { title: "Custom Orders", desc: "Have something specific in mind? We work with skilled artisans to create bespoke pieces just for you.", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
             ].map((service) => (
-              <div key={service.title} className="group text-center p-10 bg-gradient-to-b from-stone-50 to-white rounded-2xl border border-stone-100 hover:border-[#3EB8A4]/30 hover:shadow-xl transition-all duration-500">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#3EB8A4] to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <div key={service.title} className="group text-center p-10 bg-gradient-to-b from-stone-50 to-white rounded-2xl border border-stone-100 hover:border-[#EC4899]/30 hover:shadow-xl transition-all duration-500">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#EC4899] to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.icon} />
                   </svg>
@@ -369,7 +276,7 @@ export default async function HomePage() {
       </section>
 
       {/* Premium Trust Badges */}
-      <section className="py-16 bg-gradient-to-r from-[#3EB8A4] via-teal-500 to-[#3EB8A4]">
+      <section className="py-16 bg-gradient-to-r from-[#F472B6] via-[#EC4899] to-[#F472B6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
             {[
@@ -402,7 +309,7 @@ export default async function HomePage() {
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-4">
               Loved by Generations
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-[#3EB8A4] mx-auto" />
+            <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-[#EC4899] mx-auto" />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -413,7 +320,7 @@ export default async function HomePage() {
             ].map((testimonial) => (
               <div key={testimonial.name} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow relative">
                 {/* Quote Mark */}
-                <div className="absolute -top-4 left-8 w-10 h-10 bg-[#3EB8A4] rounded-full flex items-center justify-center">
+                <div className="absolute -top-4 left-8 w-10 h-10 bg-[#EC4899] rounded-full flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
@@ -428,12 +335,12 @@ export default async function HomePage() {
                 </div>
                 <p className="text-stone-600 leading-relaxed mb-6 italic">&ldquo;{testimonial.text}&rdquo;</p>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#3EB8A4] to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#EC4899] to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
                     <p className="font-bold text-stone-900">{testimonial.name}</p>
-                    <p className="text-sm text-[#3EB8A4]">{testimonial.occasion}</p>
+                    <p className="text-sm text-[#EC4899]">{testimonial.occasion}</p>
                   </div>
                 </div>
               </div>
@@ -446,7 +353,7 @@ export default async function HomePage() {
       <section className="py-20 lg:py-28 bg-stone-900 text-white relative overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-[#3EB8A4] rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-96 h-96 bg-[#EC4899] rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-400 rounded-full blur-3xl" />
         </div>
 
@@ -492,7 +399,7 @@ export default async function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:+6565336330"
-                  className="px-8 py-4 bg-[#3EB8A4] hover:bg-teal-500 text-white text-center font-bold rounded-full transition-colors"
+                  className="px-8 py-4 bg-[#EC4899] hover:bg-[#F472B6] text-white text-center font-bold rounded-full transition-colors"
                 >
                   Call Us
                 </a>

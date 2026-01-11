@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCollection, getProducts, ShopifyProduct } from "@/lib/shopify";
-import { getDummyProductsByCategory, formatAsShopifyProduct } from "@/lib/dummy-products";
 import ProductGrid from "@/components/product/ProductGrid";
 
 interface CollectionPageProps {
@@ -9,11 +8,11 @@ interface CollectionPageProps {
 }
 
 const collectionImages: Record<string, string> = {
-  kebaya: "/images/products/kebaya/kebaya-1.webp",
-  cheongsam: "/images/products/cheongsam/cheongsam-1.webp",
-  "batik-dress": "/images/products/batik-dress/batik-1.webp",
-  sarong: "/images/products/sarong/sarong-1.webp",
-  all: "/images/products/kebaya/kebaya-1.webp",
+  kebaya: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  cheongsam: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  "batik-dress": "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
+  sarong: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  all: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
 };
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
@@ -21,7 +20,6 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   let collection = null;
   let products: ShopifyProduct[] = [];
-  let usingDummyData = false;
 
   try {
     if (handle === "all") {
@@ -31,14 +29,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       products = collection?.products?.edges.map((e) => e.node) || [];
     }
   } catch {
-    // Store not connected - use dummy data
-  }
-
-  // If no products from Shopify, use dummy products
-  if (products.length === 0) {
-    usingDummyData = true;
-    const dummyProducts = getDummyProductsByCategory(handle);
-    products = dummyProducts.map(formatAsShopifyProduct) as unknown as ShopifyProduct[];
+    // Store not connected
   }
 
   const title = handle === "all" ? "All Products" : collection?.title || formatTitle(handle);
@@ -91,19 +82,19 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <div className="bg-stone-50 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-stone-500 hover:text-[#3EB8A4] transition-colors">
+            <Link href="/" className="text-stone-500 hover:text-[#EC4899] transition-colors">
               Home
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections/all" className="text-stone-500 hover:text-[#3EB8A4] transition-colors">
+            <Link href="/collections/all" className="text-stone-500 hover:text-[#EC4899] transition-colors">
               Collections
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#3EB8A4] font-medium">{title}</span>
+            <span className="text-[#EC4899] font-medium">{title}</span>
           </nav>
         </div>
       </div>
@@ -115,15 +106,10 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-stone-200">
             <p className="text-stone-600">
               Showing <span className="font-semibold text-stone-900">{products.length}</span> products
-              {usingDummyData && (
-                <span className="ml-2 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded-full">
-                  Sample Products
-                </span>
-              )}
             </p>
             <div className="flex items-center gap-4">
               <label className="text-sm text-stone-600">Sort by:</label>
-              <select className="px-4 py-2 border border-stone-300 rounded-full text-sm focus:outline-none focus:border-[#3EB8A4] transition-colors bg-white">
+              <select className="px-4 py-2 border border-stone-300 rounded-full text-sm focus:outline-none focus:border-[#EC4899] transition-colors bg-white">
                 <option>Featured</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
@@ -133,7 +119,13 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           </div>
 
           {/* Products */}
-          <ProductGrid products={products} />
+          {products.length > 0 ? (
+            <ProductGrid products={products} />
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-stone-500">No products found in this collection.</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -156,7 +148,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="px-8 py-4 bg-gradient-to-r from-[#3EB8A4] to-teal-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-[#F472B6] to-[#EC4899] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
             >
               Contact Us
             </Link>

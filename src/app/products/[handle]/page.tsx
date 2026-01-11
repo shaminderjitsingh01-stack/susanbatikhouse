@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { getProduct, ShopifyProduct } from "@/lib/shopify";
-import { getDummyProduct, formatAsShopifyProduct, DummyProduct } from "@/lib/dummy-products";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/utils";
 
@@ -13,7 +12,6 @@ export default function ProductPage() {
   const params = useParams();
   const handle = params.handle as string;
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
-  const [dummyProduct, setDummyProduct] = useState<DummyProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -30,31 +28,15 @@ export default function ProductPage() {
           if (data?.variants?.edges[0]) {
             setSelectedVariant(data.variants.edges[0].node.id);
           }
-        } else {
-          // Try dummy product
-          const dummy = getDummyProduct(handle);
-          if (dummy) {
-            setDummyProduct(dummy);
-            setSelectedVariant(dummy.variants[0].id);
-          }
         }
       } catch {
-        // Shopify not connected, try dummy product
-        const dummy = getDummyProduct(handle);
-        if (dummy) {
-          setDummyProduct(dummy);
-          setSelectedVariant(dummy.variants[0].id);
-        }
+        // Shopify not connected or product not found
       } finally {
         setLoading(false);
       }
     }
     fetchProduct();
   }, [handle]);
-
-  // Use dummy product if Shopify product not available
-  const displayProduct = product || (dummyProduct ? formatAsShopifyProduct(dummyProduct) as unknown as ShopifyProduct : null);
-  const isDummy = !product && !!dummyProduct;
 
   if (loading) {
     return (
@@ -79,7 +61,7 @@ export default function ProductPage() {
     );
   }
 
-  if (!displayProduct) {
+  if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-24 text-center">
         <div className="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -91,7 +73,7 @@ export default function ProductPage() {
         <p className="text-stone-600 mb-8">The product you&apos;re looking for doesn&apos;t exist or has been removed.</p>
         <Link
           href="/collections/all"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#3EB8A4] text-white font-semibold rounded-full hover:bg-pink-600 transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#EC4899] text-white font-semibold rounded-full hover:bg-[#F472B6] transition-colors"
         >
           Browse All Products
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,19 +84,12 @@ export default function ProductPage() {
     );
   }
 
-  const images = displayProduct.images.edges;
-  const variants = displayProduct.variants?.edges || [];
+  const images = product.images.edges;
+  const variants = product.variants?.edges || [];
   const currentVariant = variants.find((v) => v.node.id === selectedVariant)?.node;
-  const options = displayProduct.options || [];
+  const options = product.options || [];
 
   const handleAddToCart = async () => {
-    if (isDummy) {
-      // For dummy products, just show success animation
-      setAddedToCart(true);
-      setTimeout(() => setAddedToCart(false), 2000);
-      return;
-    }
-
     if (selectedVariant) {
       for (let i = 0; i < quantity; i++) {
         await addItem(selectedVariant);
@@ -130,19 +105,19 @@ export default function ProductPage() {
       <div className="bg-stone-50 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-stone-500 hover:text-[#3EB8A4] transition-colors">
+            <Link href="/" className="text-stone-500 hover:text-[#EC4899] transition-colors">
               Home
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections/all" className="text-stone-500 hover:text-[#3EB8A4] transition-colors">
+            <Link href="/collections/all" className="text-stone-500 hover:text-[#EC4899] transition-colors">
               Products
             </Link>
             <svg className="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#3EB8A4] font-medium truncate">{displayProduct.title}</span>
+            <span className="text-[#EC4899] font-medium truncate">{product.title}</span>
           </nav>
         </div>
       </div>
@@ -151,26 +126,12 @@ export default function ProductPage() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Images */}
           <div className="space-y-4">
-            {/* Badge */}
-            {isDummy && dummyProduct?.badge && (
-              <div className="flex gap-2 mb-2">
-                <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${
-                  dummyProduct.badge === "Sale" ? "bg-red-500 text-white" :
-                  dummyProduct.badge === "New" ? "bg-amber-400 text-stone-900" :
-                  dummyProduct.badge === "Bestseller" ? "bg-amber-400 text-stone-900" :
-                  "bg-[#3EB8A4] text-white"
-                }`}>
-                  {dummyProduct.badge}
-                </span>
-              </div>
-            )}
-
             {/* Main Image */}
             <div className="relative aspect-[3/4] bg-stone-100 rounded-2xl overflow-hidden shadow-lg group">
               {images[selectedImage] && (
                 <Image
                   src={images[selectedImage].node.url}
-                  alt={images[selectedImage].node.altText || displayProduct.title}
+                  alt={images[selectedImage].node.altText || product.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   priority
@@ -189,13 +150,13 @@ export default function ProductPage() {
                     onClick={() => setSelectedImage(index)}
                     className={`relative w-20 h-24 flex-shrink-0 rounded-xl overflow-hidden transition-all duration-300 ${
                       selectedImage === index
-                        ? "ring-2 ring-[#3EB8A4] ring-offset-2 shadow-lg"
+                        ? "ring-2 ring-[#EC4899] ring-offset-2 shadow-lg"
                         : "opacity-70 hover:opacity-100"
                     }`}
                   >
                     <Image
                       src={image.node.url}
-                      alt={image.node.altText || `${displayProduct.title} ${index + 1}`}
+                      alt={image.node.altText || `${product.title} ${index + 1}`}
                       fill
                       className="object-cover"
                     />
@@ -210,19 +171,14 @@ export default function ProductPage() {
             {/* Title & Price */}
             <div className="mb-6">
               <h1 className="font-serif text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-                {displayProduct.title}
+                {product.title}
               </h1>
               <div className="flex items-center gap-4 flex-wrap">
-                <p className="text-3xl font-bold text-[#3EB8A4]">
+                <p className="text-3xl font-bold text-[#EC4899]">
                   {currentVariant
                     ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
-                    : formatPrice(displayProduct.priceRange.minVariantPrice.amount, displayProduct.priceRange.minVariantPrice.currencyCode)}
+                    : formatPrice(product.priceRange.minVariantPrice.amount, product.priceRange.minVariantPrice.currencyCode)}
                 </p>
-                {isDummy && dummyProduct?.originalPrice && (
-                  <p className="text-xl text-stone-400 line-through">
-                    S${dummyProduct.originalPrice}
-                  </p>
-                )}
                 {/* Stock Status */}
                 {currentVariant?.availableForSale !== false ? (
                   <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
@@ -264,9 +220,9 @@ export default function ProductPage() {
                             disabled={!isAvailable}
                             className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
                               isSelected
-                                ? "bg-[#3EB8A4] text-white shadow-lg shadow-teal-500/30"
+                                ? "bg-[#EC4899] text-white shadow-lg shadow-pink-500/30"
                                 : isAvailable
-                                ? "border-2 border-stone-300 text-stone-700 hover:border-[#3EB8A4] hover:text-[#3EB8A4]"
+                                ? "border-2 border-stone-300 text-stone-700 hover:border-[#EC4899] hover:text-[#EC4899]"
                                 : "border-2 border-stone-200 text-stone-400 cursor-not-allowed line-through"
                             }`}
                           >
@@ -288,7 +244,7 @@ export default function ProductPage() {
               <div className="inline-flex items-center border-2 border-stone-300 rounded-full">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#3EB8A4] transition-colors"
+                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#EC4899] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -297,7 +253,7 @@ export default function ProductPage() {
                 <span className="w-12 text-center font-semibold text-stone-900">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#3EB8A4] transition-colors"
+                  className="w-12 h-12 flex items-center justify-center text-stone-600 hover:text-[#EC4899] transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -314,7 +270,7 @@ export default function ProductPage() {
                 className={`flex-1 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
                   addedToCart
                     ? "bg-green-500 text-white"
-                    : "bg-gradient-to-r from-[#3EB8A4] to-teal-500 text-white hover:shadow-lg hover:shadow-teal-500/30"
+                    : "bg-gradient-to-r from-[#F472B6] to-[#EC4899] text-white hover:shadow-lg hover:shadow-pink-500/30"
                 } disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed`}
               >
                 {addedToCart ? (
@@ -345,35 +301,23 @@ export default function ProductPage() {
               </button>
 
               {/* Wishlist Button */}
-              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#3EB8A4] hover:text-[#3EB8A4] hover:bg-teal-50 transition-all duration-300">
+              <button className="w-14 h-14 border-2 border-stone-300 rounded-full flex items-center justify-center text-stone-600 hover:border-[#EC4899] hover:text-[#EC4899] hover:bg-pink-50 transition-all duration-300">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </button>
             </div>
 
-            {/* Sample Product Notice */}
-            {isDummy && (
-              <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-                <p className="text-amber-800 text-sm flex items-center gap-2">
-                  <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  This is a sample product. Contact us to purchase or visit our store.
-                </p>
-              </div>
-            )}
-
             {/* Description */}
             <div className="mb-8">
               <h3 className="font-semibold text-stone-900 mb-3 text-lg">Description</h3>
-              {displayProduct.descriptionHtml ? (
+              {product.descriptionHtml ? (
                 <div
                   className="prose prose-stone max-w-none text-stone-600"
-                  dangerouslySetInnerHTML={{ __html: displayProduct.descriptionHtml }}
+                  dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
                 />
               ) : (
-                <p className="text-stone-600 leading-relaxed">{displayProduct.description || "No description available."}</p>
+                <p className="text-stone-600 leading-relaxed">{product.description || "No description available."}</p>
               )}
             </div>
 
@@ -391,8 +335,8 @@ export default function ProductPage() {
                 { icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z", title: "Visit Our Store", desc: "Try before you buy at New Market Road" },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#3EB8A4]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-[#3EB8A4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-10 h-10 bg-[#EC4899]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-[#EC4899]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
                   </div>

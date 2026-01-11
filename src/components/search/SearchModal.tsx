@@ -127,7 +127,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         <h3 className="font-medium text-stone-900 truncate">
                           {product.title}
                         </h3>
-                        <p className="text-[#3EB8A4] font-semibold">
+                        <p className="text-[#EC4899] font-semibold">
                           {formatPrice(
                             product.priceRange.minVariantPrice.amount,
                             product.priceRange.minVariantPrice.currencyCode
