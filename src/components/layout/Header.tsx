@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <>
       <AnnouncementBar />
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#E8A0BF] via-[#e91e9e] to-[#E8A0BF] shadow-lg">
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#3EB8A4] via-[#2A9D8F] to-[#3EB8A4] shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
@@ -38,23 +38,23 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-8">
               <button
                 onMouseEnter={() => setMegaMenuOpen(true)}
-                className="flex items-center gap-1 text-white hover:text-pink-200 transition-colors font-medium"
+                className="flex items-center gap-1 text-white hover:text-teal-200 transition-colors font-medium"
               >
                 Shop
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <Link href="/collections/all" className="text-white hover:text-pink-200 transition-colors font-medium">
+              <Link href="/collections/all" className="text-white hover:text-teal-200 transition-colors font-medium">
                 All Products
               </Link>
-              <Link href="/about" className="text-white hover:text-pink-200 transition-colors font-medium">
+              <Link href="/about" className="text-white hover:text-teal-200 transition-colors font-medium">
                 About
               </Link>
-              <Link href="/alteration" className="text-white hover:text-pink-200 transition-colors font-medium">
+              <Link href="/alteration" className="text-white hover:text-teal-200 transition-colors font-medium">
                 Services
               </Link>
-              <Link href="/contact" className="text-white hover:text-pink-200 transition-colors font-medium">
+              <Link href="/contact" className="text-white hover:text-teal-200 transition-colors font-medium">
                 Contact
               </Link>
             </nav>
@@ -64,7 +64,7 @@ export default function Header() {
               {/* Search */}
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 text-white hover:text-pink-200 transition-colors"
+                className="p-2 text-white hover:text-teal-200 transition-colors"
                 aria-label="Search"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,12 +73,12 @@ export default function Header() {
               </button>
 
               {/* Cart */}
-              <button onClick={openCart} className="relative p-2 text-white hover:text-pink-200 transition-colors" aria-label="Cart">
+              <button onClick={openCart} className="relative p-2 text-white hover:text-teal-200 transition-colors" aria-label="Cart">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 {itemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#E8A0BF] text-xs rounded-full flex items-center justify-center font-semibold">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#3EB8A4] text-xs rounded-full flex items-center justify-center font-semibold">
                     {itemCount}
                   </span>
                 )}
@@ -87,7 +87,7 @@ export default function Header() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 text-white hover:text-pink-200"
+                className="lg:hidden p-2 text-white hover:text-teal-200"
                 aria-label="Menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,32 +103,32 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-pink-400/30 py-4 bg-gradient-to-b from-[#E8A0BF]/95 to-[#c00d84]">
+            <div className="lg:hidden border-t border-teal-400/30 py-4 bg-gradient-to-b from-[#3EB8A4]/95 to-[#1F7A6E]">
               <nav className="flex flex-col gap-3">
-                <p className="text-xs uppercase tracking-wider text-pink-200 px-2 font-semibold">Shop</p>
-                <Link href="/collections/kebaya" className="px-2 py-1 text-white hover:text-pink-200">
+                <p className="text-xs uppercase tracking-wider text-teal-200 px-2 font-semibold">Shop</p>
+                <Link href="/collections/kebaya" className="px-2 py-1 text-white hover:text-teal-200">
                   Kebaya
                 </Link>
-                <Link href="/collections/cheongsam" className="px-2 py-1 text-white hover:text-pink-200">
+                <Link href="/collections/cheongsam" className="px-2 py-1 text-white hover:text-teal-200">
                   Cheongsam
                 </Link>
-                <Link href="/collections/batik-dress" className="px-2 py-1 text-white hover:text-pink-200">
+                <Link href="/collections/batik-dress" className="px-2 py-1 text-white hover:text-teal-200">
                   Batik Dress
                 </Link>
-                <Link href="/collections/sarong" className="px-2 py-1 text-white hover:text-pink-200">
+                <Link href="/collections/sarong" className="px-2 py-1 text-white hover:text-teal-200">
                   Sarong
                 </Link>
-                <Link href="/collections/all" className="px-2 py-1 text-pink-200 font-semibold">
+                <Link href="/collections/all" className="px-2 py-1 text-teal-200 font-semibold">
                   Shop All
                 </Link>
-                <div className="border-t border-pink-400 my-2" />
-                <Link href="/about" className="px-2 py-1 text-white hover:text-pink-200">
+                <div className="border-t border-teal-400 my-2" />
+                <Link href="/about" className="px-2 py-1 text-white hover:text-teal-200">
                   About
                 </Link>
-                <Link href="/alteration" className="px-2 py-1 text-white hover:text-pink-200">
+                <Link href="/alteration" className="px-2 py-1 text-white hover:text-teal-200">
                   Services
                 </Link>
-                <Link href="/contact" className="px-2 py-1 text-white hover:text-pink-200">
+                <Link href="/contact" className="px-2 py-1 text-white hover:text-teal-200">
                   Contact
                 </Link>
               </nav>

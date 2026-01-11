@@ -22,7 +22,7 @@ export default function ReturnsPage() {
       <div className="space-y-12">
         <section>
           <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">Return Policy</h2>
-          <div className="bg-pink-50 border border-amber-200 rounded-lg p-6 mb-6">
+          <div className="bg-teal-50 border border-amber-200 rounded-lg p-6 mb-6">
             <p className="text-stone-700">
               We accept returns and exchanges within <strong>7 days</strong> of purchase.
               Items must be unworn, unwashed, and in original condition with all tags attached.
@@ -72,7 +72,7 @@ export default function ReturnsPage() {
           <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">How to Return</h2>
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+              <div className="w-8 h-8 bg-[#3EB8A4] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
                 1
               </div>
               <div>
@@ -83,7 +83,7 @@ export default function ReturnsPage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+              <div className="w-8 h-8 bg-[#3EB8A4] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
                 2
               </div>
               <div>
@@ -94,7 +94,7 @@ export default function ReturnsPage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+              <div className="w-8 h-8 bg-[#3EB8A4] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
                 3
               </div>
               <div>
@@ -105,7 +105,7 @@ export default function ReturnsPage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="w-8 h-8 bg-[#E8A0BF] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+              <div className="w-8 h-8 bg-[#3EB8A4] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">
                 4
               </div>
               <div>
@@ -125,19 +125,19 @@ export default function ReturnsPage() {
           </p>
           <ul className="space-y-2 text-stone-600">
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#E8A0BF] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Exchanges are subject to availability</span>
             </li>
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#E8A0BF] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>Price differences will be refunded or charged accordingly</span>
             </li>
             <li className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-[#E8A0BF] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#3EB8A4] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>We recommend trying our alteration services for fit adjustments</span>
@@ -156,7 +156,7 @@ export default function ReturnsPage() {
           </div>
         </section>
 
-        <section className="bg-pink-50 rounded-lg p-8 text-center">
+        <section className="bg-teal-50 rounded-lg p-8 text-center">
           <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">Need Help?</h2>
           <p className="text-stone-600 mb-6">
             Our team is here to assist you with any questions about returns or exchanges.
@@ -164,13 +164,13 @@ export default function ReturnsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:+6565336330"
-              className="px-6 py-3 bg-[#E8A0BF] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
+              className="px-6 py-3 bg-[#3EB8A4] text-white font-medium rounded-lg hover:bg-[#b30c78] transition-colors"
             >
               Call 6533 6330
             </a>
             <Link
               href="/contact"
-              className="px-6 py-3 border border-[#E8A0BF] text-[#E8A0BF] font-medium rounded-lg hover:bg-pink-100 transition-colors"
+              className="px-6 py-3 border border-[#3EB8A4] text-[#3EB8A4] font-medium rounded-lg hover:bg-teal-100 transition-colors"
             >
               Contact Us
             </Link>
