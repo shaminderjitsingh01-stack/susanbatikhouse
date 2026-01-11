@@ -179,16 +179,10 @@ export default function ProductPage() {
                     ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
                     : formatPrice(product.priceRange.minVariantPrice.amount, product.priceRange.minVariantPrice.currencyCode)}
                 </p>
-                {/* Stock Status */}
-                {currentVariant?.availableForSale !== false ? (
-                  <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                    In Stock
-                  </span>
-                ) : (
-                  <span className="px-3 py-1 bg-red-100 text-red-700 text-sm font-medium rounded-full">
-                    Sold Out
-                  </span>
-                )}
+                {/* Stock Status - Always show as available */}
+                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
+                  In Stock
+                </span>
               </div>
             </div>
 
@@ -211,19 +205,15 @@ export default function ProductPage() {
                           )
                         );
                         const isSelected = variant?.node.id === selectedVariant;
-                        const isAvailable = variant?.node.availableForSale !== false;
 
                         return (
                           <button
                             key={value}
                             onClick={() => variant && setSelectedVariant(variant.node.id)}
-                            disabled={!isAvailable}
                             className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
                               isSelected
                                 ? "bg-[#EC4899] text-white shadow-lg shadow-pink-500/30"
-                                : isAvailable
-                                ? "border-2 border-stone-300 text-stone-700 hover:border-[#EC4899] hover:text-[#EC4899]"
-                                : "border-2 border-stone-200 text-stone-400 cursor-not-allowed line-through"
+                                : "border-2 border-stone-300 text-stone-700 hover:border-[#EC4899] hover:text-[#EC4899]"
                             }`}
                           >
                             {value}
@@ -266,7 +256,7 @@ export default function ProductPage() {
             <div className="flex gap-4 mb-8">
               <button
                 onClick={handleAddToCart}
-                disabled={isLoading || currentVariant?.availableForSale === false}
+                disabled={isLoading}
                 className={`flex-1 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
                   addedToCart
                     ? "bg-green-500 text-white"
@@ -288,15 +278,13 @@ export default function ProductPage() {
                     </svg>
                     Adding...
                   </>
-                ) : currentVariant?.availableForSale !== false ? (
+                ) : (
                   <>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                     Add to Cart - {quantity > 1 ? `${quantity} items` : "1 item"}
                   </>
-                ) : (
-                  "Sold Out"
                 )}
               </button>
 
