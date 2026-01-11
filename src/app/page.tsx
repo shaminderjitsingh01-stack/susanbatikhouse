@@ -404,7 +404,7 @@ export default async function HomePage() {
                   Call Us
                 </a>
                 <a
-                  href="https://wa.me/6565336330"
+                  href="https://wa.me/6597915323"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-green-500 hover:bg-green-400 text-white text-center font-bold rounded-full transition-colors flex items-center justify-center gap-2"

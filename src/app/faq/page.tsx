@@ -170,7 +170,7 @@ export default function FAQPage() {
                 Contact Us
               </Link>
               <a
-                href="https://wa.me/6565336330"
+                href="https://wa.me/6597915323"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 border border-[#EC4899] text-[#EC4899] font-medium rounded-lg hover:bg-pink-100 transition-colors"

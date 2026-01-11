@@ -153,7 +153,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               Contact Us
             </Link>
             <a
-              href="https://wa.me/6565336330"
+              href="https://wa.me/6597915323"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 border-2 border-amber-400/60 text-amber-400 hover:bg-amber-400 hover:text-stone-900 font-semibold rounded-full transition-all duration-300"

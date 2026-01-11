@@ -93,7 +93,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-stone-900 mb-1">WhatsApp</h3>
                     <a
-                      href="https://wa.me/6565336330"
+                      href="https://wa.me/6597915323"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-stone-600 hover:text-[#EC4899] transition-colors"
