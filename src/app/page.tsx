@@ -189,7 +189,7 @@ export default async function HomePage() {
 
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&h=1000&fit=crop"
+                  src="/heritage.jpg"
                   alt="Susan Batik House heritage"
                   fill
                   className="object-cover"
