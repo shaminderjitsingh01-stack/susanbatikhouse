@@ -156,6 +156,7 @@ export default function Footer() {
           </div>
         </div>
 
+      </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-stone-800 bg-stone-950">
