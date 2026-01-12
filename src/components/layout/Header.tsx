@@ -38,7 +38,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-2 group">
               <div className="relative bg-white rounded-lg p-1">
                 <Image
-                  src="/logo.png"
+                  src="/logo.jpg"
                   alt="Susan Batik House"
                   width={120}
                   height={63}

@@ -148,6 +148,11 @@ export default function AboutPage() {
                 desc: "Versatile wraps in beautiful hand-drawn and printed batik",
                 handle: "sarong",
               },
+              {
+                title: "Made-to-Measure In-Law Dresses",
+                desc: "Custom-tailored dresses for mothers and in-laws for special occasions",
+                handle: "made-to-measure-inlaw-dresses",
+              },
             ].map((item) => (
               <Link
                 key={item.handle}

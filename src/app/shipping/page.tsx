@@ -57,7 +57,7 @@ export default function ShippingPage() {
               <svg className="w-5 h-5 text-[#EC4899] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span><strong>Self-Collection:</strong> Available at our Chinatown store during opening hours</span>
+              <span><strong>Self-Collection:</strong> Available at our People's Park store during opening hours</span>
             </li>
           </ul>
         </section>
@@ -111,6 +111,23 @@ export default function ShippingPage() {
             <p className="text-stone-600 mt-2">
               <strong>Hours:</strong> Mon-Sat, 10am - 6pm
             </p>
+          </div>
+        </section>
+
+        <section className="mb-12 bg-red-50 rounded-lg p-6">
+          <h2 className="font-serif text-2xl font-bold text-stone-900 mb-4">Returns &amp; Exchange Policy</h2>
+          <div className="flex items-start gap-4">
+            <svg className="w-8 h-8 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div>
+              <p className="font-semibold text-red-700 text-lg mb-2">No Returns, No Exchange</p>
+              <p className="text-stone-600">
+                All sales are final. Please ensure you have selected the correct size and carefully reviewed
+                your order before completing your purchase. We encourage visiting our store for fittings
+                before making a purchase.
+              </p>
+            </div>
           </div>
         </section>
 

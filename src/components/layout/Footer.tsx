@@ -14,7 +14,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-white rounded-lg p-1.5">
                 <Image
-                  src="/logo.png"
+                  src="/logo.jpg"
                   alt="Susan Batik House"
                   width={100}
                   height={52}
@@ -99,9 +99,9 @@ export default function Footer() {
               {[
                 { label: "FAQ", href: "/faq" },
                 { label: "Size Guide", href: "/size-guide" },
-                { label: "Care Instructions", href: "/care-instructions" },
+                
                 { label: "Shipping", href: "/shipping" },
-                { label: "Returns", href: "/returns" },
+                
                 { label: "Alterations", href: "/alteration" },
               ].map((item) => (
                 <li key={item.label}>
@@ -156,26 +156,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter Section */}
-        <div className="mt-12 pt-12 border-t border-stone-800">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div>
-              <h4 className="text-white font-serif text-lg font-bold mb-2">Stay Connected</h4>
-              <p className="text-stone-400 text-sm">Get updates on new arrivals and exclusive offers</p>
-            </div>
-            <div className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-5 py-3 bg-stone-800 border border-stone-700 rounded-full text-white placeholder-stone-500 focus:outline-none focus:border-[#EC4899] transition-colors w-64"
-              />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#F472B6] to-[#EC4899] hover:from-[#EC4899] hover:to-[#F472B6] text-white font-semibold rounded-full transition-all duration-300">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Bottom Bar */}
       <div className="border-t border-stone-800 bg-stone-950">

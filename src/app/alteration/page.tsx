@@ -45,7 +45,7 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Shortening or lengthening of dresses, sleeves, and pants for the perfect proportion.
               </p>
-              <p className="text-[#EC4899] font-semibold">From $15</p>
+              <p className="text-[#EC4899] font-semibold">Price on consultation</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
@@ -58,7 +58,7 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Adjusting the fit around the bust, waist, and hips for a comfortable, flattering silhouette.
               </p>
-              <p className="text-[#EC4899] font-semibold">From $20</p>
+              <p className="text-[#EC4899] font-semibold">Price on consultation</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
@@ -71,7 +71,7 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Specialized fitting for kebaya tops to achieve the traditional snug fit.
               </p>
-              <p className="text-[#EC4899] font-semibold">From $30</p>
+              <p className="text-[#EC4899] font-semibold">Price on consultation</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
@@ -84,7 +84,7 @@ export default function AlterationPage() {
               <p className="text-stone-600 text-sm mb-4">
                 Expert adjustments for the perfect cheongsam fit, including collar and side slits.
               </p>
-              <p className="text-[#EC4899] font-semibold">From $35</p>
+              <p className="text-[#EC4899] font-semibold">Price on consultation</p>
             </div>
 
             <div className="bg-stone-50 rounded-lg p-8">
@@ -193,12 +193,12 @@ export default function AlterationPage() {
           <div className="bg-stone-50 rounded-lg p-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="text-center p-6">
-                <p className="text-3xl font-bold text-[#EC4899] mb-2">3-5 Days</p>
+                <p className="text-3xl font-bold text-[#EC4899] mb-2">1-5 Days</p>
                 <p className="text-stone-600">Standard Alterations</p>
                 <p className="text-stone-500 text-sm mt-2">Minor adjustments and hemming</p>
               </div>
               <div className="text-center p-6">
-                <p className="text-3xl font-bold text-[#EC4899] mb-2">7-14 Days</p>
+                <p className="text-3xl font-bold text-[#EC4899] mb-2">5-10 Days</p>
                 <p className="text-stone-600">Complex Alterations</p>
                 <p className="text-stone-500 text-sm mt-2">Major modifications and custom work</p>
               </div>

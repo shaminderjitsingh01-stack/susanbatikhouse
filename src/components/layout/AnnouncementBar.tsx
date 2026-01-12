@@ -14,7 +14,7 @@ export default function AnnouncementBar() {
           <span className="hidden sm:inline">✨</span>
           <span>
             <strong>Free Shipping</strong> on orders above $150 |{" "}
-            <strong>Visit us</strong> at Chinatown, Singapore
+            <strong>Visit us</strong> at People's Park, Singapore
           </span>
           <span className="hidden sm:inline">✨</span>
         </div>
