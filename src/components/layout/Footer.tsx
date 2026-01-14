@@ -140,7 +140,7 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <p className="text-sm text-stone-400">Mon - Sat: 10am - 6pm</p>
+                <p className="text-sm text-stone-400">Mon - Sat: 10am - 6pm<br />Sun: By Appointment</p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-amber-400/10 rounded-full flex items-center justify-center flex-shrink-0">

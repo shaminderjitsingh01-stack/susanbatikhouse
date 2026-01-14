@@ -109,7 +109,8 @@ export default function ShippingPage() {
               Singapore 050032
             </p>
             <p className="text-stone-600 mt-2">
-              <strong>Hours:</strong> Mon-Sat, 10am - 6pm
+              <strong>Hours:</strong> Mon-Sat, 10am - 6pm<br />
+              Sunday: By Appointment Only
             </p>
           </div>
         </section>
