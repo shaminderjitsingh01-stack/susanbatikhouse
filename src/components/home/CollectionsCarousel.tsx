@@ -9,7 +9,11 @@ const defaultImages = [
   "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop",
   "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop",
   "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop",
+  "https://images.unsplash.com/photo-1596783074918-c84cb1bd5d44?w=600&h=800&fit=crop",
 ];
+
+// Only show these main collections (matching megamenu)
+const megaMenuCollections = ["batik", "kebaya", "shoes", "kerosang"];
 
 export default function CollectionsCarousel() {
   const [collections, setCollections] = useState<ShopifyCollection[]>([]);
@@ -21,7 +25,11 @@ export default function CollectionsCarousel() {
     async function fetchCollections() {
       try {
         const data = await getCollections();
-        setCollections(data.filter(c => c.title && c.handle));
+        // Filter to only show megamenu collections in the correct order
+        const filtered = megaMenuCollections
+          .map(handle => data.find(c => c.handle === handle))
+          .filter((c): c is ShopifyCollection => c !== undefined && c.title !== undefined);
+        setCollections(filtered);
       } catch {
         // Shopify not connected
       } finally {
