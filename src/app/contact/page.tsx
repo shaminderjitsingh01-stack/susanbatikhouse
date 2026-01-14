@@ -38,7 +38,7 @@ export default function ContactPage() {
               </p>
               <p className="text-stone-600 mb-6">
                 <strong>Hours:</strong> Mon - Sat, 10am - 6pm<br />
-                Sunday: Closed
+                Sunday: By Appointment Only
               </p>
               <a
                 href="https://maps.google.com/?q=32+New+Market+Road+Singapore+050032"

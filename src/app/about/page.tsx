@@ -126,45 +126,76 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "Kebaya",
-                desc: "Traditional Nyonya and modern designs for weddings and celebrations",
-                handle: "kebaya",
-              },
-              {
-                title: "Cheongsam",
-                desc: "Classic Chinese dress in traditional and contemporary styles",
-                handle: "cheongsam",
-              },
-              {
-                title: "Batik Dress",
-                desc: "Authentic batik patterns in comfortable modern silhouettes",
-                handle: "batik-dress",
-              },
-              {
-                title: "Sarong",
-                desc: "Versatile wraps in beautiful hand-drawn and printed batik",
-                handle: "sarong",
-              },
-              {
-                title: "Made-to-Measure In-Law Dresses",
-                desc: "Custom-tailored dresses for mothers and in-laws for special occasions",
-                handle: "made-to-measure-inlaw-dresses",
-              },
-            ].map((item) => (
-              <Link
-                key={item.handle}
-                href={`/collections/${item.handle}`}
-                className="group p-6 bg-stone-50 rounded-lg hover:bg-stone-100 transition-colors"
-              >
-                <h3 className="font-serif text-xl font-bold text-stone-900 mb-2 group-hover:text-[#EC4899] transition-colors">
-                  {item.title}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Batik */}
+            <div className="p-6 bg-stone-50 rounded-lg">
+              <Link href="/collections/batik">
+                <h3 className="font-serif text-xl font-bold text-stone-900 mb-3 hover:text-[#EC4899] transition-colors">
+                  Batik
                 </h3>
-                <p className="text-stone-600 text-sm">{item.desc}</p>
               </Link>
-            ))}
+              <ul className="text-stone-600 text-sm space-y-1">
+                <li><Link href="/collections/batik-fabric" className="hover:text-[#EC4899]">Batik Fabric</Link></li>
+                <li><Link href="/collections/handstamp-batik-fabric" className="hover:text-[#EC4899]">Handstamp Batik Fabric</Link></li>
+                <li><Link href="/collections/hand-draw-batik-fabric" className="hover:text-[#EC4899]">Hand Draw Batik Fabric</Link></li>
+                <li><Link href="/collections/ladies-batik-top" className="hover:text-[#EC4899]">Ladies Batik Top</Link></li>
+                <li><Link href="/collections/mens-batik-top" className="hover:text-[#EC4899]">Mens Batik Top</Link></li>
+                <li><Link href="/collections/ladies-batik-sarong" className="hover:text-[#EC4899]">Ladies Batik Sarong</Link></li>
+                <li><Link href="/collections/batik-cheongsam" className="hover:text-[#EC4899]">Batik Cheongsam</Link></li>
+                <li><Link href="/collections/ladies-batik-pants" className="hover:text-[#EC4899]">Ladies Batik Pants</Link></li>
+              </ul>
+            </div>
+
+            {/* Kebaya */}
+            <div className="p-6 bg-stone-50 rounded-lg">
+              <Link href="/collections/kebaya">
+                <h3 className="font-serif text-xl font-bold text-stone-900 mb-3 hover:text-[#EC4899] transition-colors">
+                  Kebaya
+                </h3>
+              </Link>
+              <ul className="text-stone-600 text-sm space-y-1">
+                <li><Link href="/collections/standard-peranakan-top" className="hover:text-[#EC4899]">Standard Peranakan Top</Link></li>
+                <li><Link href="/collections/premium-peranakan-top" className="hover:text-[#EC4899]">Premium Peranakan Top</Link></li>
+                <li><Link href="/collections/kids-peranakan-top" className="hover:text-[#EC4899]">Kids Peranakan Top</Link></li>
+              </ul>
+            </div>
+
+            {/* Shoes */}
+            <div className="p-6 bg-stone-50 rounded-lg">
+              <Link href="/collections/shoes">
+                <h3 className="font-serif text-xl font-bold text-stone-900 mb-3 hover:text-[#EC4899] transition-colors">
+                  Shoes
+                </h3>
+              </Link>
+              <ul className="text-stone-600 text-sm space-y-1">
+                <li><Link href="/collections/standard-beaded-shoes" className="hover:text-[#EC4899]">Standard Beaded Shoes</Link></li>
+                <li><Link href="/collections/premium-beaded-shoes" className="hover:text-[#EC4899]">Premium Beaded Shoes</Link></li>
+              </ul>
+            </div>
+
+            {/* Kerosang */}
+            <div className="p-6 bg-stone-50 rounded-lg">
+              <Link href="/collections/kerosang">
+                <h3 className="font-serif text-xl font-bold text-stone-900 mb-3 hover:text-[#EC4899] transition-colors">
+                  Kerosang
+                </h3>
+              </Link>
+              <ul className="text-stone-600 text-sm space-y-1">
+                <li><Link href="/collections/kerosang" className="hover:text-[#EC4899]">All Kerosang</Link></li>
+              </ul>
+            </div>
+
+            {/* Made-to-Measure In-Law Dresses */}
+            <div className="p-6 bg-stone-50 rounded-lg">
+              <Link href="/collections/made-to-measure-inlaw-dresses">
+                <h3 className="font-serif text-xl font-bold text-stone-900 mb-3 hover:text-[#EC4899] transition-colors">
+                  Made-to-Measure In-Law Dresses
+                </h3>
+              </Link>
+              <p className="text-stone-600 text-sm">
+                Custom-tailored dresses for mothers and in-laws for special occasions
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -191,7 +222,7 @@ export default function AboutPage() {
               <p className="text-sm">
                 Monday - Saturday<br />
                 10:00am - 6:00pm<br />
-                Sunday: Closed
+                Sunday: By Appointment Only
               </p>
             </div>
             <div>
