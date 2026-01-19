@@ -21,12 +21,6 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: false,
       },
-      // Redirect any Shopify checkout callbacks to homepage
-      {
-        source: "/checkouts/:path*",
-        destination: "/",
-        permanent: false,
-      },
     ];
   },
 };
