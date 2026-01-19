@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getProducts, ShopifyProduct } from "@/lib/shopify";
 import ProductCard from "@/components/product/ProductCard";
-import CollectionsCarousel from "@/components/home/CollectionsCarousel";
+import CollectionsCarouselWrapper from "@/components/home/CollectionsCarouselWrapper";
 
 export default async function HomePage() {
   let products: ShopifyProduct[] = [];
@@ -124,7 +124,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <CollectionsCarousel />
+          <CollectionsCarouselWrapper />
         </div>
       </section>
 

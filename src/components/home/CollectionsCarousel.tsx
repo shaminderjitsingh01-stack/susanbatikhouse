@@ -4,29 +4,17 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Individual subcategory cards
-const collections = [
-  // Batik subcategories
-  { title: "Batik Fabric", handle: "batik-fabric", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Handstamp Batik Fabric", handle: "handstamp-batik-fabric", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Hand Draw Batik Fabric", handle: "hand-draw-batik-fabric", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Ladies Batik Top", handle: "ladies-batik-top", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Mens Batik Top", handle: "mens-batik-top", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Ladies Batik Sarong", handle: "ladies-batik-sarong", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Batik Cheongsam", handle: "batik-cheongsam", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  { title: "Ladies Batik Pants", handle: "ladies-batik-pants", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop" },
-  // Kebaya subcategories
-  { title: "Standard Peranakan Top", handle: "standard-peranakan-top", image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop" },
-  { title: "Premium Peranakan Top", handle: "premium-peranakan-top", image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop" },
-  { title: "Kids Peranakan Top", handle: "kids-peranakan-top", image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop" },
-  // Shoes subcategories
-  { title: "Standard Beaded Shoes", handle: "standard-beaded-shoes", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop" },
-  { title: "Premium Beaded Shoes", handle: "premium-beaded-shoes", image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=800&fit=crop" },
-  // Kerosang
-  { title: "Kerosang", handle: "kerosang", image: "https://images.unsplash.com/photo-1596783074918-c84cb1bd5d44?w=600&h=800&fit=crop" },
-];
+interface Collection {
+  title: string;
+  handle: string;
+  image: string;
+}
 
-export default function CollectionsCarousel() {
+interface CollectionsCarouselProps {
+  collections: Collection[];
+}
+
+export default function CollectionsCarousel({ collections }: CollectionsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -40,12 +28,12 @@ export default function CollectionsCarousel() {
       });
       setCurrentIndex(index);
     }
-  }, []);
+  }, [collections.length]);
 
   const scrollNext = useCallback(() => {
     const newIndex = currentIndex < collections.length - 1 ? currentIndex + 1 : 0;
     scrollTo(newIndex);
-  }, [currentIndex, scrollTo]);
+  }, [currentIndex, scrollTo, collections.length]);
 
   const scrollPrev = () => {
     const newIndex = currentIndex > 0 ? currentIndex - 1 : collections.length - 1;
@@ -59,6 +47,10 @@ export default function CollectionsCarousel() {
     }, 5000);
     return () => clearInterval(interval);
   }, [scrollNext]);
+
+  if (collections.length === 0) {
+    return null;
+  }
 
   return (
     <div className="relative">
