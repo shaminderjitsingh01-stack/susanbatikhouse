@@ -166,7 +166,7 @@ export async function getProduct(handle: string) {
 export async function getCollections() {
   const query = `
     query getCollections {
-      collections(first: 20) {
+      collections(first: 50) {
         edges {
           node {
             id
