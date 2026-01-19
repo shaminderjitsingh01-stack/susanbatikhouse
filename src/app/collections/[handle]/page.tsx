@@ -8,10 +8,28 @@ interface CollectionPageProps {
 }
 
 const collectionImages: Record<string, string> = {
-  kebaya: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
-  cheongsam: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
-  "batik-dress": "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
-  sarong: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  // Batik collections
+  "batik-fabric": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "handstamp-batik-fabric": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "hand-draw-batik-fabric": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "ladies-batik-top": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "mens-batik-top": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "ladies-batik-sarong": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  "batik-cheongsam": "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  "ladies-batik-pants": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  batik: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1200&h=600&fit=crop",
+  // Kebaya collections
+  "standard-peranakan-top": "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  "premium-peranakan-top": "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  "kids-peranakan-top": "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  kebaya: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=1200&h=600&fit=crop",
+  // Shoes collections
+  "standard-beaded-shoes": "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
+  "premium-beaded-shoes": "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
+  shoes: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
+  // Kerosang
+  kerosang: "https://images.unsplash.com/photo-1596783074918-c84cb1bd5d44?w=1200&h=600&fit=crop",
+  // All products
   all: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1200&h=600&fit=crop",
 };
 
@@ -176,10 +194,28 @@ function formatTitle(handle: string): string {
 
 function getDefaultDescription(handle: string): string {
   const descriptions: Record<string, string> = {
-    kebaya: "Elegant Nyonya and modern kebaya designs, perfect for special occasions and cultural celebrations.",
-    cheongsam: "Traditional and contemporary cheongsam styles, crafted with attention to detail and quality fabrics.",
-    "batik-dress": "Beautiful batik dresses featuring authentic patterns and comfortable modern cuts.",
-    sarong: "Classic sarong wraps in traditional and contemporary batik prints.",
+    // Batik
+    "batik-fabric": "Premium quality batik fabric for your custom creations.",
+    "handstamp-batik-fabric": "Traditional handstamp batik fabric with authentic patterns.",
+    "hand-draw-batik-fabric": "Exquisite hand-drawn batik fabric, each piece uniquely crafted.",
+    "ladies-batik-top": "Elegant batik tops for ladies, perfect for any occasion.",
+    "mens-batik-top": "Stylish batik shirts for men with traditional patterns.",
+    "ladies-batik-sarong": "Classic batik sarongs in beautiful traditional prints.",
+    "batik-cheongsam": "Beautiful batik cheongsam combining two rich traditions.",
+    "ladies-batik-pants": "Comfortable and stylish batik pants for ladies.",
+    batik: "Explore our complete collection of authentic batik products.",
+    // Kebaya
+    "standard-peranakan-top": "Classic Peranakan kebaya tops with intricate embroidery.",
+    "premium-peranakan-top": "Premium quality Peranakan kebaya with exquisite detailing.",
+    "kids-peranakan-top": "Adorable Peranakan kebaya tops for children.",
+    kebaya: "Elegant Nyonya and modern kebaya designs for special occasions.",
+    // Shoes
+    "standard-beaded-shoes": "Beautiful beaded shoes with traditional Peranakan designs.",
+    "premium-beaded-shoes": "Premium handcrafted beaded shoes with intricate patterns.",
+    shoes: "Explore our collection of traditional beaded shoes.",
+    // Kerosang
+    kerosang: "Traditional kerosang brooches to complete your Peranakan look.",
+    // All
     all: "Explore our complete collection of traditional and modern heritage wear.",
   };
   return descriptions[handle] || "";

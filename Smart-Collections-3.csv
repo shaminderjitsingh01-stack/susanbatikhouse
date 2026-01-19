@@ -1,0 +1,7 @@
+Handle,Title,Body HTML,Sort Order,Published,Must Match,Rule: Product Column,Rule: Relation,Rule: Condition
+premium-beaded-shoes,Premium Beaded Shoes,Premium beaded shoes collection,best-selling,true,all conditions,tag,equals,premium-beaded-shoes
+kerosang,Kerosang,Kerosang brooch collection,best-selling,true,all conditions,tag,equals,kerosang
+batik,Batik,All batik products,best-selling,true,all conditions,tag,equals,batik
+kebaya,Kebaya,All kebaya products,best-selling,true,all conditions,tag,equals,kebaya
+shoes,Shoes,All shoes products,best-selling,true,all conditions,tag,equals,shoes
+all,All Products,Browse all our products,best-selling,true,all conditions,variant_price,greater_than,0

@@ -1,0 +1,19 @@
+Handle,Title,Body HTML,Published,Sort Order,Disjunctive,Rules: Column 1,Rules: Relation 1,Rules: Condition 1
+batik-fabric,Batik Fabric,Beautiful batik fabric collection,true,best-selling,false,tag,equals,batik-fabric
+handstamp-batik-fabric,Handstamp Batik Fabric,Traditional handstamp batik fabric,true,best-selling,false,tag,equals,handstamp-batik-fabric
+hand-draw-batik-fabric,Hand Draw Batik Fabric,Hand drawn batik fabric collection,true,best-selling,false,tag,equals,hand-draw-batik-fabric
+ladies-batik-top,Ladies Batik Top,Ladies batik tops collection,true,best-selling,false,tag,equals,ladies-batik-top
+mens-batik-top,Mens Batik Top,Mens batik tops collection,true,best-selling,false,tag,equals,mens-batik-top
+ladies-batik-sarong,Ladies Batik Sarong,Ladies batik sarong collection,true,best-selling,false,tag,equals,ladies-batik-sarong
+batik-cheongsam,Batik Cheongsam,Batik cheongsam collection,true,best-selling,false,tag,equals,batik-cheongsam
+ladies-batik-pants,Ladies Batik Pants,Ladies batik pants collection,true,best-selling,false,tag,equals,ladies-batik-pants
+standard-peranakan-top,Standard Peranakan Top,Standard peranakan kebaya tops,true,best-selling,false,tag,equals,standard-peranakan-top
+premium-peranakan-top,Premium Peranakan Top,Premium peranakan kebaya tops,true,best-selling,false,tag,equals,premium-peranakan-top
+kids-peranakan-top,Kids Peranakan Top,Kids peranakan kebaya tops,true,best-selling,false,tag,equals,kids-peranakan-top
+standard-beaded-shoes,Standard Beaded Shoes,Standard beaded shoes collection,true,best-selling,false,tag,equals,standard-beaded-shoes
+premium-beaded-shoes,Premium Beaded Shoes,Premium beaded shoes collection,true,best-selling,false,tag,equals,premium-beaded-shoes
+kerosang,Kerosang,Kerosang brooch collection,true,best-selling,false,tag,equals,kerosang
+batik,Batik,All batik products,true,best-selling,false,tag,equals,batik
+kebaya,Kebaya,All kebaya products,true,best-selling,false,tag,equals,kebaya
+shoes,Shoes,All shoes products,true,best-selling,false,tag,equals,shoes
+all,All Products,Browse all our products,true,best-selling,false,,,

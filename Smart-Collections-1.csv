@@ -1,0 +1,7 @@
+Handle,Title,Body HTML,Sort Order,Published,Must Match,Rule: Product Column,Rule: Relation,Rule: Condition
+batik-fabric,Batik Fabric,Beautiful batik fabric collection,best-selling,true,all conditions,tag,equals,batik-fabric
+handstamp-batik-fabric,Handstamp Batik Fabric,Traditional handstamp batik fabric,best-selling,true,all conditions,tag,equals,handstamp-batik-fabric
+hand-draw-batik-fabric,Hand Draw Batik Fabric,Hand drawn batik fabric collection,best-selling,true,all conditions,tag,equals,hand-draw-batik-fabric
+ladies-batik-top,Ladies Batik Top,Ladies batik tops collection,best-selling,true,all conditions,tag,equals,ladies-batik-top
+mens-batik-top,Mens Batik Top,Mens batik tops collection,best-selling,true,all conditions,tag,equals,mens-batik-top
+ladies-batik-sarong,Ladies Batik Sarong,Ladies batik sarong collection,best-selling,true,all conditions,tag,equals,ladies-batik-sarong

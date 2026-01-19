@@ -1,0 +1,7 @@
+Handle,Title,Body (HTML),Published,Sort Order,Must Match,Rule: Product Column,Rule: Relation,Rule: Condition
+batik-cheongsam,Batik Cheongsam,Batik cheongsam collection,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,batik-cheongsam
+ladies-batik-pants,Ladies Batik Pants,Ladies batik pants collection,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,ladies-batik-pants
+standard-peranakan-top,Standard Peranakan Top,Standard peranakan kebaya tops,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,standard-peranakan-top
+premium-peranakan-top,Premium Peranakan Top,Premium peranakan kebaya tops,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,premium-peranakan-top
+kids-peranakan-top,Kids Peranakan Top,Kids peranakan kebaya tops,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,kids-peranakan-top
+standard-beaded-shoes,Standard Beaded Shoes,Standard beaded shoes collection,TRUE,BEST_SELLING,all conditions,TAG,EQUALS,standard-beaded-shoes
