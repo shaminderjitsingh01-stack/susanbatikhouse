@@ -13,6 +13,22 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // Redirect Shopify cart URLs to homepage
+      {
+        source: "/cart/:path*",
+        destination: "/",
+        permanent: false,
+      },
+      // Redirect any Shopify checkout callbacks to homepage
+      {
+        source: "/checkouts/:path*",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
