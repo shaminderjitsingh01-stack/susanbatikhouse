@@ -17,6 +17,7 @@ export async function shopifyFetch<T>({
       "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
     },
     body: JSON.stringify({ query, variables }),
+    next: { revalidate: 60 }, // Revalidate every 60 seconds
   });
 
   const json = await response.json();
