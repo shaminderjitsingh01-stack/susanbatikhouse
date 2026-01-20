@@ -63,16 +63,18 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         {isAllProducts ? (
           <>
             {/* Video Background for All Products */}
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-              poster={heroImage}
-            >
-              <source src="/batik-all.mp4" type="video/mp4" />
-            </video>
+            <div className="absolute inset-0 bg-stone-900">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+              >
+                <source src="/batik-all.mp4" type="video/mp4" />
+              </video>
+            </div>
           </>
         ) : (
           <Image
