@@ -54,17 +54,35 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   const description = collection?.description || getDefaultDescription(handle);
   const heroImage = collection?.image?.url || collectionImages[handle] || collectionImages.all;
 
+  const isAllProducts = handle === "all";
+
   return (
     <>
       {/* Premium Hero Banner */}
       <section className="relative h-[300px] md:h-[400px] overflow-hidden">
-        <Image
-          src={heroImage}
-          alt={title}
-          fill
-          className="object-cover"
-          priority
-        />
+        {isAllProducts ? (
+          <>
+            {/* Video Background for All Products */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              poster={heroImage}
+            >
+              <source src="/batik-all.mp4" type="video/mp4" />
+            </video>
+          </>
+        ) : (
+          <Image
+            src={heroImage}
+            alt={title}
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
         {/* Decorative Gold Lines */}
