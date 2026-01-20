@@ -7,6 +7,7 @@ import Image from "next/image";
 interface MegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  categoryImages?: Record<string, string>;
 }
 
 interface MenuItem {
@@ -16,6 +17,7 @@ interface MenuItem {
 
 interface MenuCategory {
   name: string;
+  handle: string;
   items: MenuItem[];
 }
 
@@ -24,6 +26,7 @@ const defaultImage = "https://images.unsplash.com/photo-1558171813-4c088753af8f?
 const menuCategories: MenuCategory[] = [
   {
     name: "Batik",
+    handle: "batik",
     items: [
       { title: "Batik Fabric", handle: "batik-fabric" },
       { title: "Handstamp Batik Fabric", handle: "handstamp-batik-fabric" },
@@ -37,6 +40,7 @@ const menuCategories: MenuCategory[] = [
   },
   {
     name: "Kebaya",
+    handle: "kebaya",
     items: [
       { title: "Standard Peranakan Top", handle: "standard-peranakan-top" },
       { title: "Premium Peranakan Top", handle: "premium-peranakan-top" },
@@ -45,6 +49,7 @@ const menuCategories: MenuCategory[] = [
   },
   {
     name: "Shoes",
+    handle: "shoes",
     items: [
       { title: "Standard Beaded Shoes", handle: "standard-beaded-shoes" },
       { title: "Premium Beaded Shoes", handle: "premium-beaded-shoes" },
@@ -52,18 +57,22 @@ const menuCategories: MenuCategory[] = [
   },
   {
     name: "Kerosang",
+    handle: "kerosang",
     items: [
       { title: "All Kerosang", handle: "kerosang" },
     ],
   },
 ];
 
-export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
+export default function MegaMenu({ isOpen, onClose, categoryImages = {} }: MegaMenuProps) {
   const [activeCategory, setActiveCategory] = useState<string>(menuCategories[0].name);
 
   if (!isOpen) return null;
 
-  const activeItems = menuCategories.find(c => c.name === activeCategory)?.items || [];
+  const activeCategoryData = menuCategories.find(c => c.name === activeCategory);
+  const activeItems = activeCategoryData?.items || [];
+  const activeHandle = activeCategoryData?.handle || "";
+  const activeImage = categoryImages[activeHandle] || defaultImage;
 
   return (
     <div
@@ -120,7 +129,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
           <div className="col-span-4">
             <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-stone-100">
               <Image
-                src={defaultImage}
+                src={activeImage}
                 alt={activeCategory}
                 fill
                 className="object-cover"
@@ -129,7 +138,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="font-serif text-2xl font-bold mb-2">{activeCategory}</h3>
                 <Link
-                  href={`/collections/${activeCategory.toLowerCase()}`}
+                  href={`/collections/${activeHandle}`}
                   onClick={onClose}
                   className="inline-flex items-center gap-2 text-sm text-pink-200 hover:text-white transition-colors"
                 >

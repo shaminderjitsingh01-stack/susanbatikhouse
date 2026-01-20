@@ -16,6 +16,14 @@ export default function Header() {
   const [collections, setCollections] = useState<ShopifyCollection[]>([]);
   const { openCart, itemCount } = useCart();
 
+  // Build category images map from collections
+  const categoryImages: Record<string, string> = {};
+  collections.forEach((c) => {
+    if (c.image?.url) {
+      categoryImages[c.handle] = c.image.url;
+    }
+  });
+
   useEffect(() => {
     async function fetchCollections() {
       try {
@@ -157,7 +165,7 @@ export default function Header() {
         </div>
 
         {/* Mega Menu */}
-        <MegaMenu isOpen={megaMenuOpen} onClose={() => setMegaMenuOpen(false)} />
+        <MegaMenu isOpen={megaMenuOpen} onClose={() => setMegaMenuOpen(false)} categoryImages={categoryImages} />
 
         {/* Search Modal */}
         <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
