@@ -19,7 +19,7 @@ export default function AlterationPage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="https://videos.pexels.com/video-files/5815249/5815249-hd_1920_1080_24fps.mp4" type="video/mp4" />
+            <source src="https://assets.mixkit.co/videos/12520/12520-720.mp4" type="video/mp4" />
           </video>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-stone-900/75"></div>
