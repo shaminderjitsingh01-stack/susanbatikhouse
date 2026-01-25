@@ -8,9 +8,25 @@ export const metadata = {
 export default function AlterationPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="py-16 lg:py-24 bg-stone-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      {/* Hero with Video Background */}
+      <section className="relative py-24 lg:py-32 text-white overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="https://videos.pexels.com/video-files/5815249/5815249-hd_1920_1080_24fps.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-stone-900/75"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <p className="text-pink-400 tracking-[0.3em] uppercase text-sm mb-4">Expert Tailoring</p>
           <h1 className="font-serif text-4xl md:text-5xl font-bold mb-6">
             Alteration Services
