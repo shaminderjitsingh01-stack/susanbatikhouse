@@ -77,62 +77,105 @@ const SHOP_INFO = {
   }
 };
 
-// Response patterns
+// Human-like response patterns
 const getResponse = (input: string): { content: string; options?: string[] } => {
-  const lowerInput = input.toLowerCase();
+  const lowerInput = input.toLowerCase().trim();
+
+  // Exact matches for button options first
+  if (lowerInput === "browse collections" || lowerInput === "shop now" || lowerInput === "view collections") {
+    return {
+      content: `We have quite a nice selection! Our main categories are batik (fabric, tops, sarongs, cheongsam), kebaya in standard and premium options, plus beaded shoes and kerosang brooches.\n\nAnything specific you're looking for?`,
+      options: ["Batik items", "Kebaya", "Shoes", "Just browsing"]
+    };
+  }
+
+  if (lowerInput === "check sizing" || lowerInput === "size guide") {
+    return {
+      content: `For kebaya and cheongsam, we carry XS to XXL. Shoes run from size 4 to 12.\n\nA quick tip - our traditional pieces are quite form-fitting, so if you're between sizes, better to go one size up. We can always alter it down for you!`,
+      options: ["How to measure", "Custom sizing", "Come try in-store"]
+    };
+  }
+
+  if (lowerInput === "alterations" || lowerInput === "ask about alterations") {
+    return {
+      content: `Yes we do alterations! Hemming, taking in, letting out, sleeve adjustments - all the usual.\n\nBasic hemming is free if you buy from us. Most jobs take about 3-5 days, complex ones around 1-2 weeks. Rush is available if you need it urgently!`,
+      options: ["Book alteration", "Pricing", "Visit store"]
+    };
+  }
+
+  if (lowerInput === "store location" || lowerInput === "store location & hours" || lowerInput === "store info") {
+    return {
+      content: `We're at Blk 32 New Market Road, #02-1104/1106 - that's the People's Park area in Chinatown. Easy to find!\n\nOpen Monday to Saturday 10am-6pm. Sundays by appointment.\n\nCall us at 6533 6330 or WhatsApp 9791 5323!`,
+      options: ["Get directions", "Call now", "WhatsApp us"]
+    };
+  }
+
+  if (lowerInput === "contact us" || lowerInput === "other questions") {
+    return {
+      content: `Best ways to reach us:\n\nCall: 6533 6330\nWhatsApp: 9791 5323\n\nOr just drop by the shop! We're always happy to help.`,
+      options: ["Call now", "WhatsApp", "Get directions"]
+    };
+  }
+
+  if (lowerInput === "continue browsing" || lowerInput === "just browsing") {
+    return {
+      content: `No problem! Take your time. Let me know if you have any questions about our products, sizing, or anything else.`,
+      options: ["Browse Collections", "Check Sizing", "Store Location"]
+    };
+  }
 
   // Greetings
-  if (lowerInput.match(/^(hi|hello|hey|good morning|good afternoon|good evening)/)) {
+  if (lowerInput.match(/^(hi|hello|hey|good morning|good afternoon|good evening|hai)/)) {
     return {
-      content: `Hello! Welcome to Susan Batik House! 🌸\n\nWe've been preserving traditional batik and Peranakan heritage since 1989. How can I help you today?`,
-      options: ["Browse Collections", "Check Sizing", "Ask about Alterations", "Store Location & Hours"]
+      content: `Hi there! Welcome to Susan Batik House.\n\nWe've been here since 1989, specializing in batik, kebaya and Peranakan pieces. What can I help you with today?`,
+      options: ["Browse Collections", "Check Sizing", "Alterations", "Store Location"]
     };
   }
 
   // Collections
-  if (lowerInput.match(/collection|product|what do you sell|what you have|browse|shop/)) {
+  if (lowerInput.match(/collection|product|what do you sell|what.*have|browse|shop|item|catalog/)) {
     return {
-      content: `Our Collections include:\n\n🎨 **Batik**\n• Batik Fabric (Handstamp & Hand-drawn)\n• Ladies & Mens Batik Tops\n• Batik Sarong & Pants\n• Batik Cheongsam\n\n👘 **Kebaya**\n• Standard Peranakan Top\n• Premium Peranakan Top\n• Kids Peranakan Top\n\n👠 **Accessories**\n• Beaded Shoes\n• Kerosang Brooches\n\nWould you like details on any specific collection?`,
-      options: ["Batik items", "Kebaya items", "Shoes", "Pricing"]
-    };
-  }
-
-  // Sizing
-  if (lowerInput.match(/size|sizing|measurement|fit|what size|how to measure/)) {
-    return {
-      content: `**Sizing Guide:**\n\n👗 **Kebaya:** XS to XXL\n• Bust: 76-110cm\n• Waist: 60-94cm\n\n👘 **Cheongsam:** XS to XXL\n• Bust: 78-112cm\n• Waist: 62-96cm\n\n👠 **Shoes:** Size 4 to 12\n\n**Tips:**\n• Traditional garments are form-fitting\n• If between sizes, go larger (alterations can be made)\n• Custom sizing available (2-3 weeks)\n\nNeed help finding your size?`,
-      options: ["How to measure", "Custom sizing", "Visit store for fitting"]
-    };
-  }
-
-  // Alterations
-  if (lowerInput.match(/alter|alteration|tailor|hem|adjust|fitting|take in|let out/)) {
-    return {
-      content: `**Alteration Services:**\n\n✂️ We offer:\n• Hemming\n• Taking in / Letting out\n• Sleeve adjustments\n• Kebaya & Cheongsam fitting\n• Custom modifications\n\n⏱️ **Turnaround:**\n• Standard: 3-5 business days\n• Complex: 7-14 days\n• Rush service available\n\n💰 Basic hemming is FREE for full-price items!\n\nWould you like to book an alteration?`,
-      options: ["Book alteration", "Alteration pricing", "Visit store"]
+      content: `We carry batik fabric (handstamp and hand-drawn), batik clothing for ladies and men, kebaya tops in standard and premium quality, beaded shoes, and kerosang brooches.\n\nWhich one interests you?`,
+      options: ["Batik items", "Kebaya", "Shoes", "Pricing"]
     };
   }
 
   // Location & Hours
-  if (lowerInput.match(/where|location|address|store|visit|hour|open|when|direction/)) {
+  if (lowerInput.match(/where|location|address|visit|hour|open|when|direction|find you|how to get/)) {
     return {
-      content: `**Visit Us:**\n\n📍 Blk 32 New Market Road\n#02-1104/1106\nSingapore 050032\n(People's Park area, Chinatown)\n\n🕐 **Hours:**\nMon - Sat: 10am - 6pm\nSunday: By Appointment Only\n\n📞 Call: 6533 6330\n📱 WhatsApp: 9791 5323\n\nWe're easily accessible by MRT - Chinatown station!`,
+      content: `We're at Blk 32 New Market Road, #02-1104/1106 in Chinatown. Open Mon-Sat 10am to 6pm, Sundays by appointment.\n\nJust take the MRT to Chinatown station - we're a short walk from there!`,
       options: ["Get directions", "Call store", "WhatsApp us"]
+    };
+  }
+
+  // Alterations
+  if (lowerInput.match(/alter|tailor|hem|adjust|fitting|take in|let out|shorten|lengthen/)) {
+    return {
+      content: `Yes we do alterations! Our tailors handle hemming, taking in, letting out, sleeves - the works.\n\nUsually takes 3-5 days. Free basic hemming when you buy from us. Want to book something?`,
+      options: ["Book alteration", "Pricing", "Visit store"]
+    };
+  }
+
+  // Sizing
+  if (lowerInput.match(/\bsize\b|sizing|measurement|what size|how to measure|measure myself/)) {
+    return {
+      content: `Kebaya and cheongsam run XS to XXL. For kebaya, bust ranges 76-110cm, waist 60-94cm. Shoes are size 4 to 12.\n\nThese pieces are quite fitted, so go one size up if you're in between. We can adjust!`,
+      options: ["How to measure", "Custom sizing", "Visit store"]
     };
   }
 
   // Shipping
   if (lowerInput.match(/ship|delivery|deliver|how long|shipping cost|international/)) {
     return {
-      content: `**Shipping Info:**\n\n🇸🇬 **Singapore:**\n• Standard: $5 (3-5 days)\n• Express: $12 (next day)\n• FREE for orders above $150!\n\n🌏 **International:**\n• Malaysia/Brunei: 5-7 days\n• Southeast Asia: 7-10 days\n• Australia/NZ: 10-14 days\n\n🏪 **Self-Collection:** Available at our store\n\nTracking provided for all orders!`,
-      options: ["International rates", "Self-collection", "Track order"]
+      content: `Local delivery is $5, takes about 3-5 days. Express is $12 for next day. Free delivery if you spend over $150!\n\nWe ship internationally too - Malaysia, Brunei, the rest of SEA, Australia and NZ. Or you can just pick up from our store if that's easier!`,
+      options: ["International rates", "Self-collection", "Continue browsing"]
     };
   }
 
   // Payment
   if (lowerInput.match(/pay|payment|credit card|paynow|grab|installment/)) {
     return {
-      content: `**Payment Methods:**\n\n💳 We accept:\n• Visa, MasterCard, Amex\n• PayNow\n• GrabPay\n• NETS (in-store)\n• Bank Transfer\n\n📦 **Installments:**\nFor orders above $500:\n• Atome\n• Grab PayLater\n\nAll transactions are secure!`,
+      content: `We take Visa, Mastercard, Amex, PayNow, GrabPay - basically everything. NETS works in-store too.\n\nFor bigger purchases over $500, we have Atome and Grab PayLater if you prefer instalments.`,
       options: ["Shop now", "Other questions"]
     };
   }
@@ -140,31 +183,39 @@ const getResponse = (input: string): { content: string; options?: string[] } => 
   // Returns
   if (lowerInput.match(/return|exchange|refund|policy/)) {
     return {
-      content: `**Return Policy:**\n\n⚠️ All sales are final - No returns or exchanges.\n\nPlease ensure:\n• Correct size selected\n• Review order carefully before purchase\n• Visit our store for fitting if unsure\n\nIf you receive a damaged item, contact us within 48 hours with photos for resolution.`,
+      content: `Just so you know - all sales are final, no returns or exchanges. That's why we always recommend trying things on in-store if you're unsure about sizing!\n\nIf something arrives damaged though, send us photos within 48 hours and we'll sort it out.`,
       options: ["Size guide", "Visit store", "Contact us"]
     };
   }
 
   // Batik info
-  if (lowerInput.match(/what is batik|batik meaning|about batik|batik history|type of batik/)) {
+  if (lowerInput.match(/what is batik|batik meaning|about batik|batik history|type of batik|batik item/)) {
     return {
-      content: `**About Batik:**\n\nBatik is a traditional wax-resist dyeing technique from Indonesia, popular throughout Southeast Asia.\n\n🎨 **Types we carry:**\n• **Hand-drawn (Tulis)** - Most intricate, made with canting tool\n• **Handstamp (Cap)** - Uses copper stamps\n• **Printed** - Machine-made, affordable\n\n🧺 **Care Tips:**\n• Hand wash in cold water\n• Don't wring - gently squeeze\n• Dry in shade\n• Iron on low heat\n\nEach piece is unique!`,
-      options: ["Browse batik", "Batik pricing", "Other questions"]
+      content: `Batik is a traditional fabric dyeing technique using wax - originated from Indonesia and very popular here in Southeast Asia.\n\nWe carry three types: hand-drawn (tulis) which is the most intricate, handstamp (cap) which uses copper stamps, and printed batik which is more affordable.\n\nFor care - hand wash cold water, don't wring it, dry in the shade, iron on low. Easy!`,
+      options: ["Browse batik", "Pricing", "Other questions"]
     };
   }
 
   // Kebaya info
   if (lowerInput.match(/kebaya|peranakan|nyonya/)) {
     return {
-      content: `**Kebaya Collection:**\n\n👘 The kebaya is a traditional blouse worn by Peranakan/Nyonya women, known for its intricate embroidery.\n\n**We offer:**\n• Standard Peranakan Top - Classic designs\n• Premium Peranakan Top - Exquisite detailing\n• Kids Peranakan Top - For little ones\n\n**Sizes:** XS to XXL\n**Customization:** Available for special occasions\n\nPerfect for weddings, festivals & celebrations!`,
-      options: ["View kebaya", "Kebaya sizing", "Custom orders"]
+      content: `Kebaya is the traditional blouse worn by Peranakan women - beautiful intricate embroidery work!\n\nWe have standard and premium options, plus kids sizes too. Perfect for weddings, cultural events, or just looking elegant. Sizes run XS to XXL, and we can do custom if needed.`,
+      options: ["View kebaya", "Sizing", "Custom orders"]
+    };
+  }
+
+  // Shoes
+  if (lowerInput.match(/shoe|beaded|kasut/)) {
+    return {
+      content: `Our beaded shoes are handcrafted with traditional Peranakan designs. We have standard and premium options - premium has more intricate beading work.\n\nSizes run from 4 to 12. They're gorgeous with kebaya but honestly work with any outfit!`,
+      options: ["View shoes", "Pricing", "Visit store"]
     };
   }
 
   // Price
-  if (lowerInput.match(/price|cost|how much|expensive|cheap|budget/)) {
+  if (lowerInput.match(/price|cost|how much|expensive|cheap|budget|pricing/)) {
     return {
-      content: `**Pricing:**\n\nOur prices vary by product type:\n\n👘 **Kebaya:** From $200 - $800+\n👗 **Batik Tops:** From $80 - $300\n🧵 **Batik Fabric:** From $30/meter\n👠 **Beaded Shoes:** From $150 - $500\n💎 **Kerosang:** From $50 - $200\n\nPremium handmade pieces are priced higher for their craftsmanship.\n\nWould you like to see specific items?`,
+      content: `Rough pricing: Kebaya starts from about $200, batik tops from $80, fabric from $30 per meter, beaded shoes from $150, kerosang from $50.\n\nPremium handmade pieces cost more of course - you're paying for the craftsmanship. Want me to show you anything specific?`,
       options: ["Shop now", "Visit store", "WhatsApp for quote"]
     };
   }
@@ -172,23 +223,31 @@ const getResponse = (input: string): { content: string; options?: string[] } => 
   // Custom orders
   if (lowerInput.match(/custom|bespoke|made to measure|special order|custom size/)) {
     return {
-      content: `**Custom Orders:**\n\n✨ We create bespoke pieces!\n\n• Custom sizing for any garment\n• Made-to-measure kebaya & cheongsam\n• Special occasion outfits\n• Mother/In-law wedding dresses\n\n⏱️ **Timeline:** 2-3 weeks\n\nShare your requirements and our tailors will create something special for you!`,
+      content: `Yes we do custom orders! Made-to-measure kebaya, cheongsam, special occasion outfits - our tailors can handle it all.\n\nUsually takes about 2-3 weeks. Just let us know what you need and we'll work something out!`,
       options: ["Get a quote", "WhatsApp us", "Visit store"]
     };
   }
 
-  // Contact / Help
-  if (lowerInput.match(/contact|help|speak|human|call|whatsapp|talk to someone/)) {
+  // Thanks
+  if (lowerInput.match(/thank|thanks|thx|cheers/)) {
     return {
-      content: `**Get in Touch:**\n\n📞 Call: 6533 6330\n📱 WhatsApp: 9791 5323\n📍 Visit: Blk 32 New Market Road, #02-1104/1106\n\nOur team is happy to assist with:\n• Product inquiries\n• Sizing advice\n• Custom orders\n• Alteration bookings\n\nHow would you like to connect?`,
+      content: `You're welcome! Anything else I can help with?`,
+      options: ["Browse Collections", "Store Location", "Contact us"]
+    };
+  }
+
+  // Contact / Help
+  if (lowerInput.match(/contact|help|speak|human|call|talk to someone/)) {
+    return {
+      content: `Sure! You can call us at 6533 6330 or WhatsApp 9791 5323. Or just come by the shop - Blk 32 New Market Road.\n\nWhat works best for you?`,
       options: ["Call now", "WhatsApp", "Get directions"]
     };
   }
 
   // Default fallback
   return {
-    content: `I'd be happy to help! Here's what I can assist with:\n\n• Browse our collections\n• Sizing information\n• Alterations & custom orders\n• Shipping & delivery\n• Store location & hours\n\nOr share what you're looking for and I'll guide you!`,
-    options: ["Browse Collections", "Size Guide", "Contact Us", "Store Info"]
+    content: `Hmm, I'm not sure I understood that. I can help you with our collections, sizing, alterations, shipping, or store info. What would you like to know?`,
+    options: ["Browse Collections", "Check Sizing", "Contact Us", "Store Location"]
   };
 };
 
@@ -208,7 +267,7 @@ export default function Chatbot() {
         setIsOpen(true);
         setMessages([{
           role: "bot",
-          content: "Hello! Welcome to Susan Batik House! 🌸\n\nI'm here to help you discover our beautiful batik, kebaya & Peranakan heritage wear.\n\nHow can I assist you today?",
+          content: "Hi! Welcome to Susan Batik House. 🌸\n\nLooking for something special? We've got batik, kebaya, Peranakan pieces - been doing this since 1989!\n\nHow can I help?",
           options: ["Browse Collections", "Check Sizing", "Alterations", "Store Location"]
         }]);
       }, 7000);
@@ -231,7 +290,7 @@ export default function Chatbot() {
     if (messages.length === 0) {
       setMessages([{
         role: "bot",
-        content: "Hello! Welcome to Susan Batik House! 🌸\n\nI'm here to help you discover our beautiful batik, kebaya & Peranakan heritage wear.\n\nHow can I assist you today?",
+        content: "Hi! Welcome to Susan Batik House. 🌸\n\nLooking for something special? We've got batik, kebaya, Peranakan pieces - been doing this since 1989!\n\nHow can I help?",
         options: ["Browse Collections", "Check Sizing", "Alterations", "Store Location"]
       }]);
     }
@@ -251,7 +310,7 @@ export default function Chatbot() {
       setTimeout(() => {
         setMessages(prev => [...prev, {
           role: "bot",
-          content: `Nice to meet you, ${text}! 😊\n\nWhat's your phone number so our team can reach you?`
+          content: `Hi ${text}! Nice to meet you. What's your phone number? We'll get back to you soon.`
         }]);
       }, 500);
       return;
@@ -263,7 +322,7 @@ export default function Chatbot() {
       setTimeout(() => {
         setMessages(prev => [...prev, {
           role: "bot",
-          content: "Great! What are you looking for today?",
+          content: "Got it! And what are you looking for?",
           options: ["Kebaya for wedding", "Batik clothing", "Beaded shoes", "Alterations", "Just browsing"]
         }]);
       }, 500);
@@ -277,14 +336,14 @@ export default function Chatbot() {
 
       // Generate WhatsApp message
       const whatsappMessage = encodeURIComponent(
-        `Hi Susan Batik House! 🌸\n\nI'm ${finalInfo.name}\nPhone: ${finalInfo.phone}\n\nI'm interested in: ${finalInfo.interest}\n\nPlease assist me. Thank you!`
+        `Hi Susan Batik House!\n\nI'm ${finalInfo.name}\nPhone: ${finalInfo.phone}\n\nI'm interested in: ${finalInfo.interest}\n\nPlease assist me. Thank you!`
       );
       const whatsappUrl = `https://wa.me/6597915323?text=${whatsappMessage}`;
 
       setTimeout(() => {
         setMessages(prev => [...prev, {
           role: "bot",
-          content: `Thank you, ${finalInfo.name}! 🎉\n\nI've noted your interest in: ${finalInfo.interest}\n\nOur team will reach out to you shortly!\n\nOr tap below to chat with us directly on WhatsApp:`,
+          content: `Thanks ${finalInfo.name}! I've noted down your interest in ${finalInfo.interest}. Someone from our team will contact you.\n\nOr if you prefer, you can WhatsApp us directly:`,
           options: ["Chat on WhatsApp", "Continue browsing"]
         }]);
       }, 500);
@@ -323,12 +382,12 @@ export default function Chatbot() {
     }
 
     // Check if user wants to connect (trigger info collection)
-    if (text.toLowerCase().match(/quote|book|appointment|custom order|talk to|speak to|contact me|call me/)) {
+    if (text.toLowerCase().match(/quote|book|appointment|custom order|talk to|speak to|contact me|call me|get a quote/)) {
       setCollectingInfo("name");
       setTimeout(() => {
         setMessages(prev => [...prev, {
           role: "bot",
-          content: "I'd love to connect you with our team! 💕\n\nMay I have your name please?"
+          content: "Sure thing! Can I get your name?"
         }]);
       }, 500);
       return;
