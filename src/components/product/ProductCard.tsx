@@ -8,11 +8,28 @@ import { formatPrice } from "@/lib/utils";
 interface ProductCardProps {
   product: ShopifyProduct;
   badge?: "Sale" | "New" | "Popular" | "Bestseller";
+  showSizes?: boolean;
 }
 
-export default function ProductCard({ product, badge }: ProductCardProps) {
+export default function ProductCard({ product, badge, showSizes = true }: ProductCardProps) {
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
+
+  // Extract available sizes from variants
+  const availableSizes = product.variants?.edges
+    ?.map(v => v.node.selectedOptions?.find(opt => opt.name === "Size")?.value)
+    .filter((value, index, self) => value && self.indexOf(value) === index) || [];
+
+  // Define size order for sorting
+  const sizeOrder = ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  const sortedSizes = availableSizes.sort((a, b) => {
+    const indexA = sizeOrder.indexOf(a || "");
+    const indexB = sizeOrder.indexOf(b || "");
+    if (indexA === -1 && indexB === -1) return 0;
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
+  });
 
   return (
     <Link href={`/products/${product.handle}`} className="group">
@@ -76,6 +93,20 @@ export default function ProductCard({ product, badge }: ProductCardProps) {
       <p className="text-[#EC4899] font-bold text-lg mt-1">
         {formatPrice(price.amount, price.currencyCode)}
       </p>
+
+      {/* Size Badges */}
+      {showSizes && sortedSizes.length > 0 && (
+        <div className="flex flex-wrap gap-1 mt-2">
+          {sortedSizes.map((size) => (
+            <span
+              key={size}
+              className="px-2 py-0.5 text-xs font-medium bg-stone-100 text-stone-600 rounded"
+            >
+              {size}
+            </span>
+          ))}
+        </div>
+      )}
     </Link>
   );
 }
