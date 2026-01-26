@@ -10,13 +10,14 @@ export default function AlterationPage() {
     <>
       {/* Hero with Video Background */}
       <section className="relative py-24 lg:py-32 text-white overflow-hidden">
-        {/* Video Background */}
+        {/* Video Background - Optimized for LCP */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             muted
             loop
             playsInline
+            preload="none"
             className="w-full h-full object-cover"
           >
             <source src="https://assets.mixkit.co/videos/12520/12520-720.mp4" type="video/mp4" />

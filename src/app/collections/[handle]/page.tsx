@@ -62,14 +62,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="relative h-[300px] md:h-[400px] overflow-hidden">
         {isAllProducts ? (
           <>
-            {/* Video Background for All Products */}
+            {/* Video Background for All Products - Optimized for LCP */}
             <div className="absolute inset-0 bg-stone-900">
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="none"
                 className="absolute inset-0 w-full h-full object-cover opacity-60"
               >
                 <source src="/batik-all.mp4" type="video/mp4" />

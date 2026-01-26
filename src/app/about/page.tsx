@@ -11,13 +11,14 @@ export default function AboutPage() {
     <>
       {/* Hero with Video Background */}
       <section className="relative py-24 lg:py-36 overflow-hidden">
-        {/* Video Background */}
+        {/* Video Background - Optimized for LCP */}
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             muted
             loop
             playsInline
+            preload="none"
             className="w-full h-full object-cover"
           >
             <source src="/batik-pattern.mp4" type="video/mp4" />

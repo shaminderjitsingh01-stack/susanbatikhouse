@@ -17,16 +17,16 @@ export default async function HomePage() {
     <>
       {/* Premium Video Hero Section */}
       <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
+        {/* Video Background - Lazy loaded for LCP optimization */}
         <div className="absolute inset-0 bg-stone-900">
           <video
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
             className="absolute inset-0 w-full h-full object-cover opacity-50"
-            poster="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&h=1080&fit=crop"
+            poster="/heritage.jpg"
           >
             <source src="/batik.mp4" type="video/mp4" />
           </video>
