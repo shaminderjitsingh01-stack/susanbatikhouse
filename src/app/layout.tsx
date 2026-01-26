@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
+import Chatbot from "@/components/chat/Chatbot";
 import { CartProvider } from "@/lib/cart-context";
 
 const playfair = Playfair_Display({
@@ -36,6 +37,7 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <CartDrawer />
+          <Chatbot />
         </CartProvider>
       </body>
     </html>
