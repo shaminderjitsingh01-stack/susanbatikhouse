@@ -9,10 +9,25 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative py-20 lg:py-32 bg-stone-900">
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/50 to-stone-900/90" />
-        <div className="relative max-w-4xl mx-auto px-4 text-center text-white">
+      {/* Hero with Video Background */}
+      <section className="relative py-24 lg:py-36 overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/batik.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-stone-900/70"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
           <p className="text-pink-400 tracking-[0.3em] uppercase text-sm mb-4">Our Story</p>
           <h1 className="font-serif text-4xl md:text-6xl font-bold mb-6">About Susan Batik House</h1>
           <p className="text-xl text-stone-300">
