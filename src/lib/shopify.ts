@@ -93,6 +93,23 @@ export async function getProducts(first: number = 20) {
                 }
               }
             }
+            options {
+              name
+              values
+            }
+            variants(first: 100) {
+              edges {
+                node {
+                  id
+                  title
+                  availableForSale
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -221,6 +238,23 @@ export async function getCollection(handle: string) {
                   node {
                     url
                     altText
+                  }
+                }
+              }
+              options {
+                name
+                values
+              }
+              variants(first: 100) {
+                edges {
+                  node {
+                    id
+                    title
+                    availableForSale
+                    selectedOptions {
+                      name
+                      value
+                    }
                   }
                 }
               }
