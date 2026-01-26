@@ -20,7 +20,7 @@ export default function AboutPage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/batik.mp4" type="video/mp4" />
+            <source src="/batik-pattern.mp4" type="video/mp4" />
           </video>
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-stone-900/70"></div>
