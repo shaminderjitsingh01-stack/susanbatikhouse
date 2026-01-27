@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
-import dynamic from "next/dynamic";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
 import { CartProvider } from "@/lib/cart-context";
-
-// Lazy load chatbot to improve LCP
-const Chatbot = dynamic(() => import("@/components/chat/Chatbot"), {
-  ssr: false,
-  loading: () => null,
-});
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -45,7 +38,6 @@ export default function RootLayout({
           <main className="min-h-screen">{children}</main>
           <Footer />
           <CartDrawer />
-          <Chatbot />
         </CartProvider>
       </body>
     </html>
