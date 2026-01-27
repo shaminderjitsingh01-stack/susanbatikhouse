@@ -179,9 +179,13 @@ export default function ProductPage() {
                     ? formatPrice(currentVariant.price.amount, currentVariant.price.currencyCode)
                     : formatPrice(product.priceRange.minVariantPrice.amount, product.priceRange.minVariantPrice.currencyCode)}
                 </p>
-                {/* Stock Status - Always show as available */}
-                <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-full">
-                  In Stock
+                {/* Stock Status */}
+                <span className={`px-3 py-1 text-sm font-medium rounded-full ${
+                  currentVariant?.availableForSale !== false
+                    ? "bg-green-100 text-green-700"
+                    : "bg-gray-100 text-gray-500"
+                }`}>
+                  {currentVariant?.availableForSale !== false ? "In Stock" : "Sold Out"}
                 </span>
               </div>
             </div>
@@ -256,14 +260,23 @@ export default function ProductPage() {
             <div className="flex gap-4 mb-8">
               <button
                 onClick={handleAddToCart}
-                disabled={isLoading}
+                disabled={isLoading || currentVariant?.availableForSale === false}
                 className={`flex-1 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${
-                  addedToCart
+                  currentVariant?.availableForSale === false
+                    ? "bg-gray-400 text-white cursor-not-allowed"
+                    : addedToCart
                     ? "bg-green-500 text-white"
                     : "bg-gradient-to-r from-[#F472B6] to-[#EC4899] text-white hover:shadow-lg hover:shadow-pink-500/30"
-                } disabled:from-stone-300 disabled:to-stone-400 disabled:cursor-not-allowed`}
+                } disabled:cursor-not-allowed`}
               >
-                {addedToCart ? (
+                {currentVariant?.availableForSale === false ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                    </svg>
+                    Sold Out
+                  </>
+                ) : addedToCart ? (
                   <>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
