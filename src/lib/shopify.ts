@@ -221,7 +221,7 @@ export async function getCollection(handle: string) {
           url
           altText
         }
-        products(first: 50) {
+        products(first: 250) {
           edges {
             node {
               id
