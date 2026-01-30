@@ -20,15 +20,25 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
     ?.map(v => v.node.selectedOptions?.find(opt => opt.name === "Size")?.value)
     .filter((value, index, self) => value && self.indexOf(value) === index) || [];
 
-  // Define size order for sorting
-  const sizeOrder = ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  // Define size order for sorting (includes common variations)
+  const sizeOrder = [
+    "XS", "S", "Small", "M", "Medium", "L", "Large",
+    "XL", "Extra Large", "XXL", "2XL", "XXXL", "3XL",
+    "4XL", "5XL", "6XL",
+    // Shoe sizes
+    "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"
+  ];
   const sortedSizes = availableSizes.sort((a, b) => {
-    const indexA = sizeOrder.indexOf(a || "");
-    const indexB = sizeOrder.indexOf(b || "");
-    if (indexA === -1 && indexB === -1) return 0;
-    if (indexA === -1) return 1;
-    if (indexB === -1) return -1;
-    return indexA - indexB;
+    const indexA = sizeOrder.findIndex(s => s.toLowerCase() === (a || "").toLowerCase());
+    const indexB = sizeOrder.findIndex(s => s.toLowerCase() === (b || "").toLowerCase());
+    // Both in order list: sort by order
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    // Only a in order list: a comes first
+    if (indexA !== -1) return -1;
+    // Only b in order list: b comes first
+    if (indexB !== -1) return 1;
+    // Neither in order list: sort alphabetically
+    return (a || "").localeCompare(b || "");
   });
 
   return (

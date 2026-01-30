@@ -24,11 +24,15 @@ const shoeCollections = [
   "premium-beaded-shoes",
 ];
 
-// Clothing sizes
-const clothingSizes = ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"];
+// Size ordering for sorting (includes common variations)
+const clothingSizeOrder = [
+  "XS", "S", "Small", "M", "Medium", "L", "Large",
+  "XL", "Extra Large", "XXL", "2XL", "XXXL", "3XL",
+  "4XL", "5XL", "6XL"
+];
 
-// Shoe sizes
-const shoeSizes = ["4", "5", "6", "7", "8", "9", "10", "11", "12"];
+// Shoe size order (numeric)
+const shoeSizeOrder = ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
 
 export default function CollectionFilter({ products, collectionHandle }: CollectionFilterProps) {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -53,11 +57,26 @@ export default function CollectionFilter({ products, collectionHandle }: Collect
   }, [products]);
 
   // Get the size options to display based on collection type
+  // Shows ALL available sizes from products, sorted in logical order
   const sizeOptions = useMemo(() => {
     if (isNoSizeCollection) return [];
-    const baseSizes = isShoeCollection ? shoeSizes : clothingSizes;
-    // Only show sizes that exist in the collection
-    return baseSizes.filter(size => availableSizesInCollection.includes(size));
+
+    const orderList = isShoeCollection ? shoeSizeOrder : clothingSizeOrder;
+
+    // Sort available sizes: known sizes first (in order), then unknown sizes alphabetically
+    return [...availableSizesInCollection].sort((a, b) => {
+      const indexA = orderList.findIndex(s => s.toLowerCase() === a.toLowerCase());
+      const indexB = orderList.findIndex(s => s.toLowerCase() === b.toLowerCase());
+
+      // Both in order list: sort by order
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      // Only a in order list: a comes first
+      if (indexA !== -1) return -1;
+      // Only b in order list: b comes first
+      if (indexB !== -1) return 1;
+      // Neither in order list: sort alphabetically
+      return a.localeCompare(b);
+    });
   }, [isNoSizeCollection, isShoeCollection, availableSizesInCollection]);
 
   // Filter products by selected sizes
