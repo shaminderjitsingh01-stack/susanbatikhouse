@@ -41,7 +41,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   try {
     if (handle === "all") {
-      products = await getProducts(50);
+      products = await getProducts(250);
     } else {
       collection = await getCollection(handle);
       products = collection?.products?.edges.map((e) => e.node) || [];
