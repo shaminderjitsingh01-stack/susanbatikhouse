@@ -138,7 +138,39 @@ export default function ProductPage() {
                 />
               )}
               {/* Zoom Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+
+              {/* Navigation Arrows */}
+              {images.length > 1 && (
+                <>
+                  {/* Previous Arrow */}
+                  <button
+                    onClick={() => setSelectedImage(selectedImage === 0 ? images.length - 1 : selectedImage - 1)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10"
+                    aria-label="Previous image"
+                  >
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+
+                  {/* Next Arrow */}
+                  <button
+                    onClick={() => setSelectedImage(selectedImage === images.length - 1 ? 0 : selectedImage + 1)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10"
+                    aria-label="Next image"
+                  >
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+
+                  {/* Image Counter */}
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/50 text-white text-sm font-medium rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {selectedImage + 1} / {images.length}
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Thumbnail Images */}
