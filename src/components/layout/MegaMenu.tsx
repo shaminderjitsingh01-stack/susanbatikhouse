@@ -34,8 +34,8 @@ const menuCategories: MenuCategory[] = [
       { title: "Ladies Batik Top", handle: "ladies-batik-top" },
       { title: "Mens Batik Top", handle: "mens-batik-top" },
       { title: "Ladies Batik Sarong", handle: "ladies-batik-sarong" },
-      { title: "Batik Cheongsam", handle: "batik-cheongsam" },
-      { title: "Ladies Batik Pants", handle: "ladies-batik-pants" },
+      { title: "Batik Cheongsam / Mother in Law Cheongsam", handle: "batik-cheongsam" },
+      { title: "Ladies Batik Pants / Batik Skirt", handle: "ladies-batik-pants" },
     ],
   },
   {
