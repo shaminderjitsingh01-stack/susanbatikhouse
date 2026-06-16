@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getCollection, getProducts, ShopifyProduct } from "@/lib/shopify";
+import {
+  getCollectionMeta,
+  getCollectionProductsPage,
+  getProductsPage,
+  PageInfo,
+  ShopifyProduct,
+} from "@/lib/shopify";
 import CollectionFilter from "@/components/product/CollectionFilter";
 
 interface CollectionPageProps {
@@ -38,13 +44,18 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   let collection = null;
   let products: ShopifyProduct[] = [];
+  let pageInfo: PageInfo = { hasNextPage: false, endCursor: null };
 
   try {
     if (handle === "all") {
-      products = await getProducts(250);
+      const page = await getProductsPage(100);
+      products = page.products;
+      pageInfo = page.pageInfo;
     } else {
-      collection = await getCollection(handle);
-      products = collection?.products?.edges.map((e) => e.node) || [];
+      collection = await getCollectionMeta(handle);
+      const page = await getCollectionProductsPage(handle, 100);
+      products = page.products;
+      pageInfo = page.pageInfo;
     }
   } catch {
     // Store not connected
@@ -141,7 +152,12 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Filter and Products */}
-          <CollectionFilter products={products} collectionHandle={handle} />
+          <CollectionFilter
+            key={handle}
+            products={products}
+            collectionHandle={handle}
+            initialPageInfo={pageInfo}
+          />
         </div>
       </section>
 

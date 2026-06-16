@@ -1,13 +1,16 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ShopifyProduct } from "@/lib/shopify";
+import { ShopifyProduct, PageInfo } from "@/lib/shopify";
 import ProductCard from "./ProductCard";
 
 interface CollectionFilterProps {
   products: ShopifyProduct[];
   collectionHandle: string;
+  initialPageInfo?: PageInfo;
 }
+
+const PAGE_SIZE = 100;
 
 // Define which collections are fabric/kerosang (no sizes)
 const noSizeCollections = [
@@ -34,9 +37,46 @@ const clothingSizeOrder = [
 // Shoe size order (numeric)
 const shoeSizeOrder = ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
 
-export default function CollectionFilter({ products, collectionHandle }: CollectionFilterProps) {
+export default function CollectionFilter({
+  products: initialProducts,
+  collectionHandle,
+  initialPageInfo,
+}: CollectionFilterProps) {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("featured");
+
+  // Products accumulate as the visitor clicks "Load more" (100 at a time, no cap).
+  const [products, setProducts] = useState<ShopifyProduct[]>(initialProducts);
+  const [cursor, setCursor] = useState<string | null>(initialPageInfo?.endCursor ?? null);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(initialPageInfo?.hasNextPage ?? false);
+  const [loadingMore, setLoadingMore] = useState(false);
+
+  const loadMore = async () => {
+    if (loadingMore || !hasNextPage) return;
+    setLoadingMore(true);
+    try {
+      const params = new URLSearchParams({
+        handle: collectionHandle,
+        first: String(PAGE_SIZE),
+      });
+      if (cursor) params.set("cursor", cursor);
+
+      const res = await fetch(`/api/products?${params.toString()}`);
+      const data: { products: ShopifyProduct[]; pageInfo: PageInfo } = await res.json();
+
+      setProducts((prev) => {
+        const seen = new Set(prev.map((p) => p.id));
+        const next = (data.products || []).filter((p) => !seen.has(p.id));
+        return [...prev, ...next];
+      });
+      setCursor(data.pageInfo?.endCursor ?? null);
+      setHasNextPage(Boolean(data.pageInfo?.hasNextPage));
+    } catch (err) {
+      console.error("Load more failed:", err);
+    } finally {
+      setLoadingMore(false);
+    }
+  };
 
   // Determine collection type
   const isNoSizeCollection = noSizeCollections.some(c => collectionHandle.includes(c));
@@ -174,15 +214,33 @@ export default function CollectionFilter({ products, collectionHandle }: Collect
 
       {/* Products Grid */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-          {filteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              showSizes={!isNoSizeCollection}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {filteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                showSizes={!isNoSizeCollection}
+              />
+            ))}
+          </div>
+
+          {/* Load More */}
+          {hasNextPage && (
+            <div className="flex flex-col items-center gap-3 mt-12">
+              <button
+                onClick={loadMore}
+                disabled={loadingMore}
+                className="px-10 py-4 bg-gradient-to-r from-[#F472B6] to-[#EC4899] text-white font-semibold rounded-full hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {loadingMore ? "Loading…" : "Load More"}
+              </button>
+              <p className="text-sm text-stone-400">
+                Showing {products.length} so far
+              </p>
+            </div>
+          )}
+        </>
       ) : (
         <div className="text-center py-12">
           <p className="text-stone-500 mb-4">No products found with the selected size.</p>

@@ -30,6 +30,137 @@ export async function shopifyFetch<T>({
   return json.data;
 }
 
+// Shared product fields used by listing queries
+const PRODUCT_LIST_FIELDS = `
+  id
+  title
+  handle
+  description
+  priceRange {
+    minVariantPrice {
+      amount
+      currencyCode
+    }
+  }
+  images(first: 1) {
+    edges {
+      node {
+        url
+        altText
+      }
+    }
+  }
+  options {
+    name
+    values
+  }
+  variants(first: 100) {
+    edges {
+      node {
+        id
+        title
+        availableForSale
+        selectedOptions {
+          name
+          value
+        }
+      }
+    }
+  }
+`;
+
+export interface PageInfo {
+  hasNextPage: boolean;
+  endCursor: string | null;
+}
+
+export interface ProductsPage {
+  products: ShopifyProduct[];
+  pageInfo: PageInfo;
+}
+
+// Paginated "all products" — fetches one page (default 100) starting after `cursor`.
+// No 250 cap: callers keep passing the returned endCursor until hasNextPage is false.
+export async function getProductsPage(
+  first: number = 100,
+  after: string | null = null
+): Promise<ProductsPage> {
+  const query = `
+    query getProductsPage($first: Int!, $after: String) {
+      products(first: $first, after: $after) {
+        pageInfo { hasNextPage endCursor }
+        edges { node { ${PRODUCT_LIST_FIELDS} } }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{
+    products: { pageInfo: PageInfo; edges: Array<{ node: ShopifyProduct }> };
+  }>({ query, variables: { first, after } });
+
+  return {
+    products: data.products.edges.map((e) => e.node),
+    pageInfo: data.products.pageInfo,
+  };
+}
+
+// Collection metadata only (title/description/image) — cheap, no products.
+export async function getCollectionMeta(handle: string) {
+  const query = `
+    query getCollectionMeta($handle: String!) {
+      collection(handle: $handle) {
+        id
+        title
+        handle
+        description
+        image { url altText }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{ collection: ShopifyCollection | null }>({
+    query,
+    variables: { handle },
+  });
+
+  return data.collection;
+}
+
+// Paginated products for a single collection — one page (default 100) after `cursor`.
+// `found` is false when the collection handle doesn't exist.
+export async function getCollectionProductsPage(
+  handle: string,
+  first: number = 100,
+  after: string | null = null
+): Promise<ProductsPage & { found: boolean }> {
+  const query = `
+    query getCollectionProductsPage($handle: String!, $first: Int!, $after: String) {
+      collection(handle: $handle) {
+        products(first: $first, after: $after) {
+          pageInfo { hasNextPage endCursor }
+          edges { node { ${PRODUCT_LIST_FIELDS} } }
+        }
+      }
+    }
+  `;
+
+  const data = await shopifyFetch<{
+    collection: {
+      products: { pageInfo: PageInfo; edges: Array<{ node: ShopifyProduct }> };
+    } | null;
+  }>({ query, variables: { handle, first, after } });
+
+  if (!data.collection) {
+    return { products: [], pageInfo: { hasNextPage: false, endCursor: null }, found: false };
+  }
+
+  return {
+    products: data.collection.products.edges.map((e) => e.node),
+    pageInfo: data.collection.products.pageInfo,
+    found: true,
+  };
+}
+
 // Search products
 export async function searchProducts(searchQuery: string, first: number = 20) {
   const query = `
