@@ -10,12 +10,12 @@ interface MegaMenuProps {
   categoryImages?: Record<string, string>;
 }
 
-interface MenuItem {
+export interface MenuItem {
   title: string;
   handle: string;
 }
 
-interface MenuCategory {
+export interface MenuCategory {
   name: string;
   handle: string;
   items: MenuItem[];
@@ -23,7 +23,7 @@ interface MenuCategory {
 
 const defaultImage = "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&h=600&fit=crop";
 
-const menuCategories: MenuCategory[] = [
+export const menuCategories: MenuCategory[] = [
   {
     name: "Batik",
     handle: "batik",

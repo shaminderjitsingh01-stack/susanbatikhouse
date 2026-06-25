@@ -6,11 +6,12 @@ import { useState, useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
 import { getCollections, ShopifyCollection } from "@/lib/shopify";
 import SearchModal from "@/components/search/SearchModal";
-import MegaMenu from "@/components/layout/MegaMenu";
+import MegaMenu, { menuCategories } from "@/components/layout/MegaMenu";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [collections, setCollections] = useState<ShopifyCollection[]>([]);
@@ -128,20 +129,44 @@ export default function Header() {
             <div className="lg:hidden border-t border-pink-400/30 py-4 bg-gradient-to-b from-[#F472B6]/95 to-[#DB2777]">
               <nav className="flex flex-col gap-3">
                 <p className="text-xs uppercase tracking-wider text-pink-200 px-2 font-semibold">Collections</p>
-                {collections.length > 0 ? (
-                  collections.map((collection) => (
-                    <Link
-                      key={collection.handle}
-                      href={`/collections/${collection.handle}`}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="px-2 py-1 text-white hover:text-pink-200"
-                    >
-                      {collection.title}
-                    </Link>
-                  ))
-                ) : (
-                  <span className="px-2 py-1 text-pink-200 text-sm">Loading...</span>
-                )}
+                {menuCategories.map((category) => {
+                  const isExpanded = expandedCategory === category.name;
+                  return (
+                    <div key={category.name}>
+                      <button
+                        onClick={() =>
+                          setExpandedCategory(isExpanded ? null : category.name)
+                        }
+                        className="flex w-full items-center justify-between px-2 py-1 text-white hover:text-pink-200"
+                        aria-expanded={isExpanded}
+                      >
+                        <span>{category.name}</span>
+                        <svg
+                          className={`w-4 h-4 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {isExpanded && (
+                        <div className="flex flex-col gap-1 pl-4 border-l border-pink-400/40 ml-2 my-1">
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.handle}
+                              href={`/collections/${item.handle}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="px-2 py-1 text-sm text-pink-100 hover:text-white"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
                 <Link
                   href="/collections/all"
                   onClick={() => setMobileMenuOpen(false)}
