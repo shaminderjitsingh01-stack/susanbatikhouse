@@ -31,8 +31,11 @@ const shoeCollections = [
 const clothingSizeOrder = [
   "XS", "S", "Small", "M", "Medium", "L", "Large",
   "XL", "Extra Large", "XXL", "2XL", "XXXL", "3XL",
-  "4XL", "5XL", "6XL"
+  "XXXXL", "4XL", "5XL", "6XL"
 ];
+
+// Values to never show as a size filter (they aren't real size choices)
+const hiddenFilterSizes = ["one size", "os", "onesize"];
 
 // Shoe size order (numeric)
 const shoeSizeOrder = ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
@@ -88,7 +91,7 @@ export default function CollectionFilter({
     products.forEach(product => {
       product.variants?.edges?.forEach(v => {
         const sizeOption = v.node.selectedOptions?.find(opt => opt.name === "Size");
-        if (sizeOption?.value) {
+        if (sizeOption?.value && !hiddenFilterSizes.includes(sizeOption.value.trim().toLowerCase())) {
           sizes.add(sizeOption.value);
         }
       });

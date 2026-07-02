@@ -24,7 +24,7 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
   const sizeOrder = [
     "XS", "S", "Small", "M", "Medium", "L", "Large",
     "XL", "Extra Large", "XXL", "2XL", "XXXL", "3XL",
-    "4XL", "5XL", "6XL",
+    "XXXXL", "4XL", "5XL", "6XL",
     // Shoe sizes
     "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"
   ];
