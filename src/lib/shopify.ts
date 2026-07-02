@@ -186,6 +186,13 @@ export async function searchProducts(searchQuery: string, first: number = 20) {
                 }
               }
             }
+            variants(first: 100) {
+              edges {
+                node {
+                  availableForSale
+                }
+              }
+            }
           }
         }
       }

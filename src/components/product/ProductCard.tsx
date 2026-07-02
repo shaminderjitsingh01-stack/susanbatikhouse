@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ShopifyProduct } from "@/lib/shopify";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, isInStock } from "@/lib/utils";
 
 interface ProductCardProps {
   product: ShopifyProduct;
@@ -15,11 +15,7 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
 
-  // In stock if any variant is purchasable. Default to true when variant data
-  // is absent so products never show a false "Sold Out".
-  const inStock = product.variants?.edges
-    ? product.variants.edges.some((v) => v.node.availableForSale)
-    : true;
+  const inStock = isInStock(product);
 
   // Extract available sizes from variants
   const availableSizes = product.variants?.edges
