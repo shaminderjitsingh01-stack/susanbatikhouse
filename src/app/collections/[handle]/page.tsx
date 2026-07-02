@@ -48,12 +48,15 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   try {
     if (handle === "all") {
-      const page = await getProductsPage(100);
+      const page = await getProductsPage(250);
       products = page.products;
       pageInfo = page.pageInfo;
     } else {
       collection = await getCollectionMeta(handle);
-      const page = await getCollectionProductsPage(handle, 100);
+      // Fetch up to 250 (Storefront max per page) so the size filter and cards
+      // reflect the WHOLE collection. Some collections front-load large sizes in
+      // Shopify's sort order, so a 100-item page hid S/M/L until "Load More".
+      const page = await getCollectionProductsPage(handle, 250);
       products = page.products;
       pageInfo = page.pageInfo;
     }
