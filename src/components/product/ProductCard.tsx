@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ShopifyProduct } from "@/lib/shopify";
-import { formatPrice, isInStock } from "@/lib/utils";
+import { formatPrice, stockLabel } from "@/lib/utils";
 
 interface ProductCardProps {
   product: ShopifyProduct;
@@ -15,7 +15,8 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
 
-  const inStock = isInStock(product);
+  const stock = stockLabel(product);
+  const inStock = stock.tone !== "out";
 
   // Extract available sizes from variants
   const availableSizes = product.variants?.edges
@@ -117,15 +118,23 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
         </p>
         <span
           className={`inline-flex items-center gap-1 text-xs font-medium ${
-            inStock ? "text-green-600" : "text-stone-400"
+            stock.tone === "in"
+              ? "text-green-600"
+              : stock.tone === "low"
+              ? "text-amber-600"
+              : "text-stone-400"
           }`}
         >
           <span
             className={`w-1.5 h-1.5 rounded-full ${
-              inStock ? "bg-green-500" : "bg-stone-400"
+              stock.tone === "in"
+                ? "bg-green-500"
+                : stock.tone === "low"
+                ? "bg-amber-500"
+                : "bg-stone-400"
             }`}
           />
-          {inStock ? "In Stock" : "Sold Out"}
+          {stock.text}
         </span>
       </div>
 

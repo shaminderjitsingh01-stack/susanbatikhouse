@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { searchProducts, ShopifyProduct } from "@/lib/shopify";
-import { formatPrice, isInStock } from "@/lib/utils";
+import { formatPrice, stockLabel } from "@/lib/utils";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -134,18 +134,27 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                               product.priceRange.minVariantPrice.currencyCode
                             )}
                           </p>
-                          <span
-                            className={`inline-flex items-center gap-1 text-xs font-medium ${
-                              isInStock(product) ? "text-green-600" : "text-stone-400"
-                            }`}
-                          >
-                            <span
-                              className={`w-1.5 h-1.5 rounded-full ${
-                                isInStock(product) ? "bg-green-500" : "bg-stone-400"
-                              }`}
-                            />
-                            {isInStock(product) ? "In Stock" : "Sold Out"}
-                          </span>
+                          {(() => {
+                            const stock = stockLabel(product);
+                            const color =
+                              stock.tone === "in"
+                                ? "text-green-600"
+                                : stock.tone === "low"
+                                ? "text-amber-600"
+                                : "text-stone-400";
+                            const dot =
+                              stock.tone === "in"
+                                ? "bg-green-500"
+                                : stock.tone === "low"
+                                ? "bg-amber-500"
+                                : "bg-stone-400";
+                            return (
+                              <span className={`inline-flex items-center gap-1 text-xs font-medium ${color}`}>
+                                <span className={`w-1.5 h-1.5 rounded-full ${dot}`} />
+                                {stock.text}
+                              </span>
+                            );
+                          })()}
                         </div>
                       </div>
                     </Link>

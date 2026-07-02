@@ -23,8 +23,25 @@ export async function shopifyFetch<T>({
   const json = await response.json();
 
   if (json.errors) {
-    console.error('Shopify API Error:', json.errors);
-    throw new Error(json.errors[0]?.message || "Shopify API error");
+    // Tolerate ONLY the inventory-scope denial: when the Storefront token
+    // lacks `unauthenticated_read_product_inventory`, quantityAvailable is
+    // denied but Shopify still returns the rest of the data. In that case we
+    // keep the partial data (quantityAvailable comes back null) instead of
+    // throwing, so stock quantities light up automatically once the scope is
+    // enabled without breaking anything meanwhile. All other errors throw.
+    const onlyInventoryScopeDenied =
+      json.data &&
+      Array.isArray(json.errors) &&
+      json.errors.every(
+        (e: { extensions?: { requiredAccess?: string }; message?: string }) =>
+          e?.extensions?.requiredAccess?.includes("unauthenticated_read_product_inventory") ||
+          e?.message?.includes("quantityAvailable")
+      );
+
+    if (!onlyInventoryScopeDenied) {
+      console.error("Shopify API Error:", json.errors);
+      throw new Error(json.errors[0]?.message || "Shopify API error");
+    }
   }
 
   return json.data;
@@ -60,6 +77,7 @@ const PRODUCT_LIST_FIELDS = `
         id
         title
         availableForSale
+        quantityAvailable
         selectedOptions {
           name
           value
@@ -190,6 +208,7 @@ export async function searchProducts(searchQuery: string, first: number = 20) {
               edges {
                 node {
                   availableForSale
+                  quantityAvailable
                 }
               }
             }
@@ -241,6 +260,7 @@ export async function getProducts(first: number = 20) {
                   id
                   title
                   availableForSale
+                  quantityAvailable
                   selectedOptions {
                     name
                     value
@@ -291,6 +311,7 @@ export async function getProduct(handle: string) {
               id
               title
               availableForSale
+              quantityAvailable
               price {
                 amount
                 currencyCode
@@ -389,6 +410,7 @@ export async function getCollection(handle: string) {
                     id
                     title
                     availableForSale
+                    quantityAvailable
                     selectedOptions {
                       name
                       value
@@ -686,6 +708,7 @@ export interface ShopifyProduct {
         id: string;
         title: string;
         availableForSale: boolean;
+        quantityAvailable?: number | null;
         price: {
           amount: string;
           currencyCode: string;
