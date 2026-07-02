@@ -15,6 +15,12 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
 
+  // In stock if any variant is purchasable. Default to true when variant data
+  // is absent so products never show a false "Sold Out".
+  const inStock = product.variants?.edges
+    ? product.variants.edges.some((v) => v.node.availableForSale)
+    : true;
+
   // Extract available sizes from variants
   const availableSizes = product.variants?.edges
     ?.map(v => v.node.selectedOptions?.find(opt => opt.name === "Size")?.value)
@@ -76,6 +82,15 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
           </div>
         )}
 
+        {/* Sold Out badge */}
+        {!inStock && (
+          <div className="absolute top-3 left-3">
+            <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-stone-800/90 text-white">
+              Sold Out
+            </span>
+          </div>
+        )}
+
         {/* Quick View Button */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <span className="px-6 py-3 bg-white text-stone-900 font-semibold rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -100,9 +115,23 @@ export default function ProductCard({ product, badge, showSizes = true }: Produc
       <h3 className="font-medium text-stone-900 group-hover:text-[#EC4899] transition-colors text-lg leading-snug">
         {product.title}
       </h3>
-      <p className="text-[#EC4899] font-bold text-lg mt-1">
-        {formatPrice(price.amount, price.currencyCode)}
-      </p>
+      <div className="flex items-center gap-2 mt-1">
+        <p className="text-[#EC4899] font-bold text-lg">
+          {formatPrice(price.amount, price.currencyCode)}
+        </p>
+        <span
+          className={`inline-flex items-center gap-1 text-xs font-medium ${
+            inStock ? "text-green-600" : "text-stone-400"
+          }`}
+        >
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${
+              inStock ? "bg-green-500" : "bg-stone-400"
+            }`}
+          />
+          {inStock ? "In Stock" : "Sold Out"}
+        </span>
+      </div>
 
       {/* Size Badges */}
       {showSizes && sortedSizes.length > 0 && (
