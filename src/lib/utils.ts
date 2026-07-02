@@ -47,10 +47,9 @@ export function stockLabel(product: ShopifyProduct): {
   text: string;
   tone: "in" | "low" | "out";
 } {
-  const { inStock, quantity, low } = getStockInfo(product);
+  const { inStock, quantity } = getStockInfo(product);
   if (!inStock || quantity === 0) return { text: "Sold Out", tone: "out" };
   if (quantity === null) return { text: "In Stock", tone: "in" }; // scope off / untracked
-  if (low) return { text: `Only ${quantity} left`, tone: "low" };
   return { text: `${quantity} in stock`, tone: "in" };
 }
 
